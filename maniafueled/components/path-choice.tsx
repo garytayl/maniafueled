@@ -7,7 +7,21 @@ import { ArrowRight, ArrowLeft, ArrowDown } from "lucide-react"
 
 export function PathChoice() {
   return (
-    <section id="path-choice" className="relative flex flex-col md:flex-row min-h-screen w-full pb-24 md:pb-0" aria-label="Choose a path">
+    <section id="path-choice" className="relative flex flex-col w-full pb-24 md:pb-0" aria-label="Choose a path">
+      {/* Intro: prompt to choose a path for a glimpse of a state */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5 }}
+        className="bg-[#0a0a0a] border-b border-white/10 py-6 sm:py-8 px-4 sm:px-8 md:px-12 text-center"
+      >
+        <p className="font-sans text-sm sm:text-base text-white/80 font-light max-w-xl mx-auto">
+          {pathChoice.intro}
+        </p>
+      </motion.div>
+
+      <div className="relative flex flex-col md:flex-row flex-1 min-h-[calc(100vh-8rem)] md:min-h-screen">
       {/* Left — MANIA (white) */}
       <Link
         href="/mania"
@@ -149,6 +163,8 @@ export function PathChoice() {
           <ArrowLeft className="w-4 h-4" />
         </motion.span>
       </Link>
+
+      </div>
 
       {/* Bottom bar */}
       <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#0f0f0f] border-t border-white/10 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0 px-4 sm:px-6">

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { waveThoughts, maniaSymptoms, maniaSymptomExplanations, earlyWarningSigns } from "@/lib/content"
+import { waveThoughts, maniaSymptoms, maniaSymptomExplanations, earlyWarningSigns, episodesDurationClarification } from "@/lib/content"
 import { CrossLinks, pathPageLinks } from "@/components/cross-links"
 import { SentientSphere } from "@/components/sentient-sphere"
 import { BreathingWave } from "@/components/breathing-wave"
@@ -51,8 +51,11 @@ export function ManiaExperience() {
           <SentientSphere variant="mania" />
         </div>
         <BreathingWave variant="mania" />
-        <p className="relative z-10 shrink-0 font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-6 uppercase text-center">
+        <p className="relative z-10 shrink-0 font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 uppercase text-center">
           PATH — MANIA
+        </p>
+        <p className="relative z-10 shrink-0 font-mono text-[10px] tracking-wider text-white/40 text-center mt-1 mb-6">
+          {episodesDurationClarification}
         </p>
         <div className="relative z-10 flex-1 flex items-center justify-center w-full max-w-4xl mx-auto text-center min-h-[14rem] sm:min-h-[16rem]">
           <AnimatePresence mode="wait">

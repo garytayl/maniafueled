@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { fromTheInsideContent, coreEmotionalTruth } from "@/lib/content"
+import { fromTheInsideContent, coreEmotionalTruth, episodesDurationClarification } from "@/lib/content"
 import { CrossLinks } from "@/components/cross-links"
 
 function FadeBlock({
@@ -47,6 +47,9 @@ export function FromTheInsideContent() {
         <FadeBlock className="mb-16">
           <p className="font-sans text-base sm:text-lg text-white/80 font-light leading-relaxed">
             {fromTheInsideContent.intro}
+          </p>
+          <p className="font-mono text-xs tracking-wider text-white/50 mt-4">
+            {episodesDurationClarification}
           </p>
         </FadeBlock>
 

@@ -10,6 +10,7 @@ import {
   depressionSymptomExplanations,
   suicidalIdeationContent,
   crossCuttingStruggles,
+  episodesDurationClarification,
 } from "@/lib/content"
 import { ChevronRight } from "lucide-react"
 import { CrossLinks, pathPageLinks } from "@/components/cross-links"
@@ -59,8 +60,11 @@ export function DepressiveExperience() {
         </div>
         <BreathingWave variant="depressive" />
         <header className="relative z-10 pt-[var(--navbar-offset)] pb-16 px-4 sm:px-8 md:px-12 max-w-3xl mx-auto">
-          <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-4 uppercase">
+          <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 uppercase">
             PATH — DEPRESSIVE
+          </p>
+          <p className="font-mono text-[10px] tracking-wider text-white/40 mb-4 mt-1">
+            {episodesDurationClarification}
           </p>
           <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight">
             The low side

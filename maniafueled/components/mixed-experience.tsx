@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { waveThoughts, mixedStateContent } from "@/lib/content"
+import { waveThoughts, mixedStateContent, episodesDurationClarification } from "@/lib/content"
 import { CrossLinks, pathPageLinks } from "@/components/cross-links"
 import { SentientSphere } from "@/components/sentient-sphere"
 import { BreathingWave } from "@/components/breathing-wave"
@@ -46,8 +46,11 @@ export function MixedExperience() {
               {mixedStateContent.warning}
             </p>
           </div>
-          <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-4 uppercase">
+          <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 uppercase">
             PATH — MIXED
+          </p>
+          <p className="font-mono text-[10px] tracking-wider text-amber-200/50 mb-4 mt-1">
+            {episodesDurationClarification}
           </p>
           <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight">
             The overlap — agitated and hopeless at once

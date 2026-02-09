@@ -116,8 +116,13 @@ export const fromTheInsideContent = {
     "I'm not broken. I'm not dramatic. I'm not weak. I'm describing something real — and I'm doing it clearly. I've lived a long time with an internal experience that was named late and handled poorly. Now I'm finally finding language for it. That's not regression. That's integration.",
 }
 
+/** Clarification used where states/episodes are discussed */
+export const episodesDurationClarification =
+  "Episodes typically last weeks to months."
+
 /** Path choice — MANIA | MIXED | DEPRESSIVE */
 export const pathChoice = {
+  intro: "Choose a path below to get a glimpse of what a state feels like. Episodes typically last weeks to months.",
   prompt: "Choose a path to explore",
   mania: {
     label: "MANIA",

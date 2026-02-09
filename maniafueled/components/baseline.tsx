@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import { motion, useMotionValue, useTransform, animate } from "framer-motion"
-import { baselineStatements } from "@/lib/content"
+import { baselineStatements, episodesDurationClarification } from "@/lib/content"
 
 const MARQUEE_DURATION = 35
 
@@ -38,6 +38,9 @@ export function Baseline() {
         <h2 className="font-sans text-xl sm:text-3xl md:text-5xl font-light italic text-balance leading-tight">
           When things are relatively okay
         </h2>
+        <p className="font-mono text-[10px] tracking-wider text-white/45 mt-3">
+          {episodesDurationClarification}
+        </p>
       </motion.div>
 
       {/* Horizontal scrolling strip — Framer Motion so it always runs */}
