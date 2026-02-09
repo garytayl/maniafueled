@@ -512,7 +512,7 @@ export const storyJourney = {
       label: "Church & community",
       title: "What I wonder when I'm in the kitchen with a knife to my throat",
       body: [
-        "Genuinely — what does the church expect healing to look like from my disorder? Me committing and through prayer they raise me from the dead? I tell people I'm struggling and I gotta beg people to even check in on me. I thought this was what community was for.",
+        "Genuinely — what does the church expect healing to look like from my disorder? Me committing and through prayer they raise me from the dead? I tell people I'm struggling and I gotta beg people to even check in on me. I thought this was what community was for. Part of me believes the church has failed me. When I have shared what I struggle with, it doesn't seem to be received well. I'm not sure what to do with that.",
       ],
     },
   ],
