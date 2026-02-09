@@ -32,6 +32,7 @@ export const pathChoice = {
     description: "The low side — depletion, pain, and what runs through it.",
   },
   baselineLink: "Or explore my baseline first",
+  fullStoryLink: "Read the full story",
 }
 
 /** Copy for the "wave" section — highs and lows, striving toward baseline */

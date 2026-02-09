@@ -105,13 +105,20 @@ export function PathChoice() {
         </motion.span>
       </Link>
 
-      {/* Optional: explore baseline (middle ground) */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+      {/* Optional: baseline + full story */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
         <Link
           href="/baseline"
           className="font-mono text-[10px] tracking-[0.25em] text-white/40 hover:text-white/70 transition-colors uppercase"
         >
           {pathChoice.baselineLink}
+        </Link>
+        <span className="text-white/20 hidden sm:inline">·</span>
+        <Link
+          href="/story"
+          className="font-mono text-[10px] tracking-[0.25em] text-white/40 hover:text-white/70 transition-colors uppercase"
+        >
+          {pathChoice.fullStoryLink}
         </Link>
       </div>
     </section>

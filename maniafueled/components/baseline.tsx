@@ -1,10 +1,26 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useEffect } from "react"
+import { motion, useMotionValue, useTransform, animate } from "framer-motion"
 import { baselineStatements } from "@/lib/content"
+
+const MARQUEE_DURATION = 50
 
 export function Baseline() {
   const duplicated = [...baselineStatements, ...baselineStatements]
+  const progress = useMotionValue(0)
+  const x = useTransform(progress, [0, 1], ["0%", "-50%"])
+
+  useEffect(() => {
+    const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (reduced) return
+    const controls = animate(progress, [0, 1], {
+      duration: MARQUEE_DURATION,
+      repeat: Infinity,
+      ease: "linear",
+    })
+    return () => controls.stop()
+  }, [progress])
 
   return (
     <section id="baseline" className="relative py-32 overflow-hidden md:py-0">
@@ -24,11 +40,11 @@ export function Baseline() {
         </h2>
       </motion.div>
 
-      {/* Horizontal cycling strip — same pattern as Triggers marquee */}
+      {/* Horizontal scrolling strip — Framer Motion so it always runs */}
       <div className="relative flex items-center overflow-hidden py-0 gap-0 h-16">
-        <div
-          className="flex gap-16 md:gap-24 px-8 md:px-12 whitespace-nowrap animate-marquee-left"
-          style={{ width: "fit-content" }}
+        <motion.div
+          style={{ x, width: "fit-content" as const }}
+          className="flex gap-16 md:gap-24 px-8 md:px-12 whitespace-nowrap"
         >
           {duplicated.map((statement, index) => (
             <p
@@ -42,7 +58,7 @@ export function Baseline() {
               {statement}
             </p>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Decorative Line */}
