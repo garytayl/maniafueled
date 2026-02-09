@@ -11,26 +11,56 @@ type SelectedItem =
   | { type: "verse"; verseIndex: number; note: string }
   | null
 
+type ResonateMenu = "songs" | "verses"
+
 export function ResonateContent() {
   const [selected, setSelected] = useState<SelectedItem>(null)
+  const [menu, setMenu] = useState<ResonateMenu>("songs")
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <div className="px-4 sm:px-8 md:px-12 pt-[var(--navbar-offset)] pb-24 max-w-4xl mx-auto lg:max-w-none lg:flex lg:gap-12 lg:pr-[22rem]">
         <main className="min-w-0 flex-1 lg:min-w-0">
-          <header className="mb-16">
+          <header className="mb-10">
             <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-3 uppercase">
               WHAT RESONATES
             </p>
             <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight mb-4">
               Lyrics & verses
             </h1>
-            <p className="font-sans text-base sm:text-lg text-white/70 font-light leading-relaxed max-w-2xl">
+            <p className="font-sans text-base sm:text-lg text-white/70 font-light leading-relaxed max-w-2xl mb-8">
               Songs and Bible verses that put words to what I feel. Tap a highlighted line to see why it resonates.
             </p>
+
+            {/* Split menu: Songs | Bible verses */}
+            <nav className="flex border-b border-white/15" aria-label="Resonate sections">
+              <button
+                type="button"
+                onClick={() => setMenu("songs")}
+                className={`font-mono text-xs sm:text-sm tracking-widest uppercase py-3 pr-6 border-b-2 transition-colors ${
+                  menu === "songs"
+                    ? "border-white text-white"
+                    : "border-transparent text-white/50 hover:text-white/80"
+                }`}
+              >
+                Songs
+              </button>
+              <button
+                type="button"
+                onClick={() => setMenu("verses")}
+                className={`font-mono text-xs sm:text-sm tracking-widest uppercase py-3 pl-6 border-b-2 transition-colors ${
+                  menu === "verses"
+                    ? "border-white text-white"
+                    : "border-transparent text-white/50 hover:text-white/80"
+                }`}
+              >
+                Bible verses
+              </button>
+            </nav>
           </header>
 
           {/* Songs */}
+          {menu === "songs" && (
           <section className="mb-20">
             <h2 className="font-mono text-xs tracking-[0.25em] text-white/50 mb-6 uppercase">
               Songs
@@ -107,8 +137,10 @@ export function ResonateContent() {
               </article>
             ))}
           </section>
+          )}
 
           {/* Bible verses */}
+          {menu === "verses" && (
           <section>
             <h2 className="font-mono text-xs tracking-[0.25em] text-white/50 mb-6 uppercase">
               Bible verses
@@ -144,6 +176,7 @@ export function ResonateContent() {
               ))}
             </div>
           </section>
+          )}
         </main>
 
         {/* Sidebar — desktop only */}
