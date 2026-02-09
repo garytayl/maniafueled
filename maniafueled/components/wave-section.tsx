@@ -51,7 +51,10 @@ export function WaveSection() {
   const [mode, setMode] = useState<ThoughtMode>(null)
   const [thought, setThought] = useState("")
 
-  const pathD = useTransform([amplitude, phase], ([a, p]) => buildPath(a, (p as number) * Math.PI * 2))
+  const pathD = useTransform(
+    [amplitude, phase],
+    ([a, p]: number[]) => buildPath(a, p * Math.PI * 2)
+  )
 
   // Continuous wave movement (phase drifts so the wave travels)
   useEffect(() => {
