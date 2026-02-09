@@ -33,7 +33,7 @@ export function Baseline() {
         className="px-4 sm:px-8 md:px-12 mb-0 py-8 sm:py-20"
       >
         <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">
-          02 — BASELINE
+          BASELINE
         </p>
         <h2 className="font-sans text-xl sm:text-3xl md:text-5xl font-light italic text-balance leading-tight">
           When things are relatively okay
