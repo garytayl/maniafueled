@@ -3,7 +3,8 @@
 import { motion } from "framer-motion"
 import { SentientSphere } from "./sentient-sphere"
 import { BreathingWave } from "./breathing-wave"
-import { siteConfig, summaryQuote } from "@/lib/content"
+import Link from "next/link"
+import { siteConfig, summaryQuote, coreEmotionalTruth } from "@/lib/content"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -80,6 +81,18 @@ export function LandingHero() {
           >
             &ldquo;{summaryQuote}&rdquo;
           </motion.blockquote>
+          <motion.p
+            variants={fadeUp}
+            className="font-sans text-sm sm:text-base font-light text-white/60 mt-4 px-2"
+          >
+            &ldquo;{coreEmotionalTruth}&rdquo;
+          </motion.p>
+          <Link
+            href="/from-the-inside"
+            className="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-white/50 hover:text-white/80 uppercase mt-3 inline-block transition-colors"
+          >
+            What it feels like from the inside →
+          </Link>
           <motion.div variants={fadeUp} className="mt-6 sm:mt-8">
             <motion.button
               type="button"

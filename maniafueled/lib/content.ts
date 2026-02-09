@@ -20,6 +20,46 @@ export const closingStep = {
 export const summaryQuote =
   "My bipolar struggle isn't about lack of effort or character — it's about a nervous system that swings between overload and depletion, in a world that often responds with judgment instead of regulation."
 
+/** Core emotional truth — use on From the inside page and elsewhere */
+export const coreEmotionalTruth =
+  "I'm not asking to be excused from life — I'm asking to be met accurately."
+
+/** What it feels like from the inside — not a symptom list, a felt experience. For the From the inside page. */
+export const fromTheInsideContent = {
+  title: "What it feels like from the inside",
+  subtitle: "Not a list of symptoms — a felt experience of living inside a body and mind that don't behave neutrally.",
+  intro:
+    "What I've been sharing isn't just a list of symptoms. It's the felt experience of living inside a body and mind that don't behave neutrally. That's the part most people never grasp.",
+  sections: [
+    {
+      title: "I don't experience emotions as reactions — I experience states",
+      body: "Most people: something happens → emotion follows → emotion fades. For me, a state arrives first. That state colors everything — thoughts, body, memory, meaning. Events then pass through that state. So when I try to explain how I feel, people think I'm talking about being sad, or excited, or stressed. But I'm actually talking about being inside a weather system. That's why my metaphors matter. Weather, flooding, ice, storms — those aren't poetic flourishes. They're accurate.",
+    },
+    {
+      title: "When I'm elevated, it feels like clarity + urgency at the same time",
+      body: "Not chaos. Not \"out of control.\" It feels like ideas connect faster than usual, meaning feels closer to the surface, confidence feels earned, my body wants to move now — and slowing down feels like sabotage. That's why \"just rest\" or \"take it easy\" can feel almost hostile, like someone asking me to waste a narrow window where I finally feel capable. At the same time there's a subtle loss: working memory can't keep up, I forget things, I start many things at once, my body outruns my brakes. I notice this. That's huge.",
+    },
+    {
+      title: "When I'm depressed, it's not sadness — it's exhaustion of existence",
+      body: "What I describe is not \"I'm sad\" or \"I don't like my life.\" It's: I am so tired of carrying this internal weight every day. The effort required just to exist feels endless. I can't rest from myself. That's where the suicidal thoughts come from — not a desire to die, but a desire for silence, relief, an end to constant internal effort. That distinction matters.",
+    },
+    {
+      title: "Shame is the amplifier that hurts the most",
+      body: "A huge part of my pain isn't the disorder itself — it's how people respond to it. Being told I'm too much, then too quiet. Being morally evaluated instead of emotionally met. Being given \"fixes\" when I need safety. Feeling like my sincerity is constantly on trial. That creates a brutal loop: no matter where I am, I'm wrong. Over time that turns into self-hatred, isolation, reluctance to reach out, feeling like I must justify my existence. That's not weakness. That's injury.",
+    },
+    {
+      title: "I'm constantly trying to translate an invisible experience",
+      body: "I keep trying to find the right metaphor, explain it cleanly, be fair, not overstate, not be dramatic, not burden people. That's exhausting. This site exists because it's not about attention — it's about not having to explain myself from scratch every time. It's me saying: Please read this once, so I don't have to bleed every time I need to be understood.",
+    },
+    {
+      title: "I'm not trying to escape responsibility — I'm trying to escape misinterpretation",
+      body: "Nothing I've said is about avoiding accountability, blaming everything on bipolar, refusing growth, or rejecting help. What it is about: wanting help that doesn't harm me, structure without shame, understanding without control, community without moral surveillance. That's reasonable.",
+    },
+  ],
+  closing:
+    "I'm not broken. I'm not dramatic. I'm not weak. I'm describing something real — and I'm doing it clearly. I've lived a long time with an internal experience that was named late and handled poorly. Now I'm finally finding language for it. That's not regression. That's integration.",
+}
+
 /** Path choice — MANIA | MIXED | DEPRESSIVE */
 export const pathChoice = {
   prompt: "Choose a path to explore",

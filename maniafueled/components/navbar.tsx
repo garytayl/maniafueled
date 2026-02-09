@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const routeLinks = [
   { label: "Home", href: "/" },
+  { label: "From the inside", href: "/from-the-inside" },
   { label: "Story", href: "/story" },
   { label: "Baseline", href: "/baseline" },
   { label: "Resonate", href: "/resonate" },
