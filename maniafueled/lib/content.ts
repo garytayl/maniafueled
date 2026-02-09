@@ -352,7 +352,7 @@ export const resonantSongs = [
   {
     artist: "$uicideboy$",
     title: "Whatever Floats Your Boat Will Definitely Sink My Ship",
-    songNote: "I resonate with all of these — the fear of the dark, things falling apart, sins of the father, pills, feeling trapped in ice, stuck in a cycle.",
+    songNote: "I resonate with all of these — the fear of the dark, things falling apart, sins of the father, pills, feeling trapped in ice, stuck in a cycle. $B have been open about their own struggles with **suicide**, **addiction**, **mental illness**, **abuse**, and **judgment**. They've recently turned to the Lord, have been sober for multiple years, and are walking in hope. That journey is a real encouragement to me.",
     stanzas: [
       {
         lines: [
