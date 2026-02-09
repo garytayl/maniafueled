@@ -525,39 +525,45 @@ export const resonantSongs = [
   },
 ]
 
-/** Bible verses that resonate — add reference, text, and why it resonates */
+/** Bible verses — optional chapter for grouping (e.g. "Psalm 88", "Jonah 2"). Add more verses and set chapter to organize by book/passage. */
 export const resonantVerses = [
   {
+    chapter: "Psalm 88",
     reference: "Psalm 88:3–6",
     translation: "ESV",
     text: "For my soul is full of troubles, and my life draws near to **Sheol**. I am counted among those who go down to **the pit**; I am a man who has no strength, like one set loose among the dead, like the slain that lie in the grave. You have put me in the depths of the pit, in the **regions dark and deep**.",
     note: "When I'm in a depressive state and those thoughts are there, it feels like Sheol. My life draws near to Sheol. I'm in the depths of the pit — no strength, regions dark and deep. It helps to know someone put it into words.",
   },
   {
+    chapter: "Psalm 88",
     reference: "Psalm 88:11–12",
     translation: "ESV",
     text: "Is your steadfast love declared in the grave, or your faithfulness in Abaddon? Are your wonders known in the darkness, or your righteousness in **the land of forgetfulness**?",
     note: "In that place it feels like God's love isn't declared there — like I'm in the land of forgetfulness where his presence doesn't reach. It names the feeling.",
   },
   {
+    chapter: "Psalm 18",
     reference: "Psalm 18:5",
     translation: "ESV",
     text: "The **cords of Sheol** surrounded me; the **snares of death** confronted me.",
     note: "In that state it feels like the cords of Sheol are around me — bound, trapped. The snares of death right in front of me.",
   },
   {
+    chapter: "Jonah 2",
     reference: "Jonah 2:2–3, 6",
     translation: "ESV",
     text: "I called out to the Lord, out of my distress, and he answered me; out of **the belly of Sheol** I cried, and you heard my voice. You cast me into the deep... I went down to the land whose bars closed upon me forever; yet you brought up my life from **the pit**, O Lord my God.",
     note: "When I'm in that place it feels like the belly of Sheol — bars closed forever. The hope: he can bring my life up from the pit. He has before.",
   },
   {
+    chapter: "Psalm 30",
     reference: "Psalm 30:3",
     translation: "ESV",
     text: "O Lord, you have brought up my soul from **Sheol**; you restored me to life from among those who go down to the pit.",
     note: "On the other side of the wave — he brings the soul up from Sheol. Reminder that the pit isn't the last word.",
   },
   {
+    chapter: "Lamentations 3",
     reference: "Lamentations 3:22–23",
     translation: "ESV",
     text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",

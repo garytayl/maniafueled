@@ -1,10 +1,26 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { resonantSongs, resonantVerses } from "@/lib/content"
 import { parseStyledText } from "@/lib/parse-styled-text"
+
+/** Group verses by chapter for display; each item keeps original index for selection */
+function groupVersesByChapter(
+  verses: Array<{ reference: string; translation?: string; text: string; note?: string; chapter?: string }>
+): Array<{ chapter: string; verses: Array<{ verseIndex: number }> }> {
+  const byChapter = new Map<string, number[]>()
+  verses.forEach((v, i) => {
+    const key = "chapter" in v && v.chapter ? String(v.chapter) : v.reference.split(":")[0] || "Other"
+    if (!byChapter.has(key)) byChapter.set(key, [])
+    byChapter.get(key)!.push(i)
+  })
+  return Array.from(byChapter.entries()).map(([chapter, indices]) => ({
+    chapter,
+    verses: indices.map((verseIndex) => ({ verseIndex })),
+  }))
+}
 
 type SelectedItem =
   | { type: "song"; songIndex: number; stanzaIndex: number; lineIndex: number; note: string }
@@ -17,6 +33,8 @@ type ResonateMenu = "songs" | "verses"
 export function ResonateContent() {
   const [selected, setSelected] = useState<SelectedItem>(null)
   const [menu, setMenu] = useState<ResonateMenu>("songs")
+  const [selectedSongIndex, setSelectedSongIndex] = useState(0)
+  const versesByChapter = useMemo(() => groupVersesByChapter(resonantVerses), [])
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
@@ -33,12 +51,12 @@ export function ResonateContent() {
               Songs and Bible verses that put words to what I feel. Tap a highlighted line to see why it resonates.
             </p>
 
-            {/* Split menu: Songs | Bible verses */}
+            {/* Split menu: Songs | Bible verses — align tab underline with nav bottom */}
             <nav className="flex border-b border-white/15" aria-label="Resonate sections">
               <button
                 type="button"
                 onClick={() => setMenu("songs")}
-                className={`font-mono text-xs sm:text-sm tracking-widest uppercase py-3 pr-6 border-b-2 transition-colors ${
+                className={`font-mono text-xs sm:text-sm tracking-widest uppercase py-3 pr-6 border-b-2 transition-colors -mb-px ${
                   menu === "songs"
                     ? "border-white text-white"
                     : "border-transparent text-white/50 hover:text-white/80"
@@ -49,7 +67,7 @@ export function ResonateContent() {
               <button
                 type="button"
                 onClick={() => setMenu("verses")}
-                className={`font-mono text-xs sm:text-sm tracking-widest uppercase py-3 pl-6 border-b-2 transition-colors ${
+                className={`font-mono text-xs sm:text-sm tracking-widest uppercase py-3 pl-6 border-b-2 transition-colors -mb-px ${
                   menu === "verses"
                     ? "border-white text-white"
                     : "border-transparent text-white/50 hover:text-white/80"
@@ -66,7 +84,26 @@ export function ResonateContent() {
             <h2 className="font-mono text-xs tracking-[0.25em] text-white/50 mb-6 uppercase">
               Songs
             </h2>
-            {resonantSongs.map((song, songIndex) => (
+            {resonantSongs.length > 1 && (
+              <div className="flex flex-wrap gap-2 mb-8">
+                {resonantSongs.map((song, idx) => (
+                  <button
+                    key={`${song.artist}-${song.title}`}
+                    type="button"
+                    onClick={() => setSelectedSongIndex(idx)}
+                    className={`font-mono text-xs tracking-wider uppercase py-2 px-4 rounded-full border transition-colors ${
+                      selectedSongIndex === idx
+                        ? "border-white text-white bg-white/10"
+                        : "border-white/30 text-white/70 hover:border-white/50 hover:text-white"
+                    }`}
+                  >
+                    {song.title}
+                  </button>
+                ))}
+              </div>
+            )}
+            {resonantSongs.map((song, songIndex) =>
+              resonantSongs.length > 1 && songIndex !== selectedSongIndex ? null : (
               <article key={`${song.artist}-${song.title}`} className="mb-14">
                 <div className="mb-8">
                   <p className="font-mono text-sm tracking-wider text-white/60">
@@ -136,49 +173,60 @@ export function ResonateContent() {
                   ))}
                 </div>
               </article>
-            ))}
+            )
+            )}
           </section>
           )}
 
-          {/* Bible verses */}
+          {/* Bible verses — grouped by chapter */}
           {menu === "verses" && (
           <section>
             <h2 className="font-mono text-xs tracking-[0.25em] text-white/50 mb-6 uppercase">
               Bible verses
             </h2>
-            <div className="space-y-10">
-              {resonantVerses.map((verse, verseIndex) => (
-                <article
-                  key={verse.reference}
-                  className="border-l-2 border-white/20 pl-5 sm:pl-6"
-                >
-                  <p className="font-mono text-sm tracking-wider text-white/70 mb-2">
-                    {verse.reference}
-                    {"translation" in verse && verse.translation && (
-                      <span className="text-white/50 font-normal"> · {verse.translation}</span>
-                    )}
-                  </p>
-                  <p className="font-sans text-base sm:text-lg font-light text-white/90 leading-relaxed mb-3">
-                    &ldquo;{parseStyledText(verse.text, `verse-${verseIndex}`)}&rdquo;
-                  </p>
-                  {verse.note && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setSelected(
-                          selected?.type === "verse" && selected.verseIndex === verseIndex
-                            ? null
-                            : { type: "verse", verseIndex, note: verse.note }
-                        )
-                      }
-                      className="font-sans text-sm text-amber-200/90 hover:text-amber-200 underline underline-offset-2"
-                    >
-                      Why this resonates
-                    </button>
-                  )}
-                </article>
-              ))}
-            </div>
+            {versesByChapter.map(({ chapter, verses: verseItems }) => (
+              <div key={chapter} className="mb-12">
+                <h3 className="font-mono text-sm tracking-wider text-white/60 mb-6 uppercase border-b border-white/10 pb-2">
+                  {chapter}
+                </h3>
+                <div className="space-y-10">
+                  {verseItems.map(({ verseIndex }) => {
+                    const verse = resonantVerses[verseIndex]
+                    return (
+                      <article
+                        key={verse.reference}
+                        className="border-l-2 border-white/20 pl-5 sm:pl-6"
+                      >
+                        <p className="font-mono text-sm tracking-wider text-white/70 mb-2">
+                          {verse.reference}
+                          {"translation" in verse && verse.translation && (
+                            <span className="text-white/50 font-normal"> · {verse.translation}</span>
+                          )}
+                        </p>
+                        <p className="font-sans text-base sm:text-lg font-light text-white/90 leading-relaxed mb-3">
+                          &ldquo;{parseStyledText(verse.text, `verse-${verseIndex}`)}&rdquo;
+                        </p>
+                        {verse.note && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setSelected(
+                                selected?.type === "verse" && selected.verseIndex === verseIndex
+                                  ? null
+                                  : { type: "verse", verseIndex, note: verse.note }
+                              )
+                            }
+                            className="font-sans text-sm text-amber-200/90 hover:text-amber-200 underline underline-offset-2"
+                          >
+                            Why this resonates
+                          </button>
+                        )}
+                      </article>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
           </section>
           )}
         </main>
