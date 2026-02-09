@@ -1,14 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowUpRight, Share2 } from "lucide-react"
 import { siteConfig, closingStep } from "@/lib/content"
-import { useJourney } from "@/components/journey/journey-context"
 
 export function ClosingStep() {
   const [hoverPrimary, setHoverPrimary] = useState(false)
-  const { goToStep } = useJourney()
   const hasEmail = Boolean(siteConfig.contactEmail?.trim())
 
   const shareUrl = typeof window !== "undefined" ? window.location.href : ""
@@ -90,16 +89,19 @@ export function ClosingStep() {
         </motion.div>
 
         {/* Back to start — subtle */}
-        <motion.button
-          type="button"
-          onClick={() => goToStep(0)}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="mt-12 font-mono text-[10px] tracking-[0.2em] text-white/40 hover:text-white/70 transition-colors uppercase"
+          className="mt-12"
         >
-          Back to start
-        </motion.button>
+          <Link
+            href="/"
+            className="font-mono text-[10px] tracking-[0.2em] text-white/40 hover:text-white/70 transition-colors uppercase"
+          >
+            Back to start
+          </Link>
+        </motion.div>
       </div>
 
       {/* Crisis resources — clear, calm block */}

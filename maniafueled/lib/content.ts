@@ -20,11 +20,82 @@ export const closingStep = {
 export const summaryQuote =
   "Your bipolar struggle isn't about lack of effort or character — it's about a nervous system that swings between overload and depletion, in a world that often responds with judgment instead of regulation."
 
+/** Path choice — split MANIA | DEPRESSIVE */
+export const pathChoice = {
+  prompt: "Choose a path to explore",
+  mania: {
+    label: "MANIA",
+    description: "The elevated side — energy, clarity, and the cost.",
+  },
+  depressive: {
+    label: "DEPRESSIVE",
+    description: "The low side — depletion, pain, and what runs through it.",
+  },
+  baselineLink: "Or explore my baseline first",
+}
+
 /** Copy for the "wave" section — highs and lows, striving toward baseline */
 export const waveSection = {
   label: "THE WAVE",
   headline: "I'm striving toward my baseline",
   subline: "Lesser highs, lesser lows — the wave doesn't disappear, but I'm learning to live with a calmer one.",
+  /** Interactive thought mimic — click a state to feel the pace of thoughts */
+  thoughtPrompt: "Click a state to feel the pace of my thoughts",
+  maniaLabel: "Mania",
+  baselineLabel: "Baseline",
+  depressiveLabel: "Depressive",
+}
+
+/** Short thoughts that cycle in each state (stream-of-consciousness style) */
+export const waveThoughts = {
+  mania: [
+    "I can do everything",
+    "This is the idea that changes everything",
+    "Why is everyone so slow",
+    "I don't need to sleep",
+    "I'll build it tonight",
+    "Everything connects",
+    "Buy it now",
+    "They don't get it yet",
+    "One more project",
+    "I finally see it",
+    "Why did I ever doubt",
+    "This is going to be huge",
+    "I need to tell them",
+    "Just one more hour",
+    "Everything makes sense",
+  ],
+  baseline: [
+    "I'll take it one thing at a time",
+    "Coffee first, then the list",
+    "Maybe a short walk later",
+    "I'm okay today",
+    "Nothing urgent",
+    "Steady",
+    "I can rest tonight",
+    "One step is enough",
+    "Today was alright",
+    "I'll reply tomorrow",
+    "No need to rush",
+    "I'm present",
+  ],
+  depressive: [
+    "I can't do this",
+    "Why bother",
+    "Everyone is better off without me",
+    "I'm so tired",
+    "I've already failed",
+    "There's no point",
+    "I don't deserve help",
+    "I'll just stay here",
+    "Nothing will change",
+    "I'm a burden",
+    "I can't get up",
+    "What's wrong with me",
+    "I don't want to talk",
+    "It's always like this",
+    "I'm so alone",
+  ],
 }
 
 export const baselineStatements = [

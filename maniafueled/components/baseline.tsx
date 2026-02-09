@@ -1,21 +1,13 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform, useSpring } from "framer-motion"
+import { motion } from "framer-motion"
 import { baselineStatements } from "@/lib/content"
 
 export function Baseline() {
-  const containerRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  })
-
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"])
-  const smoothX = useSpring(x, { stiffness: 100, damping: 30 })
+  const duplicated = [...baselineStatements, ...baselineStatements]
 
   return (
-    <section id="baseline" ref={containerRef} className="relative py-32 overflow-hidden md:py-0">
+    <section id="baseline" className="relative py-32 overflow-hidden md:py-0">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -32,25 +24,25 @@ export function Baseline() {
         </h2>
       </motion.div>
 
-      {/* Horizontal Scroll Container */}
+      {/* Horizontal cycling strip — same pattern as Triggers marquee */}
       <div className="relative flex items-center overflow-hidden py-0 gap-0 h-16">
-        <motion.div
-          style={{ x: smoothX }}
-          className="flex gap-16 md:gap-24 px-8 md:px-12 whitespace-nowrap"
+        <div
+          className="flex gap-16 md:gap-24 px-8 md:px-12 whitespace-nowrap animate-marquee-left"
+          style={{ width: "fit-content" }}
         >
-          {baselineStatements.map((statement, index) => (
-            <motion.p
+          {duplicated.map((statement, index) => (
+            <p
               key={index}
-              className="text-4xl md:text-6xl lg:text-7xl font-sans font-light tracking-tight text-white/90"
+              className="text-4xl md:text-6xl lg:text-7xl font-sans font-light tracking-tight text-white/90 shrink-0"
               style={{
                 WebkitTextStroke: index % 2 === 0 ? "none" : "1px rgba(255,255,255,0.3)",
                 color: index % 2 === 0 ? "inherit" : "transparent",
               }}
             >
               {statement}
-            </motion.p>
+            </p>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Decorative Line */}

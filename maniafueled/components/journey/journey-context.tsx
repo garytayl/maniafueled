@@ -80,4 +80,9 @@ export function useJourney() {
   return ctx
 }
 
+/** Use when component may render outside JourneyProvider (e.g. on route pages). */
+export function useOptionalJourney() {
+  return useContext(JourneyContext)
+}
+
 export { TOTAL_STEPS }

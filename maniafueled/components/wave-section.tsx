@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import { motion, useMotionValue, useTransform, animate } from "framer-motion"
-import { useJourney } from "@/components/journey/journey-context"
+import { useOptionalJourney } from "@/components/journey/journey-context"
 import { waveSection } from "@/lib/content"
 
 const WIDTH = 1200
@@ -23,21 +23,21 @@ function buildPath(amplitude: number): string {
 }
 
 export function WaveSection() {
-  const { step } = useJourney()
+  const journey = useOptionalJourney()
   const amplitude = useMotionValue(20)
 
   const pathD = useTransform(amplitude, (a) => buildPath(a))
 
-  // When we land on the wave step, reset to big wave and animate to calmer
   useEffect(() => {
-    if (step !== WAVE_STEP_INDEX) return
+    const shouldAnimate = journey ? journey.step === WAVE_STEP_INDEX : true
+    if (!shouldAnimate) return
     amplitude.set(72)
     const controls = animate(amplitude, 20, {
       duration: 2.8,
       ease: [0.25, 0.46, 0.45, 0.94],
     })
     return () => controls.stop()
-  }, [step, amplitude])
+  }, [journey?.step, amplitude])
 
   return (
     <section

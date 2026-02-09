@@ -1,16 +1,14 @@
-import { LandingHero } from "@/components/landing-hero"
-import { PathChoice } from "@/components/path-choice"
 import { CustomCursor } from "@/components/custom-cursor"
 import { Navbar } from "@/components/navbar"
+import { ManiaPathContent } from "@/components/mania-path-content"
 
-export default function Home() {
+export default function ManiaPage() {
   return (
     <>
       <CustomCursor />
       <Navbar />
       <main>
-        <LandingHero />
-        <PathChoice />
+        <ManiaPathContent />
       </main>
     </>
   )
