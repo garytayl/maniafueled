@@ -27,10 +27,10 @@ export function LandingHero() {
       </div>
       <BreathingWave />
 
-      <div className="relative z-10 min-h-screen min-h-[100dvh] flex flex-col justify-between p-5 pt-[calc(env(safe-area-inset-top)+1.5rem)] pb-[max(6rem,calc(env(safe-area-inset-bottom)+4rem))] sm:p-8 md:p-12 md:py-20 md:pb-28">
+      <div className="relative z-10 min-h-screen min-h-[100dvh] flex flex-col justify-between p-5 pt-[var(--navbar-offset)] pb-[max(6rem,calc(env(safe-area-inset-bottom)+4rem))] sm:p-8 md:p-12 md:pt-20 md:py-20 md:pb-28">
         {/* Top — staggered line reveal */}
         <motion.div
-          className="text-center md:text-left"
+          className="text-center md:text-left shrink-0"
           initial="hidden"
           animate="visible"
           variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
@@ -42,7 +42,7 @@ export function LandingHero() {
             01 — A PERSONAL STORY
           </motion.p>
           <motion.h1
-            className="font-sans text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-balance"
+            className="font-sans text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-balance leading-tight"
             variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
           >
             <motion.span variants={fadeUp} className="block">
@@ -54,9 +54,9 @@ export function LandingHero() {
           </motion.h1>
         </motion.div>
 
-        {/* Center — quote and CTA with staggered reveal */}
+        {/* Center — quote and CTA: in-flow on mobile to avoid overlap, absolute on md+ */}
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 max-w-2xl md:max-w-3xl px-4 text-center w-full"
+          className="flex-1 flex flex-col justify-center max-w-2xl md:max-w-3xl px-0 w-full mx-auto md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 text-center py-8 md:py-0"
           initial="hidden"
           animate="visible"
           variants={{
@@ -70,7 +70,7 @@ export function LandingHero() {
         >
           <motion.blockquote
             variants={fadeUp}
-            className="font-sans text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white/90 italic"
+            className="font-sans text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white/90 italic px-2"
           >
             &ldquo;{summaryQuote}&rdquo;
           </motion.blockquote>
@@ -90,7 +90,7 @@ export function LandingHero() {
 
         {/* Bottom — tagline */}
         <motion.div
-          className="self-end text-right"
+          className="shrink-0 self-end text-right"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}

@@ -18,7 +18,7 @@ function StepHero() {
 function StepBaseline() {
   return (
     <StepPanel showContinue fullHeight className="pb-24">
-      <div className="px-8 md:px-12 pt-24 md:pt-32">
+      <div className="px-4 sm:px-8 md:px-12 pt-[var(--navbar-offset)] md:pt-32">
         <Baseline />
       </div>
     </StepPanel>
@@ -28,7 +28,9 @@ function StepBaseline() {
 function StepWave() {
   return (
     <StepPanel showContinue fullHeight className="pb-24">
-      <WaveSection />
+      <div className="pt-[var(--navbar-offset)]">
+        <WaveSection />
+      </div>
     </StepPanel>
   )
 }
@@ -36,7 +38,7 @@ function StepWave() {
 function StepExperiences() {
   return (
     <StepPanel showContinue fullHeight className="pb-24">
-      <div className="px-8 md:px-12 pt-24 md:pt-32">
+      <div className="px-4 sm:px-8 md:px-12 pt-[var(--navbar-offset)] md:pt-32">
         <Experiences />
       </div>
     </StepPanel>
@@ -46,7 +48,7 @@ function StepExperiences() {
 function StepTriggers() {
   return (
     <StepPanel showContinue fullHeight className="pb-24">
-      <div className="px-8 md:px-12 pt-24 md:pt-32">
+      <div className="px-4 sm:px-8 md:px-12 pt-[var(--navbar-offset)] md:pt-32">
         <TechMarquee />
       </div>
     </StepPanel>
@@ -56,7 +58,7 @@ function StepTriggers() {
 function StepStrengths() {
   return (
     <StepPanel showContinue fullHeight className="pb-24">
-      <div className="px-8 md:px-12 pt-24 md:pt-32">
+      <div className="px-4 sm:px-8 md:px-12 pt-[var(--navbar-offset)] md:pt-32">
         <Strengths />
       </div>
     </StepPanel>

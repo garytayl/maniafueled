@@ -15,7 +15,7 @@ function MarqueeRow({ items, direction = "left" }: { items: string[]; direction?
         {duplicatedItems.map((item, index) => (
           <span
             key={index}
-            className="group font-sans text-5xl md:text-7xl lg:text-8xl font-light tracking-tight whitespace-nowrap cursor-default"
+            className="group font-sans text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-light tracking-tight whitespace-nowrap cursor-default"
             style={{
               WebkitTextStroke: "1px rgba(255,255,255,0.3)",
               color: "transparent",
@@ -41,14 +41,14 @@ function MarqueeRow({ items, direction = "left" }: { items: string[]; direction?
 
 export function TechMarquee() {
   return (
-    <section id="triggers" className="relative py-24 overflow-hidden md:py-32">
+    <section id="triggers" className="relative py-16 overflow-hidden sm:py-24 md:py-32">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="px-8 md:px-12 mb-16"
+        className="px-4 sm:px-8 md:px-12 mb-10 sm:mb-16"
       >
         <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">
           04 — TRIGGERS & EARLY WARNING SIGNS

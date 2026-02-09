@@ -18,7 +18,7 @@ export function Hero() {
       </div>
 
       {/* Typography Overlay */}
-      <div className="relative z-10 h-full min-h-screen flex flex-col justify-between p-8 md:p-12 md:px-12 md:py-20 pb-28">
+      <div className="relative z-10 h-full min-h-screen flex flex-col justify-between pt-[var(--navbar-offset)] p-8 md:p-12 md:px-12 md:py-20 pb-28">
         {/* Top */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -29,7 +29,7 @@ export function Hero() {
           <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-2">
             01 — A PERSONAL STORY
           </p>
-          <h1 className="font-sans text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-balance">
+          <h1 className="font-sans text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-balance leading-tight">
             {siteConfig.title}
             <br />
             <span className="italic">{siteConfig.subtitle}</span>

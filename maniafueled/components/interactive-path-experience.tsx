@@ -93,7 +93,7 @@ export function InteractivePathExperience({ variant }: { variant: Variant }) {
 
   return (
     <div className="min-h-screen min-h-[100dvh] bg-[#050505] text-white flex flex-col">
-      <div className="flex-1 flex flex-col px-4 sm:px-8 md:px-12 pt-24 sm:pt-28 pb-32 max-w-4xl mx-auto w-full">
+      <div className="flex-1 flex flex-col px-4 sm:px-8 md:px-12 pt-[var(--navbar-offset)] sm:pt-28 pb-32 max-w-4xl mx-auto w-full">
         {/* Persistent back / nav */}
         {step !== "intro" && (
           <motion.button
@@ -244,7 +244,7 @@ export function InteractivePathExperience({ variant }: { variant: Variant }) {
                       }}
                       className="flex-1 flex flex-col justify-center"
                     >
-                      <p className="font-sans text-xl sm:text-2xl md:text-3xl font-light text-white/95 leading-relaxed">
+                      <p className="font-sans text-lg sm:text-2xl md:text-3xl font-light text-white/95 leading-relaxed break-words">
                         {items[cardIndex]}
                       </p>
                     </motion.div>

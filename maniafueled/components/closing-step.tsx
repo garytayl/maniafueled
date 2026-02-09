@@ -26,7 +26,7 @@ export function ClosingStep() {
   return (
     <footer id="contact" className="relative flex flex-col min-h-full w-full">
       {/* Main closing content — centered, one screen */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-16 sm:px-6 sm:py-20 md:py-28 text-center">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 pt-[var(--navbar-offset)] pb-16 sm:px-6 sm:pt-20 sm:pb-20 md:py-28 text-center">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

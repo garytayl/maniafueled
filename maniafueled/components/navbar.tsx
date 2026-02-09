@@ -22,9 +22,9 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-white/5 pt-[env(safe-area-inset-top)]"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 pt-[env(safe-area-inset-top)] bg-[#050505] md:bg-background/80 md:backdrop-blur-md"
       >
-        <nav className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 md:px-12 md:py-5">
+        <nav className="flex items-center justify-between min-h-[3.25rem] px-4 py-3 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:py-4 md:px-12 md:py-5">
           <Link href="/" className="group flex items-center gap-2" aria-label="Home">
             <span className="font-mono text-xs tracking-widest text-muted-foreground">BIPOLAR I</span>
             <span className="w-1.5 h-1.5 rounded-full bg-accent group-hover:scale-150 transition-transform duration-300" />

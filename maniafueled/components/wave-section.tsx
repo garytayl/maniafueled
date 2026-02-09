@@ -116,17 +116,17 @@ export function WaveSection() {
 
   return (
     <section
-      className="relative flex flex-col items-center justify-center min-h-[70vh] min-h-[70dvh] w-full px-4 py-14 sm:px-6 sm:py-20 md:py-28"
+      className="relative flex flex-col items-center justify-center min-h-[70vh] min-h-[70dvh] w-full px-4 py-12 sm:px-6 sm:py-20 md:py-28"
       aria-labelledby="wave-headline"
     >
-      <div className="w-full max-w-4xl mx-auto text-center mb-10 md:mb-12">
+      <div className="w-full max-w-4xl mx-auto text-center mb-8 md:mb-12">
         <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">
           {waveSection.label}
         </p>
-        <h2 id="wave-headline" className="font-sans text-3xl md:text-4xl lg:text-5xl font-light italic text-balance">
+        <h2 id="wave-headline" className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light italic text-balance leading-tight px-2">
           {waveSection.headline}
         </h2>
-        <p className="font-sans text-lg md:text-xl font-light text-muted-foreground mt-6 max-w-2xl mx-auto leading-relaxed">
+        <p className="font-sans text-base sm:text-lg md:text-xl font-light text-muted-foreground mt-4 sm:mt-6 max-w-2xl mx-auto leading-relaxed px-2">
           {waveSection.subline}
         </p>
       </div>

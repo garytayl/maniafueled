@@ -23,19 +23,19 @@ export function Baseline() {
   }, [progress])
 
   return (
-    <section id="baseline" className="relative py-20 sm:py-32 overflow-hidden md:py-0">
+    <section id="baseline" className="relative py-16 sm:py-32 overflow-hidden md:py-0">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="px-4 sm:px-8 md:px-12 mb-0 py-12 sm:py-20"
+        className="px-4 sm:px-8 md:px-12 mb-0 py-8 sm:py-20"
       >
         <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">
           02 — BASELINE
         </p>
-        <h2 className="font-sans text-2xl sm:text-3xl md:text-5xl font-light italic">
+        <h2 className="font-sans text-xl sm:text-3xl md:text-5xl font-light italic text-balance leading-tight">
           When things are relatively okay
         </h2>
       </motion.div>

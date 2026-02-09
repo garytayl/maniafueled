@@ -10,7 +10,7 @@ export default function BaselinePage() {
       <CustomCursor />
       <Navbar />
       <main className="min-h-screen bg-[#050505]">
-        <div className="pt-24">
+        <div className="pt-[var(--navbar-offset)]">
           <Baseline />
         </div>
         <WaveSection />

@@ -7,11 +7,11 @@ import { ArrowRight, ArrowLeft } from "lucide-react"
 
 export function PathChoice() {
   return (
-    <section id="path-choice" className="relative flex flex-col md:flex-row min-h-screen w-full" aria-label="Choose a path">
+    <section id="path-choice" className="relative flex flex-col md:flex-row min-h-screen w-full pb-24 md:pb-0" aria-label="Choose a path">
       {/* Left — MANIA (white) */}
       <Link
         href="/mania"
-        className="relative flex-1 flex flex-col items-center justify-center min-h-[50vh] min-h-[50dvh] md:min-h-screen bg-white text-[#0a0a0a] group overflow-hidden py-10 px-4 sm:py-12 sm:px-6"
+        className="relative flex-1 flex flex-col items-center justify-center min-h-[50vh] min-h-[50dvh] md:min-h-screen bg-white text-[#0a0a0a] group overflow-hidden py-12 px-4 sm:py-16 sm:px-6"
         data-cursor-hover
       >
         <motion.div
@@ -63,7 +63,7 @@ export function PathChoice() {
       {/* Right — DEPRESSIVE (black) */}
       <Link
         href="/depressive"
-        className="relative flex-1 flex flex-col items-center justify-center min-h-[50vh] min-h-[50dvh] md:min-h-screen bg-[#050505] text-white group overflow-hidden py-10 px-4 sm:py-12 sm:px-6"
+        className="relative flex-1 flex flex-col items-center justify-center min-h-[50vh] min-h-[50dvh] md:min-h-screen bg-[#050505] text-white group overflow-hidden py-12 px-4 sm:py-16 sm:px-6"
         data-cursor-hover
       >
         <motion.div
