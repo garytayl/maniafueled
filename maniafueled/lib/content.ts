@@ -253,12 +253,12 @@ export const maniaSymptomExplanations = [
   {
     title: "Racing thoughts",
     explanation:
-      "Ideas flow like water. I make connections faster than I can finish a sentence. It's hard to land on one thing; everything feels urgent and connected. I'll add more when I'm ready.",
+      "Ideas flow like water. I make connections faster than I can finish a sentence. It's hard to land on one thing; everything feels urgent and connected.",
   },
   {
     title: "Sleep and rest",
     explanation:
-      "I don't feel like I need to sleep, or I can't. I stay up late or all night — scrolling, building, planning. The body is wired and tired at the same time. I'll add more when I'm ready.",
+      "I don't feel like I need to sleep, or I can't. I stay up late or all night — scrolling, building, planning. The body is wired and tired at the same time.",
   },
 ]
 
@@ -267,17 +267,17 @@ export const depressionSymptomExplanations = [
   {
     title: "Impulse and withdrawal",
     explanation:
-      "When I'm low I can't initiate — even things I care about. It's like wanting to move but being stuck. Sometimes I say or do nothing when I want to connect, and I regret that too. I'll add more when I'm ready.",
+      "When I'm low I can't initiate — even things I care about. It's like wanting to move but being stuck. Sometimes I say or do nothing when I want to connect, and I regret that too.",
   },
   {
     title: "Loneliness and shame",
     explanation:
-      "I feel profoundly alone even when I'm around people. Shame amplifies everything. I'll add more when I'm ready.",
+      "I feel profoundly alone even when I'm around people. Shame amplifies everything.",
   },
   {
     title: "Exhaustion",
     explanation:
-      "I'm exhausted even after sleep. Motivation drops. Small tasks feel impossible. I'll add more when I'm ready.",
+      "I'm exhausted even after sleep. Motivation drops. Small tasks feel impossible.",
   },
 ]
 
@@ -304,7 +304,7 @@ export const storyJourney = {
       label: "Childhood",
       title: "When I was a kid",
       body: [
-        "I didn’t have words for what I felt. The highs and lows were just how life was. Looking back, a lot of what I went through makes sense through the lens of bipolar — the restlessness, the mood swings, the sensitivity. I’ll add more here when I’m ready.",
+        "I didn’t have words for what I felt. The highs and lows were just how life was. Looking back, a lot of what I went through makes sense through the lens of bipolar — the restlessness, the mood swings, the sensitivity.",
       ],
     },
     {
@@ -312,7 +312,7 @@ export const storyJourney = {
       label: "Diagnosis",
       title: "The time I was diagnosed",
       body: [
-        "Getting a name for what I’d been living with changed everything and nothing. It explained so much; it also meant learning to live with something that doesn’t go away. I’ll fill in the details of when and how it happened.",
+        "Getting a name for what I’d been living with changed everything and nothing. It explained so much; it also meant learning to live with something that doesn’t go away.",
       ],
     },
     {
@@ -320,7 +320,7 @@ export const storyJourney = {
       label: "First attempt",
       title: "The first time I tried to take my life",
       body: [
-        "This is one of the hardest parts of my story to share. I’ll write more when I can. If you’re in a dark place, please reach out — 988 Lifeline, NAMI, or someone you trust.",
+        "I was 10 or 11 the first time I tried to take my life. It’s one of the hardest parts of my story to share. If you’re in a dark place, please reach out — 988 Lifeline, NAMI, or someone you trust.",
       ],
     },
     {
@@ -328,7 +328,7 @@ export const storyJourney = {
       label: "High school",
       title: "Drugs, the wrong crowd, and “friends” with everyone",
       body: [
-        "In high school I struggled with substances and kept ending up in the wrong crowd. I was “friends” with almost everyone at school — but real, deep friendships were rare. I felt like I was performing connection instead of having it. I’ll add more of this part of the story later.",
+        "In high school I struggled with substances and kept ending up in the wrong crowd. I was “friends” with almost everyone at school — but real, deep friendships were rare. I felt like I was performing connection instead of having it.",
       ],
     },
     {
@@ -336,7 +336,7 @@ export const storyJourney = {
       label: "College",
       title: "Three jobs, a 3.8 GPA, and mania",
       body: [
-        "Senior year of college I was working three jobs and still pulled a 3.8 GPA. It sounds like a win — and in some ways it was — but I was in mania for most of that year. I didn’t know it then. I thought I was finally “handling it.” I’ll expand on this when I’m ready.",
+        "Senior year of college I was working three jobs and still pulled a 3.8 GPA. It sounds like a win — and in some ways it was — but I was in mania for most of that year. I didn’t know it then. I thought I was finally “handling it.",
       ],
     },
   ],
