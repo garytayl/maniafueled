@@ -44,17 +44,17 @@ export function ManiaExperience() {
     <div className="min-h-screen min-h-[100dvh] bg-[#050505] text-white flex flex-col">
       {/* Top section only: hero-style background (sphere + wave), mania variant = fast, chaotic */}
       <section
-        className="relative min-h-[70vh] min-h-[70dvh] flex flex-col items-center justify-center px-4 sm:px-8 py-[var(--navbar-offset)] pb-20 overflow-hidden"
+        className="relative min-h-[70vh] min-h-[70dvh] flex flex-col px-4 sm:px-8 py-[var(--navbar-offset)] pb-20 overflow-hidden"
         aria-label="What mania feels like"
       >
         <div className="absolute inset-0 opacity-[0.2] sm:opacity-25 md:opacity-30">
           <SentientSphere variant="mania" />
         </div>
         <BreathingWave variant="mania" />
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-4xl mx-auto text-center min-h-[12rem]">
-          <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-6 uppercase">
-            PATH — MANIA
-          </p>
+        <p className="relative z-10 shrink-0 font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-6 uppercase text-center">
+          PATH — MANIA
+        </p>
+        <div className="relative z-10 flex-1 flex items-center justify-center w-full max-w-4xl mx-auto text-center min-h-[14rem] sm:min-h-[16rem]">
           <AnimatePresence mode="wait">
             <motion.p
               key={thought}
