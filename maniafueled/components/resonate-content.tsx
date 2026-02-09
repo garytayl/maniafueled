@@ -154,6 +154,9 @@ export function ResonateContent() {
                 >
                   <p className="font-mono text-sm tracking-wider text-white/70 mb-2">
                     {verse.reference}
+                    {"translation" in verse && verse.translation && (
+                      <span className="text-white/50 font-normal"> · {verse.translation}</span>
+                    )}
                   </p>
                   <p className="font-sans text-base sm:text-lg font-light text-white/90 leading-relaxed mb-3">
                     &ldquo;{parseStyledText(verse.text, `verse-${verseIndex}`)}&rdquo;
