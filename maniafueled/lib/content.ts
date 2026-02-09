@@ -17,6 +17,29 @@ export const closingStep = {
   crisisNote: "988 Lifeline and NAMI offer free, confidential support.",
 }
 
+/** For people who want to help — practical, non-coercive support. */
+export const practicalHelp = {
+  title: "If you want to help — practical things you can do",
+  intro:
+    "These aren't fixes. They're ways of being there that actually land for me.",
+  items: [
+    {
+      title: "Be there without fixing",
+      body: "One of the most helpful things for me is having someone there when I'm working — like going out for coffee while I'm on my laptop, or sitting with me while I work on something. They don't have to do anything. Just presence. Someone else in the room, or across the table, can make the internal weight a bit easier to carry.",
+    },
+    {
+      title: "Support my agency — don't override it",
+      body: "You cannot force me out of a state. I will not let go if I'm pushed. I need to use my own free will to move. If you force me to go to the gym, or to \"just get out,\" it won't change my state — it can make me dig in or shut down. When I choose to do something, that choice does something with my brain that actually lets me move forward. Research on self-determination and autonomy in mental health backs this up: choice and agency aren't luxuries; they're part of how recovery works.",
+    },
+    {
+      title: "Be extremely careful with moralizing or shame",
+      body: "If you try to moralize or shame my behavior — how much I sleep, what I eat, whether I'm \"doing enough\" — be extremely careful where you step. If I'm already on the edge and you push me with judgment, I might just jump. I'm not saying you can't care or set boundaries. I'm saying: shame is not a treatment. It's often the thing that makes the spiral worse.",
+    },
+  ],
+  footnote:
+    "Self-determination theory in psychology identifies autonomy as a core need for well-being; feeling forced undermines it.",
+}
+
 export const summaryQuote =
   "My bipolar struggle isn't about lack of effort or character — it's about a nervous system that swings between overload and depletion, in a world that often responds with judgment instead of regulation."
 

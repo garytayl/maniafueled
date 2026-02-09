@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowUpRight, Share2 } from "lucide-react"
-import { siteConfig, closingStep } from "@/lib/content"
+import { siteConfig, closingStep, practicalHelp } from "@/lib/content"
 import { CrossLinks } from "@/components/cross-links"
 
 export function ClosingStep() {
@@ -98,12 +98,42 @@ export function ClosingStep() {
           <CrossLinks title="Explore further — follow the loop" />
         </motion.div>
 
+        {/* Practical help — for people who want to support */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.55 }}
+          className="mt-14 sm:mt-16 max-w-2xl mx-auto text-left border-t border-white/10 pt-10"
+        >
+          <p className="font-mono text-[10px] tracking-[0.2em] text-white/50 uppercase mb-3">
+            {practicalHelp.title}
+          </p>
+          <p className="font-sans text-sm text-muted-foreground mb-8">
+            {practicalHelp.intro}
+          </p>
+          <ul className="space-y-8">
+            {practicalHelp.items.map((item, i) => (
+              <li key={i}>
+                <h3 className="font-sans text-base font-medium text-white/95 mb-2">
+                  {item.title}
+                </h3>
+                <p className="font-sans text-sm text-muted-foreground leading-relaxed">
+                  {item.body}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <p className="font-mono text-[10px] tracking-widest text-white/30 mt-6">
+            {practicalHelp.footnote}
+          </p>
+        </motion.section>
+
         {/* Back to start — subtle */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="mt-8"
+          transition={{ delay: 0.65 }}
+          className="mt-10"
         >
           <Link
             href="/"
