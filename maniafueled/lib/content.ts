@@ -596,6 +596,48 @@ export const resonantSongs = [
       },
     ] as ResonantSongStanza[],
   },
+  {
+    artist: "SurrenderDorothy",
+    title: "If I Had The Words To Speak",
+    songNote: "The whole thing is about not having the words — and the exhaustion of hoping for change that doesn't come. Aimless conversations, hopeless expectations, wanting to let go. It names the loss for language I talk about in [From the inside](/from-the-inside): trying to translate an invisible experience and coming up empty.",
+    stanzas: [
+      {
+        lines: [
+          { text: "Aimless conversation going nowhere", note: "So many talks that don't land — people who don't get it, or I can't find the words. Community that doesn't show up." },
+          { text: "Hopeless expectations never come to fruition" },
+          { text: "When you're counting on change to come" },
+          { text: "It covered the room like a blanket of snow", note: "That heavy, quiet weight — depression filling the space. Not dramatic, just there." },
+          { text: "That's not the way it happens now" },
+          { text: "It changes constant ever so softly, winding its way through time", note: "The wave doesn't fix itself in a day. It shifts slowly, winding — like [baseline](/baseline) and the wave, not a quick fix." },
+          { text: "If I had the words to speak I'd tell you myself", note: "Exactly why this site exists. I don't have the words in the moment — so I put them here." },
+          { text: "I'm at loss for language when you look at me", note: "When you look at me I go blank. The internal state is so big there's no language for it. [From the inside](/from-the-inside) is me finally finding some of the words." },
+          { text: "I'm looking on, just waiting out this joke" },
+          { text: "I'm holding on but now I want to let go", note: "The exhaustion of existence — not wanting to die, wanting the weight to stop. Holding on until you don't want to anymore." },
+        ],
+      },
+      {
+        label: "Hook",
+        lines: [
+          { text: "I've got to know the truth" },
+          { text: "I've got to know the truth" },
+        ],
+      },
+      {
+        lines: [
+          { text: "It's like there's no smiles when I'm coming around", note: "How it feels when you're the one struggling — like you bring the cloud. People's faces change. I notice." },
+          { text: "Frowns stamped on their faces and I can't face it" },
+          { text: "I wish I could really be just like you" },
+          { text: "I can't take it, I've been regretting me the whole day through", note: "The shame loop — regretting who I am, not just what I did. No matter where I am, I'm wrong." },
+        ],
+      },
+      {
+        lines: [
+          { text: "If I had the words to speak I'd tell you myself" },
+          { text: "I'm at a loss for language when you look at me" },
+        ],
+      },
+    ] as ResonantSongStanza[],
+  },
 ]
 
 /** Bible verses — book (e.g. "Psalms", "Jonah") and chapter (e.g. "88", "2") for grouping by book then chapter. */
