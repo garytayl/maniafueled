@@ -6,6 +6,12 @@ export const siteConfig = {
   contactEmail: "",
 }
 
+/** Hero — minimal, personal. Less text; the site (paths, system) is the illustration. */
+export const hero = {
+  line: "I think in systems. So this is how I show you.",
+  cta: "Choose a path",
+}
+
 /** Final step of the journey — closing and reach out */
 export const closingStep = {
   label: "THE END",

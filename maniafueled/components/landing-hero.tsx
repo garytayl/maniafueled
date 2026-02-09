@@ -3,15 +3,14 @@
 import { motion } from "framer-motion"
 import { SentientSphere } from "./sentient-sphere"
 import { BreathingWave } from "./breathing-wave"
-import Link from "next/link"
-import { siteConfig, summaryQuote, coreEmotionalTruth } from "@/lib/content"
+import { hero } from "@/lib/content"
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
 }
 
@@ -23,103 +22,36 @@ export function LandingHero() {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[#050505]">
-      {/* Calmer background: sphere at low opacity to avoid overstimulation */}
       <div className="absolute inset-0 opacity-[0.18] sm:opacity-25 md:opacity-30">
         <SentientSphere />
       </div>
       <BreathingWave />
 
-      {/* Extra bottom padding on mobile so browser nav bar doesn't cover content */}
-      <div className="relative z-10 min-h-screen min-h-[100dvh] flex flex-col justify-between p-5 pt-[var(--navbar-offset)] pb-[max(7.5rem,calc(env(safe-area-inset-bottom)+6rem))] sm:p-8 sm:pb-24 md:p-12 md:pt-20 md:py-20 md:pb-28">
-        {/* Top — staggered line reveal; slightly smaller on mobile to reduce density */}
+      <div className="relative z-10 min-h-screen min-h-[100dvh] flex flex-col justify-center items-center p-5 pt-[var(--navbar-offset)] pb-[max(7.5rem,calc(env(safe-area-inset-bottom)+6rem))] sm:p-8 md:p-12">
         <motion.div
-          className="text-center md:text-left shrink-0"
+          className="text-center max-w-xl mx-auto"
           initial="hidden"
           animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+          variants={{ visible: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } } }}
         >
           <motion.p
             variants={fadeUp}
-            className="font-mono text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] text-muted-foreground mb-1.5 sm:mb-2"
+            className="font-sans text-xl sm:text-2xl md:text-3xl font-light text-white/95 leading-tight"
           >
-            01 — A PERSONAL STORY
+            {hero.line}
           </motion.p>
-          <motion.h1
-            className="font-sans text-xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-balance leading-tight"
-            variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
-          >
-            <motion.span variants={fadeUp} className="block">
-              {siteConfig.title}
-            </motion.span>
-            <motion.span variants={fadeUp} className="block italic mt-1">
-              {siteConfig.subtitle}
-            </motion.span>
-          </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            className="font-sans text-xs sm:text-base italic text-white/50 tracking-wide mt-3 sm:mt-5"
-          >
-            By: Gary Taylor
-          </motion.p>
-        </motion.div>
-
-        {/* Center — one main quote on mobile to reduce density; full block on md+ */}
-        <motion.div
-          className="flex-1 flex flex-col justify-center max-w-2xl md:max-w-3xl px-0 w-full mx-auto md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 text-center py-6 md:py-0"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.14,
-                delayChildren: 0.4,
-              },
-            },
-          }}
-        >
-          <motion.blockquote
-            variants={fadeUp}
-            className="font-sans text-[15px] leading-relaxed sm:text-lg md:text-xl lg:text-2xl font-light text-white/90 italic px-2"
-          >
-            &ldquo;{summaryQuote}&rdquo;
-          </motion.blockquote>
-          {/* Second quote + link only on sm and up to keep mobile calmer */}
-          <motion.p
-            variants={fadeUp}
-            className="hidden sm:block font-sans text-sm sm:text-base font-light text-white/60 mt-4 px-2"
-          >
-            &ldquo;{coreEmotionalTruth}&rdquo;
-          </motion.p>
-          <Link
-            href="/from-the-inside"
-            className="hidden sm:inline-block font-mono text-[10px] sm:text-xs tracking-[0.2em] text-white/50 hover:text-white/80 uppercase mt-3 transition-colors"
-          >
-            What it feels like from the inside →
-          </Link>
-          <motion.div variants={fadeUp} className="mt-5 sm:mt-8">
+          <motion.div variants={fadeUp} className="mt-8 sm:mt-10">
             <motion.button
               type="button"
               onClick={scrollToPath}
               data-cursor-hover
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-3.5 min-h-[48px] min-w-[180px] sm:px-8 sm:py-4 border border-white/20 rounded-full font-mono text-sm tracking-widest uppercase bg-transparent backdrop-blur-sm hover:bg-white hover:text-black transition-colors duration-500 inline-flex items-center justify-center"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-8 py-4 min-h-[48px] border border-white/25 rounded-full font-mono text-sm tracking-widest uppercase bg-transparent backdrop-blur-sm hover:bg-white hover:text-black transition-colors duration-300"
             >
-              Choose a path
+              {hero.cta}
             </motion.button>
           </motion.div>
-        </motion.div>
-
-        {/* Bottom — tagline; kept well above browser nav bar via section pb */}
-        <motion.div
-          className="shrink-0 self-center sm:self-end text-center sm:text-right"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          <p className="font-mono text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] text-muted-foreground">
-            {siteConfig.tagline}
-          </p>
         </motion.div>
       </div>
     </section>
