@@ -1,6 +1,6 @@
 import { CustomCursor } from "@/components/custom-cursor"
 import { Navbar } from "@/components/navbar"
-import { ManiaPathContent } from "@/components/mania-path-content"
+import { InteractivePathExperience } from "@/components/interactive-path-experience"
 
 export default function ManiaPage() {
   return (
@@ -8,7 +8,7 @@ export default function ManiaPage() {
       <CustomCursor />
       <Navbar />
       <main>
-        <ManiaPathContent />
+        <InteractivePathExperience variant="mania" />
       </main>
     </>
   )
