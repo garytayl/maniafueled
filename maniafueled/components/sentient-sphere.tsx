@@ -7,13 +7,34 @@ import type { Mesh, ShaderMaterial } from "three"
 
 export type SphereVariant = "default" | "mania" | "mixed" | "depressive"
 
-const VARIANT_CONFIG: Record<
-  SphereVariant,
-  { noiseSpeed: number; displacementScale: number; rotationSpeed: number; noiseScale: number }
-> = {
+type SphereConfig = {
+  noiseSpeed: number
+  displacementScale: number
+  rotationSpeed: number
+  noiseScale: number
+  /** Second noise layer (mixed only): conflicting phase = unsettled */
+  noiseSpeed2?: number
+  displacementScale2?: number
+  noiseScale2?: number
+  /** Mixed: rotation reverses instead of spinning (weird, wrong) */
+  rotationReversing?: boolean
+  rotationOscillationSpeed?: number
+}
+
+const VARIANT_CONFIG: Record<SphereVariant, SphereConfig> = {
   default: { noiseSpeed: 0.15, displacementScale: 0.15, rotationSpeed: 0.05, noiseScale: 1.5 },
   mania: { noiseSpeed: 0.52, displacementScale: 0.32, rotationSpeed: 0.14, noiseScale: 2.2 },
-  mixed: { noiseSpeed: 0.38, displacementScale: 0.24, rotationSpeed: 0.09, noiseScale: 1.9 },
+  mixed: {
+    noiseSpeed: 0.28,
+    displacementScale: 0.14,
+    rotationSpeed: 0,
+    noiseScale: 1.7,
+    noiseSpeed2: 0.62,
+    displacementScale2: 0.2,
+    noiseScale2: 2.4,
+    rotationReversing: true,
+    rotationOscillationSpeed: 0.48,
+  },
   depressive: { noiseSpeed: 0.06, displacementScale: 0.07, rotationSpeed: 0.018, noiseScale: 1.2 },
 }
 
@@ -30,6 +51,9 @@ function Sphere({ variant = "default" }: { variant?: SphereVariant }) {
       uNoiseSpeed: { value: config.noiseSpeed },
       uDisplacementScale: { value: config.displacementScale },
       uNoiseScale: { value: config.noiseScale },
+      uNoiseSpeed2: { value: config.noiseSpeed2 ?? 0 },
+      uDisplacementScale2: { value: config.displacementScale2 ?? 0 },
+      uNoiseScale2: { value: config.noiseScale2 ?? 1 },
     }),
     [variant],
   )
@@ -93,12 +117,19 @@ function Sphere({ variant = "default" }: { variant?: SphereVariant }) {
     uniform float uNoiseSpeed;
     uniform float uDisplacementScale;
     uniform float uNoiseScale;
+    uniform float uNoiseSpeed2;
+    uniform float uDisplacementScale2;
+    uniform float uNoiseScale2;
     
     void main() {
       vUv = uv;
       
       float noise = snoise(position * uNoiseScale + uTime * uNoiseSpeed);
       float displacement = noise * uDisplacementScale;
+      if (uDisplacementScale2 > 0.0) {
+        float noise2 = snoise(position * uNoiseScale2 + uTime * uNoiseSpeed2 + 100.0);
+        displacement += noise2 * uDisplacementScale2;
+      }
       vDisplacement = displacement;
       
       vec3 newPosition = position + normal * displacement;
@@ -121,14 +152,17 @@ function Sphere({ variant = "default" }: { variant?: SphereVariant }) {
     }
   `
 
-  useFrame((_state, delta) => {
+  useFrame((state, delta) => {
     if (materialRef.current) {
       materialRef.current.uniforms.uTime.value += delta
       materialRef.current.uniforms.uMouse.value = [pointer.x, pointer.y]
     }
-    const rot = config.rotationSpeed
     if (meshRef.current) {
-      meshRef.current.rotation.y += delta * rot
+      if (config.rotationReversing && config.rotationOscillationSpeed != null) {
+        meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * config.rotationOscillationSpeed) * 0.9
+      } else {
+        meshRef.current.rotation.y += delta * config.rotationSpeed
+      }
       meshRef.current.rotation.x = MathUtils.lerp(meshRef.current.rotation.x, pointer.y * 0.2, 0.05)
       meshRef.current.rotation.z = MathUtils.lerp(meshRef.current.rotation.z, pointer.x * 0.2, 0.05)
     }

@@ -209,8 +209,18 @@
 .hero-wave-mania {
   animation: hero-wave-breathe 2.2s ease-in-out infinite;
 }
+/* Mixed: erratic, can't settle — restless and wrong */
 .hero-wave-mixed {
-  animation: hero-wave-breathe 3s ease-in-out infinite;
+  animation: hero-wave-mixed 4s steps(5, end) infinite;
+}
+@keyframes hero-wave-mixed {
+  0% { opacity: 0.5; }
+  18% { opacity: 0.95; }
+  35% { opacity: 0.35; }
+  52% { opacity: 0.85; }
+  68% { opacity: 0.45; }
+  85% { opacity: 0.7; }
+  100% { opacity: 0.5; }
 }
 .hero-wave-depressive {
   animation: hero-wave-breathe 8s ease-in-out infinite;
@@ -222,7 +232,7 @@
   .hero-wave-mixed,
   .hero-wave-depressive {
     animation: none;
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
 
