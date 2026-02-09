@@ -105,21 +105,23 @@ export function PathChoice() {
         </motion.span>
       </Link>
 
-      {/* Optional: baseline + full story */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
-        <Link
-          href="/baseline"
-          className="font-mono text-[10px] tracking-[0.25em] text-white/40 hover:text-white/70 transition-colors uppercase"
-        >
-          {pathChoice.baselineLink}
-        </Link>
-        <span className="text-white/20 hidden sm:inline">·</span>
-        <Link
-          href="/story"
-          className="font-mono text-[10px] tracking-[0.25em] text-white/40 hover:text-white/70 transition-colors uppercase"
-        >
-          {pathChoice.fullStoryLink}
-        </Link>
+      {/* Bottom bar: neutral background so links are readable on both white & black halves */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#0f0f0f] border-t border-white/10 py-4 px-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
+          <Link
+            href="/baseline"
+            className="font-mono text-[10px] tracking-[0.25em] text-white/70 hover:text-white transition-colors uppercase"
+          >
+            {pathChoice.baselineLink}
+          </Link>
+          <span className="text-white/30 hidden sm:inline" aria-hidden>·</span>
+          <Link
+            href="/story"
+            className="font-mono text-[10px] tracking-[0.25em] text-white/70 hover:text-white transition-colors uppercase"
+          >
+            {pathChoice.fullStoryLink}
+          </Link>
+        </div>
       </div>
     </section>
   )
