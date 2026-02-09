@@ -29,11 +29,11 @@ export const practicalHelp = {
     },
     {
       title: "Support my agency — don't override it",
-      body: "You cannot force me out of a state. I will not let go if I'm pushed. I need to use my own free will to move. If you force me to go to the gym, or to \"just get out,\" it won't change my state — it can make me dig in or shut down. When I choose to do something, that choice does something with my brain that actually lets me move forward. Research on self-determination and autonomy in mental health backs this up: choice and agency aren't luxuries; they're part of how recovery works.",
+      body: "You cannot force me out of a state. I will not let go if I'm pushed. I need to use my own free will to move. If you force me to go to the gym, or to \"just get out,\" it won't change my state — it can make me dig in or shut down. When I choose to do something, that choice does something with my brain that actually lets me move forward. Research on self-determination and autonomy in mental health backs this up: choice and ??agency?? aren't luxuries; they're part of how recovery works.",
     },
     {
       title: "Be extremely careful with moralizing or shame",
-      body: "If you try to moralize or shame my behavior — how much I sleep, what I eat, whether I'm \"doing enough\" — be extremely careful where you step. If I'm already on the edge and you push me with judgment, I might just jump. I'm not saying you can't care or set boundaries. I'm saying: shame is not a treatment. It's often the thing that makes the spiral worse.",
+      body: "If you try to ??moralize?? or shame my behavior — how much I sleep, what I eat, whether I'm \"doing enough\" — be extremely careful where you step. If I'm already on the edge and you push me with judgment, I might just jump. I'm not saying you can't care or set boundaries. I'm saying: shame is not a treatment. It's often the thing that makes the spiral worse.",
     },
   ],
   footnote:

@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { ArrowUpRight, Share2 } from "lucide-react"
 import { siteConfig, closingStep, practicalHelp } from "@/lib/content"
 import { CrossLinks } from "@/components/cross-links"
+import { parseStyledText } from "@/lib/parse-styled-text"
 
 export function ClosingStep() {
   const [hoverPrimary, setHoverPrimary] = useState(false)
@@ -118,7 +119,7 @@ export function ClosingStep() {
                   {item.title}
                 </h3>
                 <p className="font-sans text-sm text-muted-foreground leading-relaxed">
-                  {item.body}
+                  {parseStyledText(item.body, `help-${i}`)}
                 </p>
               </li>
             ))}

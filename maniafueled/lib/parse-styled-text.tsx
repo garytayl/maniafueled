@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+import { DefinitionWord } from "@/components/definition-word"
 
 /**
  * Inline formatting for lyrics, verses, and notes. Use in content.ts:
@@ -7,6 +8,7 @@ import Link from "next/link"
  * - *italic*
  * - ~~strikethrough~~
  * - [label](url) for links (internal /path or external https://)
+ * - ??word?? for dictionary definition (hover/click; uses Free Dictionary API, no generated text)
  */
 export function parseStyledText(text: string, keyPrefix = "st"): React.ReactNode {
   const segments: React.ReactNode[] = []
@@ -14,6 +16,23 @@ export function parseStyledText(text: string, keyPrefix = "st"): React.ReactNode
   let keyIndex = 0
 
   while (i < text.length) {
+    // ??word?? dictionary definition — real definitions from API
+    if (text.slice(i).startsWith("??")) {
+      const end = text.indexOf("??", i + 2)
+      if (end !== -1) {
+        const word = text.slice(i + 2, end)
+        segments.push(
+          <DefinitionWord
+            key={`${keyPrefix}-${keyIndex++}`}
+            keyId={`${keyPrefix}-${keyIndex}`}
+            word={word}
+          />
+        )
+        i = end + 2
+        continue
+      }
+    }
+
     // [label](url) link — check before ** so brackets in link text don't break
     if (text[i] === "[") {
       const endBracket = text.indexOf("]", i + 1)
@@ -111,12 +130,14 @@ export function parseStyledText(text: string, keyPrefix = "st"): React.ReactNode
     const nextStrike = text.indexOf("~~", i)
     const nextStar = text.indexOf("*", i)
     const nextBracket = text.indexOf("[", i)
+    const nextDoubleQ = text.indexOf("??", i)
 
     let next = text.length
     if (nextBold !== -1) next = Math.min(next, nextBold)
     if (nextStrike !== -1) next = Math.min(next, nextStrike)
     if (nextStar !== -1) next = Math.min(next, nextStar)
     if (nextBracket !== -1) next = Math.min(next, nextBracket)
+    if (nextDoubleQ !== -1) next = Math.min(next, nextDoubleQ)
 
     const plain = text.slice(i, next)
     if (plain) segments.push(plain)
