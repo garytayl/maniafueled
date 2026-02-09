@@ -507,6 +507,14 @@ export const storyJourney = {
         "I struggle with bits of insomnia. Lack of sleep can trigger an episode immediately — both are dangerous. I'll spend hours looking at the ceiling or trying every coping mechanism to fall asleep. Nothing works. Or life happens and I'm not afforded enough sleep, and bam — there's the start of an episode. I can be doing good for a while, then one one-time event sets me off on an episode that lasts months. Everyone says stick it out, discipline through it. Get more sleep, eat better, go to the gym — I do. And so on. Doing everything 'right' doesn't stop the episodes. It's not about not trying.",
       ],
     },
+    {
+      id: "church-and-community",
+      label: "Church & community",
+      title: "What I wonder when I'm in the kitchen with a knife to my throat",
+      body: [
+        "Genuinely — what does the church expect healing to look like from my disorder? Me committing and through prayer they raise me from the dead? I tell people I'm struggling and I gotta beg people to even check in on me. I thought this was what community was for.",
+      ],
+    },
   ],
 }
 
