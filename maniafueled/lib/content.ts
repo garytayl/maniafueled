@@ -341,3 +341,70 @@ export const storyJourney = {
     },
   ],
 }
+
+/** Lyrics and songs that resonate — each line can have an optional note (why it resonates) */
+export type ResonantLine = { text: string; note?: string }
+
+export const resonantSongs = [
+  {
+    artist: "Suicideboys",
+    title: "Whatever Floats Your Boat will Definitely Sink my Ship",
+    songNote: "I resonate with all of these — the fear of the dark, things falling apart, sins of the father, pills, feeling trapped in ice, stuck in a cycle.",
+    lines: [
+      { text: "I guess it's written on my skin (let's go)" },
+      { text: "Stitch my wounds just to open them again", note: "The cycle of getting better then undoing it. Feels like my pattern." },
+      { text: "Further than I was, but far from enough" },
+      { text: "All the voices fill the air of every silent night (every silent night)" },
+      { text: "Eyes on me everywhere, but still I'm out of sight, ooh" },
+      { text: "I got nowhere left to go" },
+      { text: "If this is high, where the view?" },
+      { text: "Ain't no confusion why they stick around (stick around)" },
+      { text: "Might not hear from them often, but the intention is loud" },
+      { text: "Sins of my father worn like hand-me-downs, oh", note: "Carrying what was passed down. Bipolar, shame, the weight of it." },
+      { text: "Hoping my own make him just as proud, oh" },
+      { text: "Please, Lord, tell me where you are" },
+      { text: "I don't wanna be this afraid of the dark", note: "The dark is depression, the void. I don't want to be this afraid of it." },
+      { text: "Holding on, shoulda let go from the start" },
+      { text: "Anything I touch always falls apart (let's go)" },
+      { text: "But I only run for so long (let's get it)" },
+      { text: "Everything right always felt so wrong" },
+      { text: "I done flew the coop and my wings all torn" },
+      { text: "Can't abuse me more than the pills I'm on" },
+      { text: "Words so sharp" },
+      { text: "They pierce through my heart just like a knife" },
+      { text: "Quick flash of light, I feel trapped in ice" },
+      { text: "Cold and alone, I might cast the dice" },
+      { text: "Take a fucking chance, always the asking price" },
+      { text: "Sometimes it takes a lot to make a sacrifice" },
+      { text: "But in the end, it might enhance your life" },
+      { text: "Just look down and dive" },
+      { text: "Life is draggin' me behind" },
+      { text: "I'm a stand-in in line, off the wagon, I'm fine" },
+      { text: "Now I'm climbing up a dragon, I'm high" },
+      { text: "Dollar signs in one eye, the other's sagging, I'm blind" },
+      { text: "Please, Lord, tell me where you are" },
+      { text: "I don't wanna be this afraid of the dark" },
+      { text: "Holding on, shoulda let go from the start" },
+      { text: "Anything I touch always falls apart" },
+      { text: "I don't know my own limits" },
+      { text: "I'ma break all of my bones" },
+      { text: "What the fuck's a break? I'm a psycho" },
+      { text: "Never ending, new beginnings, stuck in a cycle", note: "Mania, crash, repeat. Never ending, new beginnings — that's the wave." },
+    ] as ResonantLine[],
+  },
+]
+
+/** Bible verses that resonate — add reference, text, and why it resonates */
+export const resonantVerses = [
+  {
+    reference: "Psalm 88",
+    text: "I am overwhelmed with troubles and my life draws near to death. I am counted among those who go down to the pit; I am like one without strength. You have put me in the lowest pit, in the darkest depths.",
+    note: "When I'm in the pit it feels like this — no strength, darkest depths. It helps to know someone put it into words.",
+  },
+  {
+    reference: "Lamentations 3:22–23",
+    text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+    note: "New every morning — that’s the hope on the worst nights. That the wave might ease by morning.",
+  },
+  // Add more verses as you like — same shape: reference, text, note
+]

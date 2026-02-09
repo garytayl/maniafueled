@@ -9,6 +9,7 @@ const routeLinks = [
   { label: "Home", href: "/" },
   { label: "Story", href: "/story" },
   { label: "Baseline", href: "/baseline" },
+  { label: "Resonate", href: "/resonate" },
   { label: "Reach out", href: "/reach-out" },
 ]
 
