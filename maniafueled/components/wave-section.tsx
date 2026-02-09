@@ -12,17 +12,19 @@ const WAVELENGTH_PX = 140
 const POINT_STEP = 4
 const WAVE_STEP_INDEX = 2
 
-type ThoughtMode = "mania" | "baseline" | "depressive" | null
+type ThoughtMode = "mania" | "baseline" | "mixed" | "depressive" | null
 
 const INTERVAL_MS = {
   mania: 220,
   baseline: 1200,
+  mixed: 380,
   depressive: 2800,
 } as const
 
 const INTERVAL_MS_REDUCED = {
   mania: 500,
   baseline: 2200,
+  mixed: 800,
   depressive: 4500,
 } as const
 
@@ -45,6 +47,7 @@ function pickThought(mode: ThoughtMode): string {
 const PHASE_DURATION_BY_MODE: Record<Exclude<ThoughtMode, null>, number> = {
   mania: 3,
   baseline: 12,
+  mixed: 6,
   depressive: 20,
 }
 
@@ -85,10 +88,11 @@ export function WaveSection() {
     return () => controls.stop()
   }, [journey?.step, amplitude])
 
-  // Wave reacts to thought mode: mania = bigger/faster, depressive = smaller, baseline = calm
+  // Wave reacts to thought mode: mania = bigger/faster, mixed = agitated, depressive = smaller, baseline = calm
   useEffect(() => {
     if (!mode) return
-    const targetAmplitude = mode === "mania" ? 45 : mode === "depressive" ? 12 : 20
+    const targetAmplitude =
+      mode === "mania" ? 45 : mode === "mixed" ? 32 : mode === "depressive" ? 12 : 20
     const controls = animate(amplitude, targetAmplitude, {
       duration: 0.8,
       ease: [0.25, 0.46, 0.45, 0.94],
@@ -190,6 +194,17 @@ export function WaveSection() {
           }`}
         >
           {waveSection.maniaLabel}
+        </button>
+        <button
+          type="button"
+          onClick={() => setMode((m) => (m === "mixed" ? null : "mixed"))}
+          className={`min-h-[44px] px-5 py-2.5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
+            mode === "mixed"
+              ? "bg-amber-500/30 text-amber-100 border border-amber-500/50"
+              : "border border-white/30 text-white/80 hover:border-amber-500/40 hover:text-amber-100"
+          }`}
+        >
+          {waveSection.mixedLabel}
         </button>
         <button
           type="button"

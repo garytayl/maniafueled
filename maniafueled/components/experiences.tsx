@@ -11,6 +11,7 @@ import {
   maniaSymptoms,
   depressionSymptoms,
   suicidalIdeationContent,
+  mixedStateContent,
   crossCuttingStruggles,
 } from "@/lib/content"
 
@@ -39,7 +40,7 @@ export function Experiences() {
           03 — EXPERIENCES
         </p>
         <h2 className="font-sans text-3xl md:text-5xl font-light italic">
-          The swing — mania, depression, and what runs through both
+          The swing — mania, mixed states, depression, and what runs through both
         </h2>
       </motion.div>
 
@@ -83,6 +84,32 @@ export function Experiences() {
               </AccordionTrigger>
               <AccordionContent>
                 <SymptomList items={maniaSymptoms.physiological} />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </motion.div>
+
+        {/* Mixed States — highest suicide risk */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="border-t border-white/10 pt-8"
+        >
+          <h3 className="font-sans text-2xl md:text-4xl font-light mb-4">Mixed States</h3>
+          <p className="text-amber-200/90 text-sm font-mono mb-6 max-w-2xl">
+            {mixedStateContent.warning}
+          </p>
+          <p className="text-muted-foreground mb-6 font-sans font-light max-w-2xl">
+            {mixedStateContent.description}
+          </p>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="mixed-detail" className="border-white/10">
+              <AccordionTrigger className="font-mono text-sm tracking-wider text-muted-foreground hover:text-foreground py-6">
+                Why mixed states are the most dangerous
+              </AccordionTrigger>
+              <AccordionContent>
+                <SymptomList items={mixedStateContent.points} />
               </AccordionContent>
             </AccordionItem>
           </Accordion>

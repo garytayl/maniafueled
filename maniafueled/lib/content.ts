@@ -20,12 +20,16 @@ export const closingStep = {
 export const summaryQuote =
   "My bipolar struggle isn't about lack of effort or character — it's about a nervous system that swings between overload and depletion, in a world that often responds with judgment instead of regulation."
 
-/** Path choice — split MANIA | DEPRESSIVE */
+/** Path choice — MANIA | MIXED | DEPRESSIVE */
 export const pathChoice = {
   prompt: "Choose a path to explore",
   mania: {
     label: "MANIA",
     description: "The elevated side — energy, clarity, and the cost.",
+  },
+  mixed: {
+    label: "MIXED",
+    description: "The overlap — agitated, hopeless, and the highest risk.",
   },
   depressive: {
     label: "DEPRESSIVE",
@@ -44,6 +48,7 @@ export const waveSection = {
   thoughtPrompt: "Click a state to feel the pace of my thoughts",
   maniaLabel: "Mania",
   baselineLabel: "Baseline",
+  mixedLabel: "Mixed",
   depressiveLabel: "Depressive",
 }
 
@@ -79,6 +84,20 @@ export const waveThoughts = {
     "I'll reply tomorrow",
     "No need to rush",
     "I'm present",
+  ],
+  mixed: [
+    "I have to do something and I can't",
+    "Everything is wrong and I can't stop",
+    "I want to die and I have the energy to try",
+    "Why am I so agitated and so hopeless",
+    "I can't sit still and I can't see a way out",
+    "They'd be better off without me — I'll make sure",
+    "I'm racing and I'm drowning at the same time",
+    "I need to move and there's nowhere to go",
+    "I hate myself and I can't shut it off",
+    "One way out and I keep thinking about it",
+    "Restless and worthless",
+    "Too much and not enough",
   ],
   depressive: [
     "I can't do this",
@@ -178,6 +197,21 @@ export const suicidalIdeationContent = {
     "They come from chronic exhaustion, shame, and unrelenting internal pain",
     "The ideation is about escape from suffering, not death itself",
   ],
+}
+
+/** Mixed state: manic + depressive at once. Highest suicide risk — energy to act on despair. */
+export const mixedStateContent = {
+  warning: "Mixed states carry the highest risk of suicide in bipolar disorder. If you or someone you know is in crisis, please reach out: 988 Lifeline, NAMI, or someone you trust.",
+  headline: "The overlap — agitated and hopeless at once",
+  description:
+    "In a mixed state I have depressive pain — hopelessness, worthlessness, the urge to escape — plus manic energy: restlessness, racing thoughts, impulsivity. The despair is there and so is the capacity to act on it. That's why mixed states are the most dangerous in terms of suicide.",
+  points: [
+    "Depressive symptoms (hopelessness, worthlessness, suicidal ideation) plus manic symptoms (agitation, restlessness, racing thoughts, impulsivity) at the same time",
+    "I feel like I have to do something and I can't — or the only \"something\" that feels possible is ending the pain",
+    "Restless and worthless: the energy to act and the conviction that I'm better off gone",
+    "Mixed episodes are associated with the highest risk of suicide in bipolar disorder — not because the pain is necessarily \"worse\" than in pure depression, but because the combination of despair and energy/impulsivity is lethal",
+  ],
+  crisisNote: "If you're in a mixed state or in crisis, you're not alone. 988 Lifeline (call or text), NAMI, or a trusted person can help. Reach out.",
 }
 
 export const crossCuttingStruggles = [
@@ -337,6 +371,14 @@ export const storyJourney = {
       title: "Three jobs, a 3.8 GPA, and mania",
       body: [
         "Senior year of college I was working three jobs and still pulled a 3.8 GPA. It sounds like a win — and in some ways it was — but I was in mania for most of that year. I didn’t know it then. I thought I was finally “handling it.",
+      ],
+    },
+    {
+      id: "mixed-states",
+      label: "Mixed states",
+      title: "When the high and the low hit at once",
+      body: [
+        "Mixed states are when I'm depressed and agitated at the same time — hopelessness with restless energy, worthlessness with impulsivity. For me they're the most dangerous. The despair is there and so is the capacity to act on it. I've learned to treat them as a crisis signal and reach out.",
       ],
     },
   ],
