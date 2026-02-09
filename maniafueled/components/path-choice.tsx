@@ -21,7 +21,7 @@ export function PathChoice() {
         </p>
       </motion.div>
 
-      <div className="relative flex flex-col md:flex-row flex-1 min-h-[calc(100vh-8rem)] md:min-h-screen">
+      <div className="relative flex flex-col md:flex-row flex-1 min-h-[calc(100vh-8rem)] md:min-h-screen pb-12 sm:pb-16 md:pb-0">
       {/* Left — MANIA (white) */}
       <Link
         href="/mania"
