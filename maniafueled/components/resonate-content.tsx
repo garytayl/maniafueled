@@ -6,6 +6,13 @@ import { motion, AnimatePresence } from "framer-motion"
 import { resonantSongs, resonantVerses } from "@/lib/content"
 import { parseStyledText } from "@/lib/parse-styled-text"
 import { CrossLinks } from "@/components/cross-links"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 /** Protestant canon order (66 books) for sorting verses */
 const CANON_BOOK_ORDER = [
@@ -115,21 +122,29 @@ export function ResonateContent() {
               Songs
             </h2>
             {resonantSongs.length > 1 && (
-              <div className="flex flex-wrap gap-2 mb-8">
-                {resonantSongs.map((song, idx) => (
-                  <button
-                    key={`${song.artist}-${song.title}`}
-                    type="button"
-                    onClick={() => setSelectedSongIndex(idx)}
-                    className={`font-mono text-xs tracking-wider uppercase py-2 px-4 rounded-full border transition-colors ${
-                      selectedSongIndex === idx
-                        ? "border-white text-white bg-white/10"
-                        : "border-white/30 text-white/70 hover:border-white/50 hover:text-white"
-                    }`}
+              <div className="mb-8">
+                <Select
+                  value={String(selectedSongIndex)}
+                  onValueChange={(v) => setSelectedSongIndex(Number(v))}
+                >
+                  <SelectTrigger
+                    className="w-full max-w-md font-mono text-xs tracking-wider uppercase border-white/20 bg-white/5 text-white hover:bg-white/10 focus:ring-white/20"
+                    aria-label="Select a song"
                   >
-                    {song.title}
-                  </button>
-                ))}
+                    <SelectValue placeholder="Select a song" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-[min(60vh,20rem)] border-white/10 bg-[#0a0a0a]">
+                    {resonantSongs.map((song, idx) => (
+                      <SelectItem
+                        key={`${song.artist}-${song.title}`}
+                        value={String(idx)}
+                        className="font-mono text-xs tracking-wider text-white/90 focus:bg-white/10 focus:text-white"
+                      >
+                        <span className="truncate">{song.artist} — {song.title}</span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             )}
             {resonantSongs.map((song, songIndex) =>
