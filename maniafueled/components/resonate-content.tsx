@@ -6,7 +6,24 @@ import { motion, AnimatePresence } from "framer-motion"
 import { resonantSongs, resonantVerses } from "@/lib/content"
 import { parseStyledText } from "@/lib/parse-styled-text"
 
-/** Group verses by book, then by chapter; each item keeps original index for selection */
+/** Protestant canon order (66 books) for sorting verses */
+const CANON_BOOK_ORDER = [
+  "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Esther", "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Solomon", "Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi",
+  "Matthew", "Mark", "Luke", "John", "Acts", "Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude", "Revelation",
+]
+
+function canonBookSortKey(book: string): number {
+  const i = CANON_BOOK_ORDER.indexOf(book)
+  return i >= 0 ? i : CANON_BOOK_ORDER.length
+}
+
+/** Sort chapter keys numerically (so 2, 10, 22 not 10, 2, 22) */
+function chapterSortKey(chapter: string): number {
+  const n = parseInt(chapter, 10)
+  return Number.isNaN(n) ? 0 : n
+}
+
+/** Group verses by book, then by chapter; sort by canon order and chapter number */
 function groupVersesByBookAndChapter(
   verses: Array<{ reference: string; translation?: string; text: string; note?: string; book?: string; chapter?: string }>
 ): Array<{ book: string; chapters: Array<{ chapter: string; verses: Array<{ verseIndex: number }> }> }> {
@@ -19,13 +36,18 @@ function groupVersesByBookAndChapter(
     if (!bookChapters.has(chapter)) bookChapters.set(chapter, [])
     bookChapters.get(chapter)!.push(i)
   })
-  return Array.from(byBook.entries()).map(([book, chapterMap]) => ({
+  const grouped = Array.from(byBook.entries()).map(([book, chapterMap]) => ({
     book,
     chapters: Array.from(chapterMap.entries()).map(([chapter, indices]) => ({
       chapter,
       verses: indices.map((verseIndex) => ({ verseIndex })),
     })),
   }))
+  grouped.sort((a, b) => canonBookSortKey(a.book) - canonBookSortKey(b.book))
+  grouped.forEach((g) => {
+    g.chapters.sort((a, b) => chapterSortKey(a.chapter) - chapterSortKey(b.chapter))
+  })
+  return grouped
 }
 
 type SelectedItem =
