@@ -1,7 +1,7 @@
 export const siteConfig = {
   title: "Living With Bipolar I",
-  subtitle: "A Mirror, Not a Diagnosis",
-  tagline: "A personal story of struggles and experiences",
+  subtitle: "What It Feels Like Inside My Body and Mind",
+  tagline: "This is what bipolar does to me, moment to moment.",
   /** Update with your email for the contact CTA */
   contactEmail: "",
 }

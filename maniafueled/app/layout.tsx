@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Living With Bipolar I – A Personal Story",
   description:
-    "A personal account of Bipolar I experiences — baseline, mania, depression, triggers, and strengths. A mirror, not a diagnosis.",
+    "This is what bipolar does to me, moment to moment. A personal account — baseline, mania, depression, triggers, and strengths.",
   openGraph: {
     title: "Living With Bipolar I – A Personal Story",
     description:
-      "A personal account of Bipolar I experiences — baseline, mania, depression, triggers, and strengths. A mirror, not a diagnosis.",
+      "This is what bipolar does to me, moment to moment. A personal account — baseline, mania, depression, triggers, and strengths.",
     type: "website",
   },
 }

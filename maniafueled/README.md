@@ -1,6 +1,6 @@
 # maniafueled
 
-A personal site sharing experiences with Bipolar I — baseline, mania, depression, triggers, early warning signs, and strengths. A mirror, not a diagnosis.
+This is what bipolar does to me, moment to moment. A personal account — baseline, mania, depression, triggers, early warning signs, and strengths.
 
 ## Run
 
