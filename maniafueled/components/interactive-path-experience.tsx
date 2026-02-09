@@ -204,7 +204,7 @@ export function InteractivePathExperience({ variant }: { variant: Variant }) {
               exit={{ opacity: 0 }}
               className="flex flex-col min-h-[280px]"
             >
-              {selectedCategory === "ideation" && config.hasIdeation && config.ideation ? (
+              {selectedCategory === "ideation" && config.hasIdeation && "ideation" in config && config.ideation ? (
                 <div className="space-y-6">
                   <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 px-4 py-3">
                     <p className="font-mono text-xs text-amber-200/90">

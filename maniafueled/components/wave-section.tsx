@@ -42,11 +42,10 @@ function pickThought(mode: ThoughtMode): string {
   return list[Math.floor(Math.random() * list.length)]
 }
 
-const PHASE_DURATION_BY_MODE: Record<ThoughtMode, number> = {
+const PHASE_DURATION_BY_MODE: Record<Exclude<ThoughtMode, null>, number> = {
   mania: 3,
   baseline: 12,
   depressive: 20,
-  null: 12,
 }
 
 export function WaveSection() {
@@ -65,7 +64,7 @@ export function WaveSection() {
   useEffect(() => {
     const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (reduced) return
-    const duration = PHASE_DURATION_BY_MODE[mode ?? "null"]
+    const duration = mode ? PHASE_DURATION_BY_MODE[mode] : 12
     const controls = animate(phase, 1, {
       duration,
       repeat: Infinity,
