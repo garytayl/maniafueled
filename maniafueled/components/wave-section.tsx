@@ -42,7 +42,12 @@ function pickThought(mode: ThoughtMode): string {
   return list[Math.floor(Math.random() * list.length)]
 }
 
-const PHASE_DURATION = 12 // seconds for one full wave cycle
+const PHASE_DURATION_BY_MODE: Record<ThoughtMode, number> = {
+  mania: 3,
+  baseline: 12,
+  depressive: 20,
+  null: 12,
+}
 
 export function WaveSection() {
   const journey = useOptionalJourney()
@@ -56,17 +61,18 @@ export function WaveSection() {
     ([a, p]: number[]) => buildPath(a, p * Math.PI * 2)
   )
 
-  // Continuous wave movement (phase drifts so the wave travels)
+  // Continuous wave movement (phase drifts so the wave travels); mania = much faster
   useEffect(() => {
     const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (reduced) return
+    const duration = PHASE_DURATION_BY_MODE[mode ?? "null"]
     const controls = animate(phase, 1, {
-      duration: PHASE_DURATION,
+      duration,
       repeat: Infinity,
       ease: "linear",
     })
     return () => controls.stop()
-  }, [phase])
+  }, [phase, mode])
 
   // Wave animation (calm on mount / when on wave step)
   useEffect(() => {
