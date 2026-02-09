@@ -52,6 +52,12 @@ export function LandingHero() {
               {hero.cta}
             </motion.button>
           </motion.div>
+          <motion.p
+            variants={fadeUp}
+            className="mt-6 font-sans text-xs text-white/35 italic"
+          >
+            By: Gary Taylor
+          </motion.p>
         </motion.div>
       </div>
     </section>
