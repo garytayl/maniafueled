@@ -1,6 +1,6 @@
 import { CustomCursor } from "@/components/custom-cursor"
 import { Navbar } from "@/components/navbar"
-import { InteractivePathExperience } from "@/components/interactive-path-experience"
+import { DepressiveExperience } from "@/components/depressive-experience"
 
 export default function DepressivePage() {
   return (
@@ -8,7 +8,7 @@ export default function DepressivePage() {
       <CustomCursor />
       <Navbar />
       <main>
-        <InteractivePathExperience variant="depressive" />
+        <DepressiveExperience />
       </main>
     </>
   )
