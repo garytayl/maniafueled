@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { resonantSongs, resonantVerses } from "@/lib/content"
 
 type SelectedItem =
-  | { type: "song"; songIndex: number; lineIndex: number; note: string }
+  | { type: "song"; songIndex: number; stanzaIndex: number; lineIndex: number; note: string }
   | { type: "songIntro"; songIndex: number; note: string }
   | { type: "verse"; verseIndex: number; note: string }
   | null
@@ -37,7 +37,7 @@ export function ResonateContent() {
             </h2>
             {resonantSongs.map((song, songIndex) => (
               <article key={`${song.artist}-${song.title}`} className="mb-14">
-                <div className="mb-6">
+                <div className="mb-8">
                   <p className="font-mono text-sm tracking-wider text-white/60">
                     {song.artist}
                   </p>
@@ -60,35 +60,48 @@ export function ResonateContent() {
                     </button>
                   )}
                 </div>
-                <div className="space-y-1 font-sans text-sm sm:text-base font-light text-white/85 leading-relaxed">
-                  {song.lines.map((line, lineIndex) => (
-                    <button
-                      key={`${songIndex}-${lineIndex}`}
-                      type="button"
-                      onClick={() =>
-                        line.note
-                          ? setSelected(
-                              selected?.type === "song" &&
-                                selected.songIndex === songIndex &&
-                                selected.lineIndex === lineIndex
-                                ? null
-                                : {
-                                    type: "song",
-                                    songIndex,
-                                    lineIndex,
-                                    note: line.note,
-                                  }
-                            )
-                          : undefined
-                      }
-                      className={`block w-full text-left py-0.5 -mx-1 px-1 rounded ${
-                        line.note
-                          ? "hover:bg-white/10 cursor-pointer border-l-2 border-amber-500/50 pl-3 -ml-1"
-                          : ""
-                      }`}
-                    >
-                      {line.text}
-                    </button>
+                <div className="space-y-6">
+                  {song.stanzas.map((stanza, stanzaIndex) => (
+                    <div key={`${songIndex}-${stanzaIndex}`} className="space-y-1">
+                      {stanza.label && (
+                        <p className="font-mono text-xs tracking-wider text-white/50 mb-2 uppercase">
+                          {stanza.label}
+                        </p>
+                      )}
+                      <div className="font-sans text-base sm:text-lg font-light text-white/95 leading-relaxed">
+                        {stanza.lines.map((line, lineIndex) => (
+                          <button
+                            key={`${songIndex}-${stanzaIndex}-${lineIndex}`}
+                            type="button"
+                            onClick={() =>
+                              line.note
+                                ? setSelected(
+                                    selected?.type === "song" &&
+                                      selected.songIndex === songIndex &&
+                                      selected.stanzaIndex === stanzaIndex &&
+                                      selected.lineIndex === lineIndex
+                                      ? null
+                                      : {
+                                          type: "song",
+                                          songIndex,
+                                          stanzaIndex,
+                                          lineIndex,
+                                          note: line.note,
+                                        }
+                                  )
+                                : undefined
+                            }
+                            className={`block w-full text-left py-1 -mx-1 px-1 rounded ${
+                              line.note
+                                ? "hover:bg-white/10 cursor-pointer border-l-2 border-amber-500/50 pl-3 -ml-1"
+                                : ""
+                            }`}
+                          >
+                            {line.text}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </article>
