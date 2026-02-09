@@ -11,7 +11,7 @@ export function PathChoice() {
       {/* Left — MANIA (white) */}
       <Link
         href="/mania"
-        className="relative flex-1 flex flex-col items-center justify-center min-h-[50vh] md:min-h-screen bg-white text-[#0a0a0a] group overflow-hidden"
+        className="relative flex-1 flex flex-col items-center justify-center min-h-[50vh] min-h-[50dvh] md:min-h-screen bg-white text-[#0a0a0a] group overflow-hidden py-10 px-4 sm:py-12 sm:px-6"
         data-cursor-hover
       >
         <motion.div
@@ -30,7 +30,7 @@ export function PathChoice() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="font-sans text-4xl md:text-6xl lg:text-7xl font-light tracking-tight"
+          className="font-sans text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight"
         >
           {pathChoice.mania.label}
         </motion.span>
@@ -63,7 +63,7 @@ export function PathChoice() {
       {/* Right — DEPRESSIVE (black) */}
       <Link
         href="/depressive"
-        className="relative flex-1 flex flex-col items-center justify-center min-h-[50vh] md:min-h-screen bg-[#050505] text-white group overflow-hidden"
+        className="relative flex-1 flex flex-col items-center justify-center min-h-[50vh] min-h-[50dvh] md:min-h-screen bg-[#050505] text-white group overflow-hidden py-10 px-4 sm:py-12 sm:px-6"
         data-cursor-hover
       >
         <motion.div
@@ -82,7 +82,7 @@ export function PathChoice() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="font-sans text-4xl md:text-6xl lg:text-7xl font-light tracking-tight"
+          className="font-sans text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight"
         >
           {pathChoice.depressive.label}
         </motion.span>
@@ -105,20 +105,20 @@ export function PathChoice() {
         </motion.span>
       </Link>
 
-      {/* Bottom bar: two columns aligned with MANIA | DEPRESSIVE boxes above */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#0f0f0f] border-t border-white/10 py-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
-        <div className="flex justify-center md:justify-start pl-6 pr-6 md:pl-12 md:pr-0">
+      {/* Bottom bar: two columns aligned with MANIA | DEPRESSIVE boxes above; safe area on mobile */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#0f0f0f] border-t border-white/10 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0 px-4 sm:px-6">
+        <div className="flex justify-center md:justify-start md:pl-12 md:pr-0">
           <Link
             href="/baseline"
-            className="font-mono text-[10px] tracking-[0.25em] text-white/70 hover:text-white transition-colors uppercase"
+            className="font-mono text-[11px] sm:text-[10px] tracking-[0.25em] text-white/70 hover:text-white transition-colors uppercase py-3 min-h-[44px] flex items-center"
           >
             {pathChoice.baselineLink}
           </Link>
         </div>
-        <div className="flex justify-center md:justify-end pl-6 pr-6 md:pl-0 md:pr-12">
+        <div className="flex justify-center md:justify-end md:pl-0 md:pr-12">
           <Link
             href="/story"
-            className="font-mono text-[10px] tracking-[0.25em] text-white/70 hover:text-white transition-colors uppercase"
+            className="font-mono text-[11px] sm:text-[10px] tracking-[0.25em] text-white/70 hover:text-white transition-colors uppercase py-3 min-h-[44px] flex items-center"
           >
             {pathChoice.fullStoryLink}
           </Link>

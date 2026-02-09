@@ -78,9 +78,9 @@ export function JourneyShell({ children }: { children: ReactNode[] }) {
         </AnimatePresence>
       </div>
 
-      {/* Bottom nav: back / dots / next — subtle gradient so it floats */}
+      {/* Bottom nav: back / dots / next — safe area and touch targets on mobile */}
       <div
-        className="absolute bottom-0 left-0 right-0 z-40 flex items-center justify-between px-6 py-5 md:px-12 bg-gradient-to-t from-[#050505] via-[#050505]/95 to-transparent pt-12"
+        className="absolute bottom-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-12 sm:px-6 md:px-12 md:py-5 bg-gradient-to-t from-[#050505] via-[#050505]/95 to-transparent"
         aria-label="Journey navigation"
       >
         <button
@@ -88,26 +88,26 @@ export function JourneyShell({ children }: { children: ReactNode[] }) {
           onClick={prev}
           disabled={!canGoPrev}
           data-cursor-hover
-          className="flex items-center gap-2 font-mono text-xs tracking-widest text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
+          className="flex items-center gap-2 min-h-[44px] min-w-[72px] justify-start font-mono text-xs tracking-widest text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
           aria-label="Previous"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-5 h-5 shrink-0" />
           Back
         </button>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {Array.from({ length: totalSteps }).map((_, i) => (
             <button
               key={i}
               type="button"
               onClick={() => goToStep(i)}
               aria-label={`Go to step ${i + 1}`}
-              className="group p-1.5 rounded-full transition-colors"
+              className="group p-2.5 sm:p-1.5 rounded-full transition-colors min-w-[28px] min-h-[44px] flex items-center justify-center"
             >
               <span
                 className={`block rounded-full transition-all duration-300 ${
                   i === step
-                    ? "w-8 h-1.5 bg-white"
+                    ? "w-6 sm:w-8 h-1.5 bg-white"
                     : "w-1.5 h-1.5 bg-white/30 group-hover:bg-white/50"
                 }`}
               />
@@ -120,16 +120,16 @@ export function JourneyShell({ children }: { children: ReactNode[] }) {
           onClick={next}
           disabled={!canGoNext}
           data-cursor-hover
-          className="flex items-center gap-2 font-mono text-xs tracking-widest text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
+          className="flex items-center gap-2 min-h-[44px] min-w-[72px] justify-end font-mono text-xs tracking-widest text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
           aria-label="Next"
         >
           Next
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-5 h-5 shrink-0" />
         </button>
       </div>
 
-      {/* Step counter — subtle, below progress bar */}
-      <div className="absolute top-4 right-6 md:right-12 z-30 font-mono text-[10px] tracking-[0.2em] text-white/40">
+      {/* Step counter — subtle, below progress bar; safe area top */}
+      <div className="absolute top-4 right-4 sm:right-6 md:right-12 z-30 font-mono text-[10px] tracking-[0.2em] text-white/40" style={{ paddingTop: "env(safe-area-inset-top)" }}>
         {String(step + 1).padStart(2, "0")} / {String(totalSteps).padStart(2, "0")}
       </div>
     </div>
