@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { motion, useMotionValue, useTransform, animate } from "framer-motion"
 import { baselineStatements } from "@/lib/content"
 
-const MARQUEE_DURATION = 50
+const MARQUEE_DURATION = 35
 
 export function Baseline() {
   const duplicated = [...baselineStatements, ...baselineStatements]

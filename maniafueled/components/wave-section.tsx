@@ -15,13 +15,13 @@ const WAVE_STEP_INDEX = 2
 type ThoughtMode = "mania" | "baseline" | "depressive" | null
 
 const INTERVAL_MS = {
-  mania: 380,
+  mania: 220,
   baseline: 1200,
   depressive: 2800,
 } as const
 
 const INTERVAL_MS_REDUCED = {
-  mania: 900,
+  mania: 500,
   baseline: 2200,
   depressive: 4500,
 } as const
