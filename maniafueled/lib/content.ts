@@ -32,7 +32,7 @@ export const pathChoice = {
     description: "The low side — depletion, pain, and what runs through it.",
   },
   baselineLink: "Or explore my baseline first",
-  fullStoryLink: "Read the full story",
+  fullStoryLink: "My journey",
 }
 
 /** Copy for the "wave" section — highs and lows, striving toward baseline */
@@ -255,3 +255,51 @@ export const strengths = [
 
 export const strengthsNote =
   "These are the same traits that, under stress, flip into symptoms."
+
+/** Personal journey narrative for the Story page — edit these with your details */
+export const storyJourney = {
+  title: "My journey",
+  subtitle: "Growing up with bipolar — from childhood to now.",
+  sections: [
+    {
+      id: "childhood",
+      label: "Childhood",
+      title: "When I was a kid",
+      body: [
+        "I didn’t have words for what I felt. The highs and lows were just how life was. Looking back, a lot of what I went through makes sense through the lens of bipolar — the restlessness, the mood swings, the sensitivity. I’ll add more here when I’m ready.",
+      ],
+    },
+    {
+      id: "diagnosis",
+      label: "Diagnosis",
+      title: "The time I was diagnosed",
+      body: [
+        "Getting a name for what I’d been living with changed everything and nothing. It explained so much; it also meant learning to live with something that doesn’t go away. I’ll fill in the details of when and how it happened.",
+      ],
+    },
+    {
+      id: "first-attempt",
+      label: "First attempt",
+      title: "The first time I tried to take my life",
+      body: [
+        "This is one of the hardest parts of my story to share. I’ll write more when I can. If you’re in a dark place, please reach out — 988 Lifeline, NAMI, or someone you trust.",
+      ],
+    },
+    {
+      id: "high-school",
+      label: "High school",
+      title: "Drugs, the wrong crowd, and “friends” with everyone",
+      body: [
+        "In high school I struggled with substances and kept ending up in the wrong crowd. I was “friends” with almost everyone at school — but real, deep friendships were rare. I felt like I was performing connection instead of having it. I’ll add more of this part of the story later.",
+      ],
+    },
+    {
+      id: "college",
+      label: "College",
+      title: "Three jobs, a 3.8 GPA, and mania",
+      body: [
+        "Senior year of college I was working three jobs and still pulled a 3.8 GPA. It sounds like a win — and in some ways it was — but I was in mania for most of that year. I didn’t know it then. I thought I was finally “handling it.” I’ll expand on this when I’m ready.",
+      ],
+    },
+  ],
+}

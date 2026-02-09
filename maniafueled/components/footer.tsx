@@ -28,7 +28,7 @@ export function Footer() {
     <footer id="contact" className="relative">
       {/* Main CTA */}
       <motion.a
-        href={siteConfig.contactEmail ? `mailto:${siteConfig.contactEmail}` : "#"}
+        href={siteConfig.contactEmail ? `mailto:${siteConfig.contactEmail}` : "/reach-out"}
         data-cursor-hover
         className="relative block overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
