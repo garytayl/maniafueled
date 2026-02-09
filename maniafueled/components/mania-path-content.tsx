@@ -22,8 +22,8 @@ function SymptomList({ items }: { items: string[] }) {
 
 export function ManiaPathContent() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
-      <div className="px-8 md:px-12 pt-28 pb-24 max-w-4xl mx-auto">
+    <div className="min-h-screen min-h-[100dvh] bg-[#050505] text-white">
+      <div className="px-4 sm:px-8 md:px-12 pt-24 sm:pt-28 pb-20 sm:pb-24 max-w-4xl mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export function ManiaPathContent() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="font-sans text-4xl md:text-5xl font-light italic mb-16"
+          className="font-sans text-3xl sm:text-4xl md:text-5xl font-light italic mb-12 sm:mb-16"
         >
           The elevated side
         </motion.h1>

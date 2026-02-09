@@ -108,7 +108,7 @@ export function WaveSection() {
 
   return (
     <section
-      className="relative flex flex-col items-center justify-center min-h-[70vh] w-full px-6 py-20 md:py-28"
+      className="relative flex flex-col items-center justify-center min-h-[70vh] min-h-[70dvh] w-full px-4 py-14 sm:px-6 sm:py-20 md:py-28"
       aria-labelledby="wave-headline"
     >
       <div className="w-full max-w-4xl mx-auto text-center mb-10 md:mb-12">
@@ -175,7 +175,7 @@ export function WaveSection() {
         <button
           type="button"
           onClick={() => setMode((m) => (m === "mania" ? null : "mania"))}
-          className={`px-5 py-2.5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
+          className={`min-h-[44px] px-5 py-2.5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
             mode === "mania"
               ? "bg-white text-[#050505]"
               : "border border-white/30 text-white/80 hover:border-white/60 hover:text-white"
@@ -186,7 +186,7 @@ export function WaveSection() {
         <button
           type="button"
           onClick={() => setMode((m) => (m === "baseline" ? null : "baseline"))}
-          className={`px-5 py-2.5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
+          className={`min-h-[44px] px-5 py-2.5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
             mode === "baseline"
               ? "bg-white text-[#050505]"
               : "border border-white/30 text-white/80 hover:border-white/60 hover:text-white"
@@ -197,7 +197,7 @@ export function WaveSection() {
         <button
           type="button"
           onClick={() => setMode((m) => (m === "depressive" ? null : "depressive"))}
-          className={`px-5 py-2.5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
+          className={`min-h-[44px] px-5 py-2.5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-300 ${
             mode === "depressive"
               ? "bg-white text-[#050505]"
               : "border border-white/30 text-white/80 hover:border-white/60 hover:text-white"
@@ -217,7 +217,7 @@ export function WaveSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.15 }}
-              className={`font-sans font-light text-xl md:text-2xl lg:text-3xl leading-snug ${
+              className={`font-sans font-light text-lg sm:text-xl md:text-2xl lg:text-3xl leading-snug ${
                 mode === "mania"
                   ? "text-white"
                   : mode === "depressive"

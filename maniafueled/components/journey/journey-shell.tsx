@@ -129,7 +129,7 @@ export function JourneyShell({ children }: { children: ReactNode[] }) {
       </div>
 
       {/* Step counter — subtle, below progress bar; safe area top */}
-      <div className="absolute top-4 right-4 sm:right-6 md:right-12 z-30 font-mono text-[10px] tracking-[0.2em] text-white/40" style={{ paddingTop: "env(safe-area-inset-top)" }}>
+      <div className="absolute top-4 right-4 sm:right-6 md:right-12 z-30 font-mono text-[10px] tracking-[0.2em] text-white/40">
         {String(step + 1).padStart(2, "0")} / {String(totalSteps).padStart(2, "0")}
       </div>
     </div>

@@ -23,33 +23,33 @@ export function Baseline() {
   }, [progress])
 
   return (
-    <section id="baseline" className="relative py-32 overflow-hidden md:py-0">
+    <section id="baseline" className="relative py-20 sm:py-32 overflow-hidden md:py-0">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="px-8 md:px-12 mb-0 py-20"
+        className="px-4 sm:px-8 md:px-12 mb-0 py-12 sm:py-20"
       >
         <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">
           02 — BASELINE
         </p>
-        <h2 className="font-sans text-3xl md:text-5xl font-light italic">
+        <h2 className="font-sans text-2xl sm:text-3xl md:text-5xl font-light italic">
           When things are relatively okay
         </h2>
       </motion.div>
 
       {/* Horizontal scrolling strip — Framer Motion so it always runs */}
-      <div className="relative flex items-center overflow-hidden py-0 gap-0 h-16">
+      <div className="relative flex items-center overflow-hidden py-0 gap-0 h-14 sm:h-16">
         <motion.div
           style={{ x, width: "fit-content" as const }}
-          className="flex gap-16 md:gap-24 px-8 md:px-12 whitespace-nowrap"
+          className="flex gap-12 sm:gap-16 md:gap-24 px-4 sm:px-8 md:px-12 whitespace-nowrap"
         >
           {duplicated.map((statement, index) => (
             <p
               key={index}
-              className="text-4xl md:text-6xl lg:text-7xl font-sans font-light tracking-tight text-white/90 shrink-0"
+              className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-sans font-light tracking-tight text-white/90 shrink-0"
               style={{
                 WebkitTextStroke: index % 2 === 0 ? "none" : "1px rgba(255,255,255,0.3)",
                 color: index % 2 === 0 ? "inherit" : "transparent",

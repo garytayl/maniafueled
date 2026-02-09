@@ -26,7 +26,7 @@ export function ClosingStep() {
   return (
     <footer id="contact" className="relative flex flex-col min-h-full w-full">
       {/* Main closing content — centered, one screen */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-20 md:py-28 text-center">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-16 sm:px-6 sm:py-20 md:py-28 text-center">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export function ClosingStep() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-sans text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-balance max-w-2xl mb-6"
+          className="font-sans text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-balance max-w-2xl mb-6"
         >
           {closingStep.headline}
         </motion.h2>
@@ -47,7 +47,7 @@ export function ClosingStep() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="font-sans text-lg md:text-xl font-light text-muted-foreground max-w-xl mb-14"
+          className="font-sans text-base sm:text-lg md:text-xl font-light text-muted-foreground max-w-xl mb-10 sm:mb-14"
         >
           {closingStep.subline}
         </motion.p>
@@ -65,7 +65,7 @@ export function ClosingStep() {
               data-cursor-hover
               onMouseEnter={() => setHoverPrimary(true)}
               onMouseLeave={() => setHoverPrimary(false)}
-              className="group relative flex items-center gap-3 px-8 py-4 rounded-full font-mono text-sm tracking-widest uppercase overflow-hidden bg-white text-[#050505] hover:bg-white/90 transition-colors"
+              className="group relative flex items-center gap-3 min-h-[48px] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-mono text-sm tracking-widest uppercase overflow-hidden bg-white text-[#050505] hover:bg-white/90 transition-colors"
             >
               <span className="relative z-10">{closingStep.ctaPrimary}</span>
               <motion.span
@@ -81,7 +81,7 @@ export function ClosingStep() {
             type="button"
             onClick={handleShare}
             data-cursor-hover
-            className="flex items-center gap-3 px-8 py-4 rounded-full font-mono text-sm tracking-widest uppercase border border-white/30 text-white/90 hover:border-white/60 hover:text-white hover:bg-white/5 transition-colors"
+            className="flex items-center gap-3 min-h-[48px] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-mono text-sm tracking-widest uppercase border border-white/30 text-white/90 hover:border-white/60 hover:text-white hover:bg-white/5 transition-colors"
           >
             <Share2 className="w-5 h-5" />
             {closingStep.ctaShare}
@@ -97,7 +97,7 @@ export function ClosingStep() {
         >
           <Link
             href="/"
-            className="font-mono text-[10px] tracking-[0.2em] text-white/40 hover:text-white/70 transition-colors uppercase"
+            className="font-mono text-[10px] tracking-[0.2em] text-white/40 hover:text-white/70 transition-colors uppercase py-2 inline-block min-h-[44px] flex items-center justify-center"
           >
             Back to start
           </Link>
@@ -109,7 +109,7 @@ export function ClosingStep() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="px-6 py-8 md:py-10 border-t border-white/10"
+        className="px-4 sm:px-6 py-6 sm:py-8 md:py-10 border-t border-white/10 pb-[max(1.5rem,env(safe-area-inset-bottom))]"
       >
         <p className="font-mono text-[10px] tracking-[0.2em] text-white/50 uppercase text-center mb-4">
           {closingStep.crisisHeading}
