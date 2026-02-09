@@ -10,6 +10,7 @@ const DEFAULT_LINKS: CrossLinkItem[] = [
   { label: "Resonate", href: "/resonate" },
   { label: "Choose a path", href: "/#path-choice" },
   { label: "Baseline", href: "/baseline" },
+  { label: "Resources", href: "/resources" },
   { label: "Reach out", href: "/reach-out" },
 ]
 
@@ -52,5 +53,6 @@ export const pathPageLinks: CrossLinkItem[] = [
   { label: "From the inside", href: "/from-the-inside" },
   { label: "My journey", href: "/story" },
   { label: "Resonate", href: "/resonate" },
+  { label: "Resources", href: "/resources" },
   { label: "Reach out", href: "/reach-out" },
 ]

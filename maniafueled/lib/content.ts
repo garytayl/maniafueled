@@ -40,6 +40,33 @@ export const practicalHelp = {
     "Self-determination theory in psychology identifies autonomy as a core need for well-being; feeling forced undermines it.",
 }
 
+/** Resource catalog — articles, research, insights. Slug used for future detail pages (/resources/[slug]). */
+export type ResourceType = "article" | "research" | "insight"
+export type CatalogResource = {
+  slug: string
+  title: string
+  description: string
+  url: string
+  type: ResourceType
+  source: string
+  date?: string
+  /** Set when we add a deep-dive page for this resource */
+  hasDetailPage?: boolean
+}
+
+export const catalogResources: CatalogResource[] = [
+  {
+    slug: "what-its-like-have-bipolar",
+    title: "What it's like to have bipolar?",
+    description:
+      "First-hand experiences from people with bipolar: impact on life, what they've learned, how they keep well, and advice for the newly diagnosed. Multiple voices (Chris O'Sullivan, Brian, Joan, Hannah, Cait, Tanya, Anna) — honest and practical.",
+    url: "https://www.mentalhealth.org.uk/explore-mental-health/blogs/what-its-have-bipolar",
+    type: "article",
+    source: "Mental Health Foundation",
+    date: "Mar 2016",
+  },
+]
+
 export const summaryQuote =
   "My bipolar struggle isn't about lack of effort or character — it's about a nervous system that swings between overload and depletion, in a world that often responds with judgment instead of regulation."
 
