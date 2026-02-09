@@ -398,6 +398,11 @@ export const earlyWarningSigns = [
 /** Mania: symptoms explained in my words, with personal analogies. Add or edit as needed. */
 export const maniaSymptomExplanations = [
   {
+    title: "When I seem normal — I'm acting",
+    explanation:
+      "Even when I'm manic and acting or seeming normal, that's it: I am acting. I'm struggling and fighting within to seem normal, not out of the ordinary, calm. When I stop fighting, that's when I get too excited and people react poorly. They start talking about me or to me. They tell me to calm down. They don't know I've been trying, actively and with persistent effort, to calm down for weeks to months. They don't know I don't want to act this way.",
+  },
+  {
     title: "Impulse control",
     explanation:
       "Sometimes it's like I'm in a car sliding on ice and my foot is mashing the brake pedal but I can't stop. Sometimes you cross the intersection on ice and hit a car. For me that looks like losing control over an impulse and hurting someone in the process — saying or doing something I regret.",
