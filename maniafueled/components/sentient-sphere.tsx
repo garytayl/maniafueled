@@ -5,17 +5,33 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { MathUtils } from "three"
 import type { Mesh, ShaderMaterial } from "three"
 
-function Sphere() {
+export type SphereVariant = "default" | "mania" | "mixed" | "depressive"
+
+const VARIANT_CONFIG: Record<
+  SphereVariant,
+  { noiseSpeed: number; displacementScale: number; rotationSpeed: number; noiseScale: number }
+> = {
+  default: { noiseSpeed: 0.15, displacementScale: 0.15, rotationSpeed: 0.05, noiseScale: 1.5 },
+  mania: { noiseSpeed: 0.52, displacementScale: 0.32, rotationSpeed: 0.14, noiseScale: 2.2 },
+  mixed: { noiseSpeed: 0.38, displacementScale: 0.24, rotationSpeed: 0.09, noiseScale: 1.9 },
+  depressive: { noiseSpeed: 0.06, displacementScale: 0.07, rotationSpeed: 0.018, noiseScale: 1.2 },
+}
+
+function Sphere({ variant = "default" }: { variant?: SphereVariant }) {
   const meshRef = useRef<Mesh>(null)
   const materialRef = useRef<ShaderMaterial>(null)
   const { pointer } = useThree()
+  const config = VARIANT_CONFIG[variant ?? "default"]
 
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
       uMouse: { value: [0, 0] },
+      uNoiseSpeed: { value: config.noiseSpeed },
+      uDisplacementScale: { value: config.displacementScale },
+      uNoiseScale: { value: config.noiseScale },
     }),
-    [],
+    [variant],
   )
 
   const vertexShader = `
@@ -74,11 +90,15 @@ function Sphere() {
       return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
     }
     
+    uniform float uNoiseSpeed;
+    uniform float uDisplacementScale;
+    uniform float uNoiseScale;
+    
     void main() {
       vUv = uv;
       
-      float noise = snoise(position * 1.5 + uTime * 0.15);
-      float displacement = noise * 0.15;
+      float noise = snoise(position * uNoiseScale + uTime * uNoiseSpeed);
+      float displacement = noise * uDisplacementScale;
       vDisplacement = displacement;
       
       vec3 newPosition = position + normal * displacement;
@@ -101,14 +121,14 @@ function Sphere() {
     }
   `
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (materialRef.current) {
       materialRef.current.uniforms.uTime.value += delta
       materialRef.current.uniforms.uMouse.value = [pointer.x, pointer.y]
     }
-
+    const rot = config.rotationSpeed
     if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.05
+      meshRef.current.rotation.y += delta * rot
       meshRef.current.rotation.x = MathUtils.lerp(meshRef.current.rotation.x, pointer.y * 0.2, 0.05)
       meshRef.current.rotation.z = MathUtils.lerp(meshRef.current.rotation.z, pointer.x * 0.2, 0.05)
     }
@@ -129,7 +149,7 @@ function Sphere() {
   )
 }
 
-export function SentientSphere() {
+export function SentientSphere({ variant }: { variant?: SphereVariant }) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -155,7 +175,7 @@ export function SentientSphere() {
       }}
     >
       <ambientLight intensity={0.5} />
-      <Sphere />
+      <Sphere variant={variant ?? "default"} />
     </Canvas>
   )
 }

@@ -13,6 +13,8 @@ import {
 } from "@/lib/content"
 import { ChevronRight } from "lucide-react"
 import { CrossLinks, pathPageLinks } from "@/components/cross-links"
+import { SentientSphere } from "@/components/sentient-sphere"
+import { BreathingWave } from "@/components/breathing-wave"
 
 const DEPRESSIVE_PHRASES = [
   ...waveThoughts.depressive,
@@ -50,15 +52,21 @@ export function DepressiveExperience() {
 
   return (
     <div className="min-h-screen min-h-[100dvh] bg-[#050505] text-white">
-      {/* Sparse, slow scroll — one thought per viewport, heavy weight */}
-      <header className="pt-[var(--navbar-offset)] pb-16 px-4 sm:px-8 md:px-12 max-w-3xl mx-auto">
-        <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-4 uppercase">
-          PATH — DEPRESSIVE
-        </p>
-        <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight">
-          The low side
-        </h1>
-      </header>
+      {/* Top section only: hero-style background, depressive variant = slow, subdued */}
+      <section className="relative min-h-[70vh] min-h-[70dvh] flex flex-col justify-center overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.15] sm:opacity-20 md:opacity-25">
+          <SentientSphere variant="depressive" />
+        </div>
+        <BreathingWave variant="depressive" />
+        <header className="relative z-10 pt-[var(--navbar-offset)] pb-16 px-4 sm:px-8 md:px-12 max-w-3xl mx-auto">
+          <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-4 uppercase">
+            PATH — DEPRESSIVE
+          </p>
+          <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight">
+            The low side
+          </h1>
+        </header>
+      </section>
 
       <div className="space-y-0">
         {DEPRESSIVE_PHRASES.map((phrase, i) => (

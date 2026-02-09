@@ -5,6 +5,8 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { waveThoughts, mixedStateContent } from "@/lib/content"
 import { CrossLinks, pathPageLinks } from "@/components/cross-links"
+import { SentientSphere } from "@/components/sentient-sphere"
+import { BreathingWave } from "@/components/breathing-wave"
 
 function SlowRevealBlock({
   children,
@@ -32,20 +34,26 @@ function SlowRevealBlock({
 export function MixedExperience() {
   return (
     <div className="min-h-screen min-h-[100dvh] bg-[#050505] text-white">
-      {/* Crisis warning first */}
-      <header className="pt-[var(--navbar-offset)] pb-12 px-4 sm:px-8 md:px-12 max-w-3xl mx-auto">
-        <div className="rounded-lg border-2 border-amber-500/50 bg-amber-500/10 px-5 py-4 mb-10">
-          <p className="font-mono text-sm font-medium text-amber-200">
-            {mixedStateContent.warning}
-          </p>
+      {/* Top section only: hero-style background, mixed variant = agitated */}
+      <section className="relative min-h-[70vh] min-h-[70dvh] flex flex-col justify-center overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.2] sm:opacity-25 md:opacity-30">
+          <SentientSphere variant="mixed" />
         </div>
-        <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-4 uppercase">
-          PATH — MIXED
-        </p>
-        <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight">
-          The overlap — agitated and hopeless at once
-        </h1>
-      </header>
+        <BreathingWave variant="mixed" />
+        <header className="relative z-10 pt-[var(--navbar-offset)] pb-12 px-4 sm:px-8 md:px-12 max-w-3xl mx-auto">
+          <div className="rounded-lg border-2 border-amber-500/50 bg-amber-500/10 px-5 py-4 mb-10">
+            <p className="font-mono text-sm font-medium text-amber-200">
+              {mixedStateContent.warning}
+            </p>
+          </div>
+          <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 mb-4 uppercase">
+            PATH — MIXED
+          </p>
+          <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight">
+            The overlap — agitated and hopeless at once
+          </h1>
+        </header>
+      </section>
 
       {/* Stream of mixed-state thoughts */}
       <div className="space-y-0">
