@@ -221,7 +221,12 @@ export const crossCuttingStruggles = [
   },
   {
     title: "Sleep vulnerability",
-    items: ["Sleep disruption both triggers and results from episodes"],
+    items: [
+      "I struggle with bits of insomnia. Lack of sleep can trigger an episode immediately — both are dangerous.",
+      "I'll spend hours looking at the ceiling, or trying every coping mechanism to fall asleep. Nothing works.",
+      "Or life happens and I'm not afforded enough sleep because of events, and bam — there's the start of an episode.",
+      "Sleep disruption both triggers and results from episodes. It's a loop.",
+    ],
   },
   {
     title: "Money regulation",
@@ -229,6 +234,14 @@ export const crossCuttingStruggles = [
       "Difficulty budgeting and holding onto money",
       "Impulsive spending urges under stress or elevation",
       "Background scarcity anxiety from childhood",
+    ],
+  },
+  {
+    title: "When 'discipline' isn't the answer",
+    items: [
+      "Everyone says stick it out, discipline through it. Get more sleep — I do. Eat better, go to the gym — I do. And so on.",
+      "I can be doing good for a while, then boom: one one-time event sets me off on an episode that lasts months.",
+      "Doing everything 'right' doesn't stop the episodes. It's not about not trying.",
     ],
   },
   {
@@ -379,6 +392,14 @@ export const storyJourney = {
       title: "When the high and the low hit at once",
       body: [
         "Mixed states are when I'm depressed and agitated at the same time — hopelessness with restless energy, worthlessness with impulsivity. For me they're the most dangerous. The despair is there and so is the capacity to act on it. I've learned to treat them as a crisis signal and reach out.",
+      ],
+    },
+    {
+      id: "sleep-and-triggers",
+      label: "Sleep and what sets me off",
+      title: "Insomnia, life, and the one thing that starts an episode",
+      body: [
+        "I struggle with bits of insomnia. Lack of sleep can trigger an episode immediately — both are dangerous. I'll spend hours looking at the ceiling or trying every coping mechanism to fall asleep. Nothing works. Or life happens and I'm not afforded enough sleep, and bam — there's the start of an episode. I can be doing good for a while, then one one-time event sets me off on an episode that lasts months. Everyone says stick it out, discipline through it. Get more sleep, eat better, go to the gym — I do. And so on. Doing everything 'right' doesn't stop the episodes. It's not about not trying.",
       ],
     },
   ],
