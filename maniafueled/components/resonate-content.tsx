@@ -80,12 +80,12 @@ export function ResonateContent() {
               Songs and Bible verses that put words to what I feel. Tap a highlighted line to see why it resonates.
             </p>
 
-            {/* Split menu: Songs | Bible verses — align tab underline with nav bottom */}
-            <nav className="flex border-b border-white/15" aria-label="Resonate sections">
+            {/* Split menu: Songs | Bible verses — full width, centered labels */}
+            <nav className="flex w-full border-b border-white/15" aria-label="Resonate sections">
               <button
                 type="button"
                 onClick={() => setMenu("songs")}
-                className={`font-mono text-xs sm:text-sm tracking-widest uppercase py-3 pr-6 border-b-2 transition-colors -mb-px ${
+                className={`flex-1 font-mono text-xs sm:text-sm tracking-widest uppercase py-3 border-b-2 transition-colors -mb-px text-center ${
                   menu === "songs"
                     ? "border-white text-white"
                     : "border-transparent text-white/50 hover:text-white/80"
@@ -96,7 +96,7 @@ export function ResonateContent() {
               <button
                 type="button"
                 onClick={() => setMenu("verses")}
-                className={`font-mono text-xs sm:text-sm tracking-widest uppercase py-3 pl-6 border-b-2 transition-colors -mb-px ${
+                className={`flex-1 font-mono text-xs sm:text-sm tracking-widest uppercase py-3 border-b-2 transition-colors -mb-px text-center ${
                   menu === "verses"
                     ? "border-white text-white"
                     : "border-transparent text-white/50 hover:text-white/80"
