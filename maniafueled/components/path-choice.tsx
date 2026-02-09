@@ -105,16 +105,17 @@ export function PathChoice() {
         </motion.span>
       </Link>
 
-      {/* Bottom bar: neutral background so links are readable on both white & black halves */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#0f0f0f] border-t border-white/10 py-4 px-6">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
+      {/* Bottom bar: two columns aligned with MANIA | DEPRESSIVE boxes above */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 bg-[#0f0f0f] border-t border-white/10 py-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
+        <div className="flex justify-center md:justify-start pl-6 pr-6 md:pl-12 md:pr-0">
           <Link
             href="/baseline"
             className="font-mono text-[10px] tracking-[0.25em] text-white/70 hover:text-white transition-colors uppercase"
           >
             {pathChoice.baselineLink}
           </Link>
-          <span className="text-white/30 hidden sm:inline" aria-hidden>·</span>
+        </div>
+        <div className="flex justify-center md:justify-end pl-6 pr-6 md:pl-0 md:pr-12">
           <Link
             href="/story"
             className="font-mono text-[10px] tracking-[0.25em] text-white/70 hover:text-white transition-colors uppercase"
