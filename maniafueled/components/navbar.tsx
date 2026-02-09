@@ -1,34 +1,25 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useJourney } from "@/components/journey/journey-context"
 
 const navLinks = [
-  { label: "Baseline", href: "#baseline" },
-  { label: "Experiences", href: "#experiences" },
-  { label: "Triggers", href: "#triggers" },
-  { label: "Strengths", href: "#strengths" },
-  { label: "Contact", href: "#contact" },
+  { label: "Intro", step: 0 },
+  { label: "Baseline", step: 1 },
+  { label: "Experiences", step: 2 },
+  { label: "Triggers", step: 3 },
+  { label: "Strengths", step: 4 },
+  { label: "Contact", step: 5 },
 ]
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { step, goToStep } = useJourney()
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const scrollToSection = (href: string) => {
+  const goTo = (stepIndex: number) => {
     setIsMenuOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    goToStep(stepIndex)
   }
 
   return (
@@ -37,33 +28,30 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border" : ""
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-white/5"
       >
         <nav className="flex items-center justify-between px-6 py-4 my-0 md:px-12 md:py-5">
-          {/* Logo */}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault()
-              window.scrollTo({ top: 0, behavior: "smooth" })
-            }}
+          {/* Logo — go to intro */}
+          <button
+            type="button"
+            onClick={() => goTo(0)}
             className="group flex items-center gap-2"
           >
             <span className="font-mono text-xs tracking-widest text-muted-foreground">BIPOLAR I</span>
             <span className="w-1.5 h-1.5 rounded-full bg-accent group-hover:scale-150 transition-transform duration-300" />
-          </a>
+          </button>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, index) => (
+          {/* Desktop Navigation — jump to step */}
+          <ul className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
               <li key={link.label}>
                 <button
-                  onClick={() => scrollToSection(link.href)}
-                  className="group relative font-mono text-xs tracking-wider text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  onClick={() => goTo(link.step)}
+                  className={`group relative font-mono text-xs tracking-wider transition-colors duration-300 ${
+                    step === link.step ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
-                  <span className="text-accent mr-1">0{index + 1}</span>
+                  <span className="text-accent mr-1">{String(link.step + 1).padStart(2, "0")}</span>
                   {link.label.toUpperCase()}
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground group-hover:w-full transition-all duration-300" />
                 </button>
@@ -71,7 +59,7 @@ export function Navbar() {
             ))}
           </ul>
 
-          {/* Status Indicator */}
+          {/* Status */}
           <div className="hidden md:flex items-center gap-3">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
@@ -120,10 +108,10 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ delay: index * 0.1 }}
-                  onClick={() => scrollToSection(link.href)}
-                  className="group text-4xl font-sans tracking-tight text-foreground"
+                  onClick={() => goTo(link.step)}
+                  className={`group text-4xl font-sans tracking-tight ${step === link.step ? "text-foreground" : "text-muted-foreground"}`}
                 >
-                  <span className="text-accent font-mono text-sm mr-2">0{index + 1}</span>
+                  <span className="text-accent font-mono text-sm mr-2">{String(link.step + 1).padStart(2, "0")}</span>
                   {link.label}
                 </motion.button>
               ))}

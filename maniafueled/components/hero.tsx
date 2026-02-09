@@ -1,39 +1,24 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import { SentientSphere } from "./sentient-sphere"
 import { siteConfig, summaryQuote } from "@/lib/content"
+import { useJourney } from "@/components/journey/journey-context"
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  })
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
-
-  const scrollToContent = () => {
-    const baseline = document.querySelector("#baseline")
-    if (baseline) {
-      baseline.scrollIntoView({ behavior: "smooth" })
-    }
-  }
+  const { next } = useJourney()
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#050505]">
+    <section ref={containerRef} className="relative h-full min-h-screen w-full overflow-hidden bg-[#050505]">
       {/* 3D Sphere Background */}
       <div className="absolute inset-0">
         <SentientSphere />
       </div>
 
       {/* Typography Overlay */}
-      <motion.div
-        style={{ opacity, scale }}
-        className="relative z-10 h-full flex flex-col justify-between p-8 md:p-12 md:px-12 md:py-20"
-      >
+      <div className="relative z-10 h-full min-h-screen flex flex-col justify-between p-8 md:p-12 md:px-12 md:py-20 pb-28">
         {/* Top */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -62,17 +47,17 @@ export function Hero() {
             &ldquo;{summaryQuote}&rdquo;
           </blockquote>
           <motion.button
-            onClick={scrollToContent}
+            onClick={next}
             data-cursor-hover
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="mt-8 px-8 py-4 border border-white/20 rounded-full font-mono text-sm tracking-widest uppercase bg-transparent backdrop-blur-sm hover:bg-white hover:text-black transition-colors duration-500"
           >
-            Read more
+            Begin
           </motion.button>
         </motion.div>
 
-        {/* Bottom — Tagline */}
+        {/* Bottom — Tagline + keyboard hint */}
         <motion.div
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -82,27 +67,11 @@ export function Hero() {
           <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground">
             {siteConfig.tagline}
           </p>
+          <p className="font-mono text-[10px] tracking-widest text-white/30 mt-2">
+            Use arrow keys or the nav below to move through the story
+          </p>
         </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-            Scroll
-          </span>
-          <div className="w-px h-8 bg-gradient-to-b from-white/50 to-transparent" />
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }
