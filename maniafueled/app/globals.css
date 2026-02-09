@@ -5,7 +5,8 @@
 
 /* Dark portfolio theme - using dark mode as default */
 :root {
-  --navbar-offset: calc(3.5rem + env(safe-area-inset-top));
+  /* Navbar: safe-area + nav bar height + buffer so content never clips on mobile */
+  --navbar-offset: calc(5.5rem + env(safe-area-inset-top, 0px));
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.145 0 0);
