@@ -2,8 +2,19 @@ export const siteConfig = {
   title: "Living With Bipolar I",
   subtitle: "What It Feels Like Inside My Body and Mind",
   tagline: "This is what bipolar does to me, moment to moment.",
-  /** Update with your email for the contact CTA */
+  /** Update with your email for the reach-out CTA on the final step */
   contactEmail: "",
+}
+
+/** Final step of the journey — closing and reach out */
+export const closingStep = {
+  label: "THE END",
+  headline: "You've reached the end of this story.",
+  subline: "If this resonated — reach out, or pass it on to someone who needs to understand.",
+  ctaPrimary: "Reach out",
+  ctaShare: "Share this with someone",
+  crisisHeading: "If you or someone you know is in crisis",
+  crisisNote: "988 Lifeline and NAMI offer free, confidential support.",
 }
 
 export const summaryQuote =

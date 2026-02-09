@@ -5,7 +5,7 @@ import { WaveSection } from "@/components/wave-section"
 import { Experiences } from "@/components/experiences"
 import { TechMarquee } from "@/components/tech-marquee"
 import { Strengths } from "@/components/strengths"
-import { Footer } from "@/components/footer"
+import { ClosingStep } from "@/components/closing-step"
 import { CustomCursor } from "@/components/custom-cursor"
 import { JourneyProvider } from "@/components/journey/journey-context"
 import { JourneyShell } from "@/components/journey/journey-shell"
@@ -63,10 +63,10 @@ function StepStrengths() {
   )
 }
 
-function StepFooter() {
+function StepClosing() {
   return (
     <StepPanel fullHeight className="pb-24">
-      <Footer />
+      <ClosingStep />
     </StepPanel>
   )
 }
@@ -78,7 +78,7 @@ const steps = [
   <StepExperiences key="experiences" />,
   <StepTriggers key="triggers" />,
   <StepStrengths key="strengths" />,
-  <StepFooter key="footer" />,
+  <StepClosing key="closing" />,
 ]
 
 export default function Home() {

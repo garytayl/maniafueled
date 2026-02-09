@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Experiences", step: 3 },
   { label: "Triggers", step: 4 },
   { label: "Strengths", step: 5 },
-  { label: "Contact", step: 6 },
+  { label: "Reach out", step: 6 },
 ]
 
 export function Navbar() {
