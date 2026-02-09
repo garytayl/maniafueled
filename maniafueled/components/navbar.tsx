@@ -7,10 +7,11 @@ import { useJourney } from "@/components/journey/journey-context"
 const navLinks = [
   { label: "Intro", step: 0 },
   { label: "Baseline", step: 1 },
-  { label: "Experiences", step: 2 },
-  { label: "Triggers", step: 3 },
-  { label: "Strengths", step: 4 },
-  { label: "Contact", step: 5 },
+  { label: "Wave", step: 2 },
+  { label: "Experiences", step: 3 },
+  { label: "Triggers", step: 4 },
+  { label: "Strengths", step: 5 },
+  { label: "Contact", step: 6 },
 ]
 
 export function Navbar() {

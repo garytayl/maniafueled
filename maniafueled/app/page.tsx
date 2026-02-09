@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
 import { Baseline } from "@/components/baseline"
+import { WaveSection } from "@/components/wave-section"
 import { Experiences } from "@/components/experiences"
 import { TechMarquee } from "@/components/tech-marquee"
 import { Strengths } from "@/components/strengths"
@@ -20,6 +21,14 @@ function StepBaseline() {
       <div className="px-8 md:px-12 pt-24 md:pt-32">
         <Baseline />
       </div>
+    </StepPanel>
+  )
+}
+
+function StepWave() {
+  return (
+    <StepPanel showContinue fullHeight className="pb-24">
+      <WaveSection />
     </StepPanel>
   )
 }
@@ -65,6 +74,7 @@ function StepFooter() {
 const steps = [
   <StepHero key="hero" />,
   <StepBaseline key="baseline" />,
+  <StepWave key="wave" />,
   <StepExperiences key="experiences" />,
   <StepTriggers key="triggers" />,
   <StepStrengths key="strengths" />,

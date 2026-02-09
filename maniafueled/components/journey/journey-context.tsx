@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useCallback, useState, useRef, type ReactNode } from "react"
 
-const TOTAL_STEPS = 6
+const TOTAL_STEPS = 7
 
 export type Direction = 1 | -1
 

@@ -9,6 +9,13 @@ export const siteConfig = {
 export const summaryQuote =
   "Your bipolar struggle isn't about lack of effort or character — it's about a nervous system that swings between overload and depletion, in a world that often responds with judgment instead of regulation."
 
+/** Copy for the "wave" section — highs and lows, striving toward baseline */
+export const waveSection = {
+  label: "THE WAVE",
+  headline: "I'm striving toward my baseline",
+  subline: "Lesser highs, lesser lows — the wave doesn't disappear, but I'm learning to live with a calmer one.",
+}
+
 export const baselineStatements = [
   "Thoughtful, analytical, reflective.",
   "Relationally sensitive — you care deeply how things land.",
