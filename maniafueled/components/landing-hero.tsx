@@ -52,6 +52,12 @@ export function LandingHero() {
               {siteConfig.subtitle}
             </motion.span>
           </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            className="font-sans text-sm sm:text-base italic text-white/50 tracking-wide mt-4 md:mt-5"
+          >
+            By: Gary Taylor
+          </motion.p>
         </motion.div>
 
         {/* Center — quote and CTA: in-flow on mobile to avoid overlap, absolute on md+ */}
