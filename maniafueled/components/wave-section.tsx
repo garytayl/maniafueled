@@ -26,10 +26,10 @@ const INTERVAL_MS_REDUCED = {
   depressive: 4500,
 } as const
 
-function buildPath(amplitude: number): string {
+function buildPath(amplitude: number, phase: number): string {
   const points: [number, number][] = []
   for (let x = 0; x <= WIDTH + POINT_STEP; x += POINT_STEP) {
-    const y = CENTER_Y + amplitude * Math.sin((x / WAVELENGTH_PX) * 2 * Math.PI)
+    const y = CENTER_Y + amplitude * Math.sin((x / WAVELENGTH_PX) * 2 * Math.PI + phase)
     points.push([x, y])
   }
   const d = points.reduce((acc, [x, y], i) => `${acc} ${i === 0 ? "M" : "L"} ${x},${y}`, "")
@@ -42,13 +42,28 @@ function pickThought(mode: ThoughtMode): string {
   return list[Math.floor(Math.random() * list.length)]
 }
 
+const PHASE_DURATION = 12 // seconds for one full wave cycle
+
 export function WaveSection() {
   const journey = useOptionalJourney()
   const amplitude = useMotionValue(20)
+  const phase = useMotionValue(0)
   const [mode, setMode] = useState<ThoughtMode>(null)
   const [thought, setThought] = useState("")
 
-  const pathD = useTransform(amplitude, (a) => buildPath(a))
+  const pathD = useTransform([amplitude, phase], ([a, p]) => buildPath(a, (p as number) * Math.PI * 2))
+
+  // Continuous wave movement (phase drifts so the wave travels)
+  useEffect(() => {
+    const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (reduced) return
+    const controls = animate(phase, 1, {
+      duration: PHASE_DURATION,
+      repeat: Infinity,
+      ease: "linear",
+    })
+    return () => controls.stop()
+  }, [phase])
 
   // Wave animation (calm on mount / when on wave step)
   useEffect(() => {
