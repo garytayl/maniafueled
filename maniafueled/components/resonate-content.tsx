@@ -6,19 +6,25 @@ import { motion, AnimatePresence } from "framer-motion"
 import { resonantSongs, resonantVerses } from "@/lib/content"
 import { parseStyledText } from "@/lib/parse-styled-text"
 
-/** Group verses by chapter for display; each item keeps original index for selection */
-function groupVersesByChapter(
-  verses: Array<{ reference: string; translation?: string; text: string; note?: string; chapter?: string }>
-): Array<{ chapter: string; verses: Array<{ verseIndex: number }> }> {
-  const byChapter = new Map<string, number[]>()
+/** Group verses by book, then by chapter; each item keeps original index for selection */
+function groupVersesByBookAndChapter(
+  verses: Array<{ reference: string; translation?: string; text: string; note?: string; book?: string; chapter?: string }>
+): Array<{ book: string; chapters: Array<{ chapter: string; verses: Array<{ verseIndex: number }> }> }> {
+  const byBook = new Map<string, Map<string, number[]>>()
   verses.forEach((v, i) => {
-    const key = "chapter" in v && v.chapter ? String(v.chapter) : v.reference.split(":")[0] || "Other"
-    if (!byChapter.has(key)) byChapter.set(key, [])
-    byChapter.get(key)!.push(i)
+    const book = "book" in v && v.book ? String(v.book) : v.reference.split(" ")[0] || "Other"
+    const chapter = "chapter" in v && v.chapter ? String(v.chapter) : v.reference.split(":")[0]?.split(" ").pop() || "1"
+    if (!byBook.has(book)) byBook.set(book, new Map())
+    const bookChapters = byBook.get(book)!
+    if (!bookChapters.has(chapter)) bookChapters.set(chapter, [])
+    bookChapters.get(chapter)!.push(i)
   })
-  return Array.from(byChapter.entries()).map(([chapter, indices]) => ({
-    chapter,
-    verses: indices.map((verseIndex) => ({ verseIndex })),
+  return Array.from(byBook.entries()).map(([book, chapterMap]) => ({
+    book,
+    chapters: Array.from(chapterMap.entries()).map(([chapter, indices]) => ({
+      chapter,
+      verses: indices.map((verseIndex) => ({ verseIndex })),
+    })),
   }))
 }
 
@@ -34,7 +40,7 @@ export function ResonateContent() {
   const [selected, setSelected] = useState<SelectedItem>(null)
   const [menu, setMenu] = useState<ResonateMenu>("songs")
   const [selectedSongIndex, setSelectedSongIndex] = useState(0)
-  const versesByChapter = useMemo(() => groupVersesByChapter(resonantVerses), [])
+  const versesByBookAndChapter = useMemo(() => groupVersesByBookAndChapter(resonantVerses), [])
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
@@ -184,47 +190,54 @@ export function ResonateContent() {
             <h2 className="font-mono text-xs tracking-[0.25em] text-white/50 mb-6 uppercase">
               Bible verses
             </h2>
-            {versesByChapter.map(({ chapter, verses: verseItems }) => (
-              <div key={chapter} className="mb-12">
-                <h3 className="font-mono text-sm tracking-wider text-white/60 mb-6 uppercase border-b border-white/10 pb-2">
-                  {chapter}
+            {versesByBookAndChapter.map(({ book, chapters }) => (
+              <div key={book} className="mb-14">
+                <h3 className="font-mono text-sm tracking-wider text-white/70 mb-8 uppercase border-b border-white/15 pb-3">
+                  {book}
                 </h3>
-                <div className="space-y-10">
-                  {verseItems.map(({ verseIndex }) => {
-                    const verse = resonantVerses[verseIndex]
-                    return (
-                      <article
-                        key={verse.reference}
-                        className="border-l-2 border-white/20 pl-5 sm:pl-6"
-                      >
-                        <p className="font-mono text-sm tracking-wider text-white/70 mb-2">
-                          {verse.reference}
-                          {"translation" in verse && verse.translation && (
-                            <span className="text-white/50 font-normal"> · {verse.translation}</span>
-                          )}
-                        </p>
-                        <p className="font-sans text-base sm:text-lg font-light text-white/90 leading-relaxed mb-3">
-                          &ldquo;{parseStyledText(verse.text, `verse-${verseIndex}`)}&rdquo;
-                        </p>
-                        {verse.note && (
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setSelected(
-                                selected?.type === "verse" && selected.verseIndex === verseIndex
-                                  ? null
-                                  : { type: "verse", verseIndex, note: verse.note }
-                              )
-                            }
-                            className="font-sans text-sm text-amber-200/90 hover:text-amber-200 underline underline-offset-2"
+                {chapters.map(({ chapter, verses: verseItems }) => (
+                  <div key={`${book}-${chapter}`} className="mb-10">
+                    <h4 className="font-mono text-xs tracking-wider text-white/50 mb-6 uppercase">
+                      Chapter {chapter}
+                    </h4>
+                    <div className="space-y-10">
+                      {verseItems.map(({ verseIndex }) => {
+                        const verse = resonantVerses[verseIndex]
+                        return (
+                          <article
+                            key={verse.reference}
+                            className="border-l-2 border-white/20 pl-5 sm:pl-6"
                           >
-                            Why this resonates
-                          </button>
-                        )}
-                      </article>
-                    )
-                  })}
-                </div>
+                            <p className="font-mono text-sm tracking-wider text-white/70 mb-2">
+                              {verse.reference}
+                              {"translation" in verse && verse.translation && (
+                                <span className="text-white/50 font-normal"> · {verse.translation}</span>
+                              )}
+                            </p>
+                            <p className="font-sans text-base sm:text-lg font-light text-white/90 leading-relaxed mb-3">
+                              &ldquo;{parseStyledText(verse.text, `verse-${verseIndex}`)}&rdquo;
+                            </p>
+                            {verse.note && (
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setSelected(
+                                    selected?.type === "verse" && selected.verseIndex === verseIndex
+                                      ? null
+                                      : { type: "verse", verseIndex, note: verse.note }
+                                  )
+                                }
+                                className="font-sans text-sm text-amber-200/90 hover:text-amber-200 underline underline-offset-2"
+                              >
+                                Why this resonates
+                              </button>
+                            )}
+                          </article>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
               </div>
             ))}
           </section>
