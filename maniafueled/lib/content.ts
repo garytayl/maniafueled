@@ -243,6 +243,44 @@ export const earlyWarningSigns = [
   "URGENCY TO FIX EVERYTHING",
 ]
 
+/** Mania: symptoms explained in my words, with personal analogies. Add or edit as needed. */
+export const maniaSymptomExplanations = [
+  {
+    title: "Impulse control",
+    explanation:
+      "Sometimes it's like I'm in a car sliding on ice and my foot is mashing the brake pedal but I can't stop. Sometimes you cross the intersection on ice and hit a car. For me that looks like losing control over an impulse and hurting someone in the process — saying or doing something I regret.",
+  },
+  {
+    title: "Racing thoughts",
+    explanation:
+      "Ideas flow like water. I make connections faster than I can finish a sentence. It's hard to land on one thing; everything feels urgent and connected. I'll add more when I'm ready.",
+  },
+  {
+    title: "Sleep and rest",
+    explanation:
+      "I don't feel like I need to sleep, or I can't. I stay up late or all night — scrolling, building, planning. The body is wired and tired at the same time. I'll add more when I'm ready.",
+  },
+]
+
+/** Depression: symptoms explained in my words, with personal analogies. Add or edit as needed. */
+export const depressionSymptomExplanations = [
+  {
+    title: "Impulse and withdrawal",
+    explanation:
+      "When I'm low I can't initiate — even things I care about. It's like wanting to move but being stuck. Sometimes I say or do nothing when I want to connect, and I regret that too. I'll add more when I'm ready.",
+  },
+  {
+    title: "Loneliness and shame",
+    explanation:
+      "I feel profoundly alone even when I'm around people. Shame amplifies everything. I'll add more when I'm ready.",
+  },
+  {
+    title: "Exhaustion",
+    explanation:
+      "I'm exhausted even after sleep. Motivation drops. Small tasks feel impossible. I'll add more when I'm ready.",
+  },
+]
+
 export const strengths = [
   "Strong self-reflection",
   "Ability to notice patterns over time",

@@ -7,6 +7,7 @@ import { useRef } from "react"
 import {
   waveThoughts,
   depressionSymptoms,
+  depressionSymptomExplanations,
   suicidalIdeationContent,
   crossCuttingStruggles,
 } from "@/lib/content"
@@ -70,6 +71,28 @@ export function DepressiveExperience() {
           </SlowRevealBlock>
         ))}
       </div>
+
+      {/* Symptoms explained in my words — clear explanations with personal analogies */}
+      <section className="px-4 sm:px-8 md:px-12 py-20 sm:py-28 max-w-3xl mx-auto border-t border-white/10">
+        <p className="font-mono text-xs tracking-[0.25em] text-white/50 mb-2 uppercase">
+          In depression I experience
+        </p>
+        <h2 className="font-sans text-2xl sm:text-3xl font-light italic mb-12">
+          What it's really like
+        </h2>
+        <div className="space-y-14 sm:space-y-16">
+          {depressionSymptomExplanations.map((item, i) => (
+            <SlowRevealBlock key={item.title} className="border-l-2 border-white/20 pl-6 sm:pl-8">
+              <h3 className="font-mono text-sm sm:text-base tracking-wider text-white/90 mb-3">
+                {item.title}
+              </h3>
+              <p className="font-sans text-base sm:text-lg font-light text-white/85 leading-relaxed">
+                {item.explanation}
+              </p>
+            </SlowRevealBlock>
+          ))}
+        </div>
+      </section>
 
       {/* Suicidal ideation — one careful block with warning */}
       <section className="px-4 sm:px-8 md:px-12 py-20 sm:py-28 max-w-3xl mx-auto">
