@@ -41,7 +41,7 @@ export function Baseline() {
       </motion.div>
 
       {/* Horizontal scrolling strip — Framer Motion so it always runs */}
-      <div className="relative flex items-center overflow-hidden py-0 gap-0 h-14 sm:h-16">
+      <div className="relative flex items-end overflow-hidden pt-2 pb-6 sm:pb-8 gap-0 min-h-[4.5rem] sm:min-h-[5rem]">
         <motion.div
           style={{ x, width: "fit-content" as const }}
           className="flex gap-12 sm:gap-16 md:gap-24 px-4 sm:px-8 md:px-12 whitespace-nowrap"

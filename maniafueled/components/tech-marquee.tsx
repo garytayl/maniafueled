@@ -7,7 +7,7 @@ function MarqueeRow({ items, direction = "left" }: { items: string[]; direction?
   const duplicatedItems = [...items, ...items, ...items, ...items]
 
   return (
-    <div className="relative overflow-hidden py-4">
+    <div className="relative overflow-hidden pt-4 pb-8 md:pb-10">
       <motion.div
         className={`flex gap-8 ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
         style={{ width: "fit-content" }}
