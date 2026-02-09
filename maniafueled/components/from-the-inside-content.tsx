@@ -84,7 +84,7 @@ export function FromTheInsideContent() {
           <Link href="/" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Home</Link>
           <Link href="/story" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">My journey</Link>
           <Link href="/resonate" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Resonate</Link>
-          <Link href="/#path-choice" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Choose a path</Link>
+          <Link href="/#state-choice" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Choose a state</Link>
           <Link href="/baseline" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Baseline</Link>
           <Link href="/reach-out" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Reach out</Link>
         </footer>

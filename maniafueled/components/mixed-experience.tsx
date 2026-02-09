@@ -47,7 +47,7 @@ export function MixedExperience() {
             </p>
           </div>
           <p className="font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 uppercase">
-            PATH — MIXED
+            STATE — MIXED
           </p>
           <p className="font-mono text-[10px] tracking-wider text-amber-200/50 mb-4 mt-1">
             {episodesDurationClarification}
@@ -105,6 +105,11 @@ export function MixedExperience() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-8 px-4 sm:px-8 md:px-12 max-w-5xl mx-auto w-full">
+        <p className="font-mono text-[10px] tracking-widest text-amber-200/50 mb-2 uppercase">Other states</p>
+        <div className="flex flex-wrap gap-4 sm:gap-6 mb-6">
+          <Link href="/mania" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Mania</Link>
+          <Link href="/depressive" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Depressive</Link>
+        </div>
         <CrossLinks links={pathPageLinks} className="mb-6" title="Explore further — follow the loop" />
         <div className="flex flex-wrap gap-6 sm:gap-8">
           <Link href="/" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Home</Link>

@@ -52,7 +52,7 @@ export function ManiaExperience() {
         </div>
         <BreathingWave variant="mania" />
         <p className="relative z-10 shrink-0 font-mono text-xs sm:text-sm tracking-[0.3em] text-white/40 uppercase text-center">
-          PATH — MANIA
+          STATE — MANIA
         </p>
         <p className="relative z-10 shrink-0 font-mono text-[10px] tracking-wider text-white/40 text-center mt-1 mb-6">
           {episodesDurationClarification}
@@ -124,6 +124,11 @@ export function ManiaExperience() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-8 px-4 sm:px-8 md:px-12 max-w-5xl mx-auto w-full">
+        <p className="font-mono text-[10px] tracking-widest text-white/40 mb-2 uppercase">Other states</p>
+        <div className="flex flex-wrap gap-4 sm:gap-6 mb-6">
+          <Link href="/mixed" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Mixed</Link>
+          <Link href="/depressive" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Depressive</Link>
+        </div>
         <CrossLinks links={pathPageLinks} className="mb-6" title="Explore further — follow the loop" />
         <div className="flex flex-wrap gap-6 sm:gap-8">
           <Link href="/" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Home</Link>

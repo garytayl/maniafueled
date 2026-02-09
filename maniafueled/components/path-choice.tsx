@@ -7,8 +7,8 @@ import { ArrowRight, ArrowLeft, ArrowDown } from "lucide-react"
 
 export function PathChoice() {
   return (
-    <section id="path-choice" className="relative flex flex-col w-full pb-24 md:pb-0" aria-label="Choose a path">
-      {/* Intro: prompt to choose a path for a glimpse of a state */}
+    <section id="state-choice" className="relative flex flex-col w-full pb-24 md:pb-0" aria-label="Choose a state">
+      {/* Intro: prompt to choose a state for a glimpse */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}

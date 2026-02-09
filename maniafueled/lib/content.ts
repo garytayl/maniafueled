@@ -6,10 +6,10 @@ export const siteConfig = {
   contactEmail: "",
 }
 
-/** Hero — minimal, personal. Less text; the site (paths, system) is the illustration. */
+/** Hero — minimal, personal. Less text; the site (states, system) is the illustration. */
 export const hero = {
   line: "I think in systems. So this is how I show you.",
-  cta: "Choose a path",
+  cta: "Choose a state",
 }
 
 /** Final step of the journey — closing and reach out */
@@ -124,10 +124,10 @@ export const fromTheInsideContent = {
 export const episodesDurationClarification =
   "Episodes typically last weeks to months."
 
-/** Path choice — MANIA | MIXED | DEPRESSIVE */
+/** State choice — MANIA | MIXED | DEPRESSIVE */
 export const pathChoice = {
-  intro: "Choose a path below to get a glimpse of what a state feels like. Episodes typically last weeks to months.",
-  prompt: "Choose a path to explore",
+  intro: "Choose a state below to get a glimpse of what it feels like. Episodes typically last weeks to months.",
+  prompt: "Choose a state to explore",
   mania: {
     label: "MANIA",
     description: "The elevated side — energy, clarity, and the cost.",

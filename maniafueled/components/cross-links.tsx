@@ -8,7 +8,7 @@ const DEFAULT_LINKS: CrossLinkItem[] = [
   { label: "From the inside", href: "/from-the-inside" },
   { label: "My journey", href: "/story" },
   { label: "Resonate", href: "/resonate" },
-  { label: "Choose a path", href: "/#path-choice" },
+  { label: "Choose a state", href: "/#state-choice" },
   { label: "Baseline", href: "/baseline" },
   { label: "Resources", href: "/resources" },
   { label: "Reach out", href: "/reach-out" },
@@ -44,7 +44,7 @@ export function CrossLinks({ links = DEFAULT_LINKS, title = "Explore further", c
   )
 }
 
-/** Links for path pages (Mania / Mixed / Depressive) — each other, baseline, story, resonate, from the inside, reach out */
+/** Links for state pages (Mania / Mixed / Depressive) — each other, baseline, story, resonate, from the inside, reach out */
 export const pathPageLinks: CrossLinkItem[] = [
   { label: "Mania", href: "/mania" },
   { label: "Mixed", href: "/mixed" },

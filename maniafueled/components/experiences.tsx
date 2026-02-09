@@ -45,7 +45,7 @@ export function Experiences() {
           The swing — mania, mixed states, depression, and what runs through both
         </h2>
         <p className="mt-6 font-sans text-base text-white/60 font-light">
-          Go deeper: <Link href="/from-the-inside" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">From the inside</Link> · <Link href="/resonate" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">Resonate</Link> · <Link href="/#path-choice" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">Choose a path</Link> · <Link href="/story" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">My journey</Link>
+          Go deeper: <Link href="/from-the-inside" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">From the inside</Link> · <Link href="/resonate" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">Resonate</Link> · <Link href="/#state-choice" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">Choose a state</Link> · <Link href="/story" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">My journey</Link>
         </p>
       </motion.div>
 

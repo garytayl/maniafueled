@@ -15,8 +15,8 @@ const fadeUp = {
 }
 
 export function LandingHero() {
-  const scrollToPath = () => {
-    const el = document.getElementById("path-choice")
+  const scrollToState = () => {
+    const el = document.getElementById("state-choice")
     el?.scrollIntoView({ behavior: "smooth" })
   }
 
@@ -43,7 +43,7 @@ export function LandingHero() {
           <motion.div variants={fadeUp} className="mt-8 sm:mt-10">
             <motion.button
               type="button"
-              onClick={scrollToPath}
+              onClick={scrollToState}
               data-cursor-hover
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}

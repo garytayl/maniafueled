@@ -23,7 +23,7 @@ const CATEGORIES = [
 ] as const
 
 const MANIA_CONFIG = {
-  pathLabel: "PATH — MANIA",
+  pathLabel: "STATE — MANIA",
   title: "The elevated side",
   beginLabel: "Step into it",
   feelingsTitle: "What it feels like",
@@ -39,7 +39,7 @@ const MANIA_CONFIG = {
 }
 
 const DEPRESSIVE_CONFIG = {
-  pathLabel: "PATH — DEPRESSIVE",
+  pathLabel: "STATE — DEPRESSIVE",
   title: "The low side",
   beginLabel: "Step into it",
   feelingsTitle: "What it feels like",
