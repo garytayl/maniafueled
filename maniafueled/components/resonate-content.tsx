@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { resonantSongs, resonantVerses } from "@/lib/content"
 import { parseStyledText } from "@/lib/parse-styled-text"
+import { CrossLinks } from "@/components/cross-links"
 
 /** Protestant canon order (66 books) for sorting verses */
 const CANON_BOOK_ORDER = [
@@ -104,6 +105,7 @@ export function ResonateContent() {
                 Bible verses
               </button>
             </nav>
+            <CrossLinks className="mt-6" title="Go deeper — follow the loop" />
           </header>
 
           {/* Songs */}

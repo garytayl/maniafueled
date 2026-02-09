@@ -4,6 +4,7 @@ import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { fromTheInsideContent, coreEmotionalTruth } from "@/lib/content"
+import { CrossLinks } from "@/components/cross-links"
 
 function FadeBlock({
   children,
@@ -75,31 +76,14 @@ export function FromTheInsideContent() {
           </p>
         </FadeBlock>
 
-        <footer className="mt-16 pt-8 flex flex-wrap gap-6">
-          <Link
-            href="/"
-            className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-          >
-            Home
-          </Link>
-          <Link
-            href="/story"
-            className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-          >
-            My journey
-          </Link>
-          <Link
-            href="/resonate"
-            className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-          >
-            Resonate
-          </Link>
-          <Link
-            href="/reach-out"
-            className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-          >
-            Reach out
-          </Link>
+        <CrossLinks className="mt-16 pt-8 border-t border-white/10" title="Explore further — follow the loop" />
+        <footer className="mt-8 flex flex-wrap gap-6">
+          <Link href="/" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Home</Link>
+          <Link href="/story" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">My journey</Link>
+          <Link href="/resonate" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Resonate</Link>
+          <Link href="/#path-choice" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Choose a path</Link>
+          <Link href="/baseline" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Baseline</Link>
+          <Link href="/reach-out" className="font-mono text-xs tracking-widest uppercase text-white/60 hover:text-white transition-colors">Reach out</Link>
         </footer>
       </article>
     </div>

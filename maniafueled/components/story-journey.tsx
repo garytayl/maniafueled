@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { storyJourney } from "@/lib/content"
+import { CrossLinks } from "@/components/cross-links"
 
 export function StoryJourney() {
   return (
@@ -58,25 +59,17 @@ export function StoryJourney() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA + cross-links */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-24 pt-12 border-t border-white/10 flex flex-wrap gap-6"
+          className="mt-24 pt-12 border-t border-white/10"
         >
-          <Link
-            href="/"
-            className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-          >
-            Home
-          </Link>
-          <Link
-            href="/baseline"
-            className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-          >
-            Baseline
-          </Link>
+          <CrossLinks className="mb-8" title="Explore further — follow the loop" />
+          <div className="flex flex-wrap gap-6">
+          <Link href="/" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Home</Link>
+          <Link href="/baseline" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Baseline</Link>
           <Link
             href="/mania"
             className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
@@ -95,6 +88,7 @@ export function StoryJourney() {
           >
             Reach out
           </Link>
+          </div>
         </motion.div>
       </div>
     </div>

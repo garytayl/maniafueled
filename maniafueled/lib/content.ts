@@ -455,15 +455,15 @@ export const resonantSongs = [
   {
     artist: "$uicideboy$",
     title: "Whatever Floats Your Boat Will Definitely Sink My Ship",
-    songNote: "I resonate with all of these — the fear of the dark, things falling apart, sins of the father, pills, feeling trapped in ice, stuck in a cycle. $B have been open about their own struggles with **suicide**, **addiction**, **mental illness**, **abuse**, and **judgment**. They've recently turned to the Lord, have been sober for multiple years, and are walking in hope. That journey is a real encouragement to me.",
+    songNote: "I resonate with all of these — the fear of the dark, things falling apart, sins of the father, pills, feeling trapped in ice, stuck in a cycle. It's the kind of *state* that colors everything, like I describe in [From the inside](/from-the-inside). $B have been open about their own struggles with **suicide**, **addiction**, **mental illness**, **abuse**, and **judgment**. They've recently turned to the Lord, have been sober for multiple years, and are walking in hope. That journey is a real encouragement to me.",
     stanzas: [
       {
         lines: [
-          { text: "I guess it's **written on my skin** (let's go)", note: "People are always judging me while I'm fighting my struggle. **Manic:** 'Gary is too much, he's always bouncing off the walls.' **Depressed:** 'Sheesh, why is Gary so quiet?' No matter what I do I'm not enough for people. It feels written on my skin." },
+          { text: "I guess it's **written on my skin** (let's go)", note: "People are always judging me while I'm fighting my struggle. **Manic:** 'Gary is too much.' **Depressed:** 'Why is Gary so quiet?' No matter what I do I'm not enough — the shame loop I describe in [From the inside](/from-the-inside): no matter where I am, I'm wrong. It feels written on my skin." },
           { text: "Stitch my wounds just to open them again", note: "The cycle of getting better then undoing it. Feels like my pattern." },
           { text: "Further than I was, but far from enough", note: "I've come a long way and it still never feels like enough — for others or for myself." },
           { text: "**All the voices** fill the air of every silent night (every silent night)", note: "When I'm manic I hear *nasty* voices that aren't my own. They fill the air." },
-          { text: "Eyes on me everywhere, but still I'm out of sight, ooh", note: "Everyone's watching and judging, but nobody really sees me — or what's going on inside." },
+          { text: "Eyes on me everywhere, but still I'm out of sight, ooh", note: "Everyone's watching and judging, but nobody really sees me — or what's going on inside. That's why I built this site: [From the inside](/from-the-inside) and [My journey](/story) so I don't have to explain from scratch every time." },
           { text: "I got nowhere left to go" },
           { text: "If this is high, where the view?" },
         ],
@@ -479,7 +479,7 @@ export const resonantSongs = [
       {
         label: "Chorus",
         lines: [
-          { text: "**Please, Lord,** tell me where you are", note: "My relationship with God is distorted in both states. In **depression** it's like God has almost removed his presence from me. In **mania** my mind is so busy I can't even focus on the Lord — my mind is everywhere." },
+          { text: "**Please, Lord,** tell me where you are", note: "My relationship with God is distorted in both states. In **depression** it's like God has almost removed his presence — the *exhaustion of existence* I describe in [From the inside](/from-the-inside). In **mania** my mind is so busy I can't even focus on the Lord; my mind is everywhere." },
           { text: "I don't wanna be this afraid of the dark", note: "The dark is depression, the void. I don't want to be this afraid of it." },
           { text: "Holding on, shoulda let go from the start" },
           { text: "Anything I touch always falls apart (let's go)", note: "Ties into not being enough — whatever I do, it feels like it falls apart or people see me as too much or not enough." },
@@ -507,7 +507,7 @@ export const resonantSongs = [
       },
       {
         lines: [
-          { text: "Life is draggin' me behind", note: "Depression dragging me. I'm not in the driver's seat — life is pulling me along from behind." },
+          { text: "Life is draggin' me behind", note: "Depression dragging me — not sadness, but *exhaustion of existence*: so tired of carrying the weight, can't rest from myself. More in [From the inside](/from-the-inside). I'm not in the driver's seat." },
           { text: "I'm a stand-in in line, off the wagon, I'm fine", note: "Feeling like a placeholder, not really living. Slipped from stability — 'off the wagon' — but the default answer is still 'I'm fine.'" },
           { text: "Now I'm climbing up a dragon, I'm high", note: "Mania as climbing something dangerous and alive. The dragon is the high — exhilarating and destructive." },
           { text: "Dollar signs in one eye, the other's sagging, I'm blind", note: "Mania fixating on money, plans, grand ideas in one eye; the other eye sagging — the crash or the part that sees reality going dark. Blind to consequences or to how bad it's getting." },
@@ -533,7 +533,7 @@ export const resonantVerses = [
     reference: "Psalm 88:3–6",
     translation: "ESV",
     text: "For my soul is full of troubles, and my life draws near to **Sheol**. I am counted among those who go down to **the pit**; I am a man who has no strength, like one set loose among the dead, like the slain that lie in the grave. You have put me in the depths of the pit, in the **regions dark and deep**.",
-    note: "When I'm in a depressive state and those thoughts are there, it feels like Sheol. My life draws near to Sheol. I'm in the depths of the pit — no strength, regions dark and deep. It helps to know someone put it into words.",
+    note: "When I'm in a depressive state and those thoughts are there, it feels like Sheol. My life draws near to Sheol. I'm in the depths of the pit — no strength, regions dark and deep. It's the *exhaustion of existence* I describe in [From the inside](/from-the-inside): the effort to exist feels endless. It helps to know someone put it into words.",
   },
   {
     book: "Psalms",
@@ -549,7 +549,7 @@ export const resonantVerses = [
     reference: "Psalm 18:5",
     translation: "ESV",
     text: "The **cords of Sheol** surrounded me; the **snares of death** confronted me.",
-    note: "In that state it feels like the cords of Sheol are around me — bound, trapped. The snares of death right in front of me.",
+    note: "In that state it feels like the cords of Sheol are around me — bound, trapped. The snares of death right in front of me. The suicidal thoughts come from a desire for *silence and relief*, not death — see [From the inside](/from-the-inside).",
   },
   {
     book: "Jonah",
@@ -573,6 +573,6 @@ export const resonantVerses = [
     reference: "Lamentations 3:22–23",
     translation: "ESV",
     text: "Because of the Lord's great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
-    note: "New every morning — that's the hope on the worst nights. That the wave might ease by morning.",
+    note: "New every morning — that's the hope on the worst nights. That the wave might ease by morning. The [wave](/#wave) and [baseline](/baseline) are how I picture that.",
   },
 ]

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowUpRight, Share2 } from "lucide-react"
 import { siteConfig, closingStep } from "@/lib/content"
+import { CrossLinks } from "@/components/cross-links"
 
 export function ClosingStep() {
   const [hoverPrimary, setHoverPrimary] = useState(false)
@@ -88,12 +89,21 @@ export function ClosingStep() {
           </button>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-14 max-w-xl mx-auto"
+        >
+          <CrossLinks title="Explore further — follow the loop" />
+        </motion.div>
+
         {/* Back to start — subtle */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="mt-12"
+          className="mt-8"
         >
           <Link
             href="/"

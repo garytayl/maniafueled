@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import {
   Accordion,
@@ -14,6 +15,7 @@ import {
   mixedStateContent,
   crossCuttingStruggles,
 } from "@/lib/content"
+import { CrossLinks } from "@/components/cross-links"
 
 function SymptomList({ items }: { items: string[] }) {
   return (
@@ -42,6 +44,9 @@ export function Experiences() {
         <h2 className="font-sans text-3xl md:text-5xl font-light italic">
           The swing — mania, mixed states, depression, and what runs through both
         </h2>
+        <p className="mt-6 font-sans text-base text-white/60 font-light">
+          Go deeper: <Link href="/from-the-inside" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">From the inside</Link> · <Link href="/resonate" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">Resonate</Link> · <Link href="/#path-choice" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">Choose a path</Link> · <Link href="/story" className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2">My journey</Link>
+        </p>
       </motion.div>
 
       <div className="space-y-20">
@@ -200,8 +205,7 @@ export function Experiences() {
         </motion.div>
       </div>
 
-      {/* Bottom Border */}
-      <div className="border-t border-white/10 mt-16" />
+      <CrossLinks className="mt-16 pt-8 border-t border-white/10" title="Explore further — follow the loop" />
     </section>
   )
 }

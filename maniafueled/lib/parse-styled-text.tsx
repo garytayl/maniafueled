@@ -1,10 +1,12 @@
 import React from "react"
+import Link from "next/link"
 
 /**
- * Inline formatting for lyrics and verses. Use in content.ts:
+ * Inline formatting for lyrics, verses, and notes. Use in content.ts:
  * - **bold**
  * - *italic*
  * - ~~strikethrough~~
+ * - [label](url) for links (internal /path or external https://)
  */
 export function parseStyledText(text: string, keyPrefix = "st"): React.ReactNode {
   const segments: React.ReactNode[] = []
@@ -12,6 +14,42 @@ export function parseStyledText(text: string, keyPrefix = "st"): React.ReactNode
   let keyIndex = 0
 
   while (i < text.length) {
+    // [label](url) link — check before ** so brackets in link text don't break
+    if (text[i] === "[") {
+      const endBracket = text.indexOf("]", i + 1)
+      if (endBracket !== -1 && text[endBracket + 1] === "(") {
+        const endParen = text.indexOf(")", endBracket + 2)
+        if (endParen !== -1) {
+          const label = text.slice(i + 1, endBracket)
+          const url = text.slice(endBracket + 2, endParen)
+          const isInternal = url.startsWith("/") || url.startsWith("#")
+          segments.push(
+            isInternal ? (
+              <Link
+                key={`${keyPrefix}-${keyIndex++}`}
+                href={url}
+                className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2"
+              >
+                {label}
+              </Link>
+            ) : (
+              <a
+                key={`${keyPrefix}-${keyIndex++}`}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-200/90 hover:text-amber-200 underline underline-offset-2"
+              >
+                {label}
+              </a>
+            )
+          )
+          i = endParen + 1
+          continue
+        }
+      }
+    }
+
     // **bold**
     if (text.slice(i).startsWith("**")) {
       const end = text.indexOf("**", i + 2)
@@ -68,15 +106,17 @@ export function parseStyledText(text: string, keyPrefix = "st"): React.ReactNode
       }
     }
 
-    // No delimiter: take everything until the next **, ~~, or *
+    // No delimiter: take everything until the next **, ~~, *, or [
     const nextBold = text.indexOf("**", i)
     const nextStrike = text.indexOf("~~", i)
     const nextStar = text.indexOf("*", i)
+    const nextBracket = text.indexOf("[", i)
 
     let next = text.length
     if (nextBold !== -1) next = Math.min(next, nextBold)
     if (nextStrike !== -1) next = Math.min(next, nextStrike)
     if (nextStar !== -1) next = Math.min(next, nextStar)
+    if (nextBracket !== -1) next = Math.min(next, nextBracket)
 
     const plain = text.slice(i, next)
     if (plain) segments.push(plain)

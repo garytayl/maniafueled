@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { waveThoughts, maniaSymptoms, maniaSymptomExplanations, earlyWarningSigns } from "@/lib/content"
+import { CrossLinks, pathPageLinks } from "@/components/cross-links"
 
 const MANIA_PHRASES = [
   ...waveThoughts.mania,
@@ -130,31 +131,14 @@ export function ManiaExperience() {
       </AnimatePresence>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-8 px-4 sm:px-8 md:px-12 max-w-5xl mx-auto w-full flex flex-wrap gap-6 sm:gap-8">
-        <Link
-          href="/"
-          className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-        >
-          Home
-        </Link>
-        <Link
-          href="/baseline"
-          className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-        >
-          Baseline
-        </Link>
-        <Link
-          href="/depressive"
-          className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-        >
-          The depressive side
-        </Link>
-        <Link
-          href="/reach-out"
-          className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors"
-        >
-          Reach out
-        </Link>
+      <footer className="border-t border-white/10 py-8 px-4 sm:px-8 md:px-12 max-w-5xl mx-auto w-full">
+        <CrossLinks links={pathPageLinks} className="mb-6" title="Explore further — follow the loop" />
+        <div className="flex flex-wrap gap-6 sm:gap-8">
+          <Link href="/" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Home</Link>
+          <Link href="/baseline" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Baseline</Link>
+          <Link href="/depressive" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">The depressive side</Link>
+          <Link href="/reach-out" className="font-mono text-sm tracking-widest uppercase text-white/60 hover:text-white transition-colors">Reach out</Link>
+        </div>
       </footer>
     </div>
   )
