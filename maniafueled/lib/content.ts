@@ -2,23 +2,23 @@ export const siteConfig = {
   title: "Living With Bipolar I",
   subtitle: "What It Feels Like Inside My Body and Mind",
   tagline: "This is what bipolar does to me, moment to moment.",
-  /** Update with your email for the reach-out CTA on the final step */
+  /** Update with contact email for the reach-out CTA on the final step */
   contactEmail: "",
 }
 
 /** Final step of the journey — closing and reach out */
 export const closingStep = {
   label: "THE END",
-  headline: "You've reached the end of this story.",
+  headline: "This is the end of my story.",
   subline: "If this resonated — reach out, or pass it on to someone who needs to understand.",
   ctaPrimary: "Reach out",
   ctaShare: "Share this with someone",
-  crisisHeading: "If you or someone you know is in crisis",
+  crisisHeading: "If someone is in crisis",
   crisisNote: "988 Lifeline and NAMI offer free, confidential support.",
 }
 
 export const summaryQuote =
-  "Your bipolar struggle isn't about lack of effort or character — it's about a nervous system that swings between overload and depletion, in a world that often responds with judgment instead of regulation."
+  "My bipolar struggle isn't about lack of effort or character — it's about a nervous system that swings between overload and depletion, in a world that often responds with judgment instead of regulation."
 
 /** Path choice — split MANIA | DEPRESSIVE */
 export const pathChoice = {
@@ -101,7 +101,7 @@ export const waveThoughts = {
 
 export const baselineStatements = [
   "Thoughtful, analytical, reflective.",
-  "Relationally sensitive — you care deeply how things land.",
+  "Relationally sensitive — I care deeply how things land.",
   "Creative and systems-oriented.",
   "Spiritually seeking and meaning-oriented.",
   "Capable of routine for short stretches when conditions are right.",
@@ -146,7 +146,7 @@ export const depressionSymptoms = {
     "Hopeless future-thinking — why live in this house if floods keep coming",
     "Difficulty seeing progress even when it exists",
     "Rumination and replaying past mistakes",
-    "Feeling like a burden if you reach out",
+    "Feeling like a burden when I reach out",
   ],
   emotional: [
     "Profound loneliness — even when around people",
@@ -250,7 +250,7 @@ export const strengths = [
   "Deep empathy and moral seriousness",
   "Willingness to seek understanding",
   "Capacity for high output when regulated",
-  "Insight into your own early warning signs",
+  "Insight into my own early warning signs",
 ]
 
 export const strengthsNote =

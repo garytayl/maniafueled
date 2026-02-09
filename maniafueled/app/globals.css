@@ -193,6 +193,23 @@
   animation: marquee-right 50s linear infinite;
 }
 
+/* Hero: breathing wave — subtle pulse */
+.hero-wave-breath {
+  animation: hero-wave-breathe 5s ease-in-out infinite;
+}
+
+@keyframes hero-wave-breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-wave-breath {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
 /* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-left,
