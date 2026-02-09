@@ -351,16 +351,16 @@ export type ResonantSongStanza = { lines: ResonantLine[]; label?: string }
 export const resonantSongs = [
   {
     artist: "Suicideboys",
-    title: "Whatever Floats Your Boat will Definitely Sink my Ship",
+    title: "Whatever Floats Your Boat Will Definitely Sink My Ship",
     songNote: "I resonate with all of these — the fear of the dark, things falling apart, sins of the father, pills, feeling trapped in ice, stuck in a cycle.",
     stanzas: [
       {
         lines: [
-          { text: "I guess it's written on my skin (let's go)" },
+          { text: "I guess it's written on my skin (let's go)", note: "People are always judging me while I'm fighting my struggle. Manic: 'Gary is too much, he's always bouncing off the walls.' Depressed: 'Sheesh, why is Gary so quiet?' No matter what I do I'm not enough for people. It feels written on my skin." },
           { text: "Stitch my wounds just to open them again", note: "The cycle of getting better then undoing it. Feels like my pattern." },
-          { text: "Further than I was, but far from enough" },
-          { text: "All the voices fill the air of every silent night (every silent night)" },
-          { text: "Eyes on me everywhere, but still I'm out of sight, ooh" },
+          { text: "Further than I was, but far from enough", note: "I've come a long way and it still never feels like enough — for others or for myself." },
+          { text: "All the voices fill the air of every silent night (every silent night)", note: "When I'm manic I hear nasty voices that aren't my own. They fill the air." },
+          { text: "Eyes on me everywhere, but still I'm out of sight, ooh", note: "Everyone's watching and judging, but nobody really sees me — or what's going on inside." },
           { text: "I got nowhere left to go" },
           { text: "If this is high, where the view?" },
         ],
@@ -376,16 +376,16 @@ export const resonantSongs = [
       {
         label: "Chorus",
         lines: [
-          { text: "Please, Lord, tell me where you are" },
+          { text: "Please, Lord, tell me where you are", note: "My relationship with God is distorted in both states. In depression it's like God has almost removed his presence from me. In mania my mind is so busy I can't even focus on the Lord — my mind is everywhere." },
           { text: "I don't wanna be this afraid of the dark", note: "The dark is depression, the void. I don't want to be this afraid of it." },
           { text: "Holding on, shoulda let go from the start" },
-          { text: "Anything I touch always falls apart (let's go)" },
+          { text: "Anything I touch always falls apart (let's go)", note: "Ties into not being enough — whatever I do, it feels like it falls apart or people see me as too much or not enough." },
         ],
       },
       {
         lines: [
           { text: "But I only run for so long (let's get it)" },
-          { text: "Everything right always felt so wrong" },
+          { text: "Everything right always felt so wrong", note: "Even when I'm doing the 'right' thing it feels wrong. Can't win." },
           { text: "I done flew the coop and my wings all torn" },
           { text: "Can't abuse me more than the pills I'm on" },
         ],
