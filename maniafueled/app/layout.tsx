@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   title: "Living With Bipolar I – A Personal Story",
   description:
     "A personal account of Bipolar I experiences — baseline, mania, depression, triggers, and strengths. A mirror, not a diagnosis.",
+  openGraph: {
+    title: "Living With Bipolar I – A Personal Story",
+    description:
+      "A personal account of Bipolar I experiences — baseline, mania, depression, triggers, and strengths. A mirror, not a diagnosis.",
+    type: "website",
+  },
 }
 
 export const viewport: Viewport = {

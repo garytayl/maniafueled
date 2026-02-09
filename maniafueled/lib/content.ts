@@ -2,6 +2,8 @@ export const siteConfig = {
   title: "Living With Bipolar I",
   subtitle: "A Mirror, Not a Diagnosis",
   tagline: "A personal story of struggles and experiences",
+  /** Update with your email for the contact CTA */
+  contactEmail: "",
 }
 
 export const summaryQuote =
