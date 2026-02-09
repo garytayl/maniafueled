@@ -356,10 +356,10 @@ export const resonantSongs = [
     stanzas: [
       {
         lines: [
-          { text: "I guess it's written on my skin (let's go)", note: "People are always judging me while I'm fighting my struggle. Manic: 'Gary is too much, he's always bouncing off the walls.' Depressed: 'Sheesh, why is Gary so quiet?' No matter what I do I'm not enough for people. It feels written on my skin." },
+          { text: "I guess it's **written on my skin** (let's go)", note: "People are always judging me while I'm fighting my struggle. **Manic:** 'Gary is too much, he's always bouncing off the walls.' **Depressed:** 'Sheesh, why is Gary so quiet?' No matter what I do I'm not enough for people. It feels written on my skin." },
           { text: "Stitch my wounds just to open them again", note: "The cycle of getting better then undoing it. Feels like my pattern." },
           { text: "Further than I was, but far from enough", note: "I've come a long way and it still never feels like enough — for others or for myself." },
-          { text: "All the voices fill the air of every silent night (every silent night)", note: "When I'm manic I hear nasty voices that aren't my own. They fill the air." },
+          { text: "**All the voices** fill the air of every silent night (every silent night)", note: "When I'm manic I hear *nasty* voices that aren't my own. They fill the air." },
           { text: "Eyes on me everywhere, but still I'm out of sight, ooh", note: "Everyone's watching and judging, but nobody really sees me — or what's going on inside." },
           { text: "I got nowhere left to go" },
           { text: "If this is high, where the view?" },
@@ -376,7 +376,7 @@ export const resonantSongs = [
       {
         label: "Chorus",
         lines: [
-          { text: "Please, Lord, tell me where you are", note: "My relationship with God is distorted in both states. In depression it's like God has almost removed his presence from me. In mania my mind is so busy I can't even focus on the Lord — my mind is everywhere." },
+          { text: "**Please, Lord,** tell me where you are", note: "My relationship with God is distorted in both states. In **depression** it's like God has almost removed his presence from me. In **mania** my mind is so busy I can't even focus on the Lord — my mind is everywhere." },
           { text: "I don't wanna be this afraid of the dark", note: "The dark is depression, the void. I don't want to be this afraid of it." },
           { text: "Holding on, shoulda let go from the start" },
           { text: "Anything I touch always falls apart (let's go)", note: "Ties into not being enough — whatever I do, it feels like it falls apart or people see me as too much or not enough." },
@@ -426,7 +426,7 @@ export const resonantSongs = [
 export const resonantVerses = [
   {
     reference: "Psalm 88:3–5",
-    text: "I am overwhelmed with troubles and my life draws near to death. I am counted among those who go down to the pit; I am like one without strength. You have put me in the lowest pit, in the darkest depths.",
+    text: "I am overwhelmed with troubles and my life draws near to *death*. I am counted among those who go down to **the pit**; I am like one without strength. You have put me in the lowest pit, in the **darkest depths**.",
     note: "When I'm in the pit it feels like this — no strength, darkest depths. It helps to know someone put it into words.",
   },
   {
@@ -441,7 +441,7 @@ export const resonantVerses = [
   },
   {
     reference: "Psalm 18:5",
-    text: "The cords of Sheol surrounded me; the snares of death confronted me.",
+    text: "The **cords of Sheol** surrounded me; the **snares of death** confronted me.",
     note: "In that state it feels like the cords of Sheol are around me — bound, trapped. The snares of death right in front of me.",
   },
   {

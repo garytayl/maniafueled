@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { resonantSongs, resonantVerses } from "@/lib/content"
+import { parseStyledText } from "@/lib/parse-styled-text"
 
 type SelectedItem =
   | { type: "song"; songIndex: number; stanzaIndex: number; lineIndex: number; note: string }
@@ -127,7 +128,7 @@ export function ResonateContent() {
                                 : ""
                             }`}
                           >
-                            {line.text}
+                            {parseStyledText(line.text, `song-${songIndex}-${stanzaIndex}-${lineIndex}`)}
                           </button>
                         ))}
                       </div>
@@ -155,7 +156,7 @@ export function ResonateContent() {
                     {verse.reference}
                   </p>
                   <p className="font-sans text-base sm:text-lg font-light text-white/90 leading-relaxed mb-3">
-                    &ldquo;{verse.text}&rdquo;
+                    &ldquo;{parseStyledText(verse.text, `verse-${verseIndex}`)}&rdquo;
                   </p>
                   {verse.note && (
                     <button
@@ -198,7 +199,7 @@ export function ResonateContent() {
                   transition={{ duration: 0.2 }}
                   className="font-sans text-base font-light text-white/90 leading-relaxed"
                 >
-                  {selected.note}
+                  {parseStyledText(selected.note, "note")}
                 </motion.div>
               ) : (
                 <motion.p
@@ -229,7 +230,7 @@ export function ResonateContent() {
               Why this resonates
             </p>
             <p className="font-sans text-sm font-light text-white/90 leading-relaxed">
-              {selected.note}
+              {parseStyledText(selected.note, "note-mobile")}
             </p>
             <button
               type="button"
