@@ -41,6 +41,10 @@ export const practicalHelp = {
       title: "Be extremely careful with moralizing or shame",
       body: "If you try to ??moralize?? or shame my behavior — how much I sleep, what I eat, whether I'm \"doing enough\" — be extremely careful where you step. If I'm already on the edge and you push me with judgment, I might just jump. I'm not saying you can't care or set boundaries. I'm saying: shame is not a treatment. It's often the thing that makes the spiral worse.",
     },
+    {
+      title: "If you notice signs of an upcoming episode — tell me gently and privately",
+      body: "It's hard to know when an episode is coming. But if you're seeing signs that something might be building, it helps if you can gently let me know — privately, when possible — so we can talk about it. I can't always see it myself. If I have a heads-up, I can prepare and sometimes mitigate how intense the episode gets. I'd rather have that conversation than be blindsided.",
+    },
   ],
   footnote:
     "Self-determination theory in psychology identifies autonomy as a core need for well-being; feeling forced undermines it.",
