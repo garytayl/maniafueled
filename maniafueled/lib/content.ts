@@ -425,7 +425,7 @@ export const resonantSongs = [
 /** Bible verses that resonate — add reference, text, and why it resonates */
 export const resonantVerses = [
   {
-    reference: "Psalm 88",
+    reference: "Psalm 88:3–5",
     text: "I am overwhelmed with troubles and my life draws near to death. I am counted among those who go down to the pit; I am like one without strength. You have put me in the lowest pit, in the darkest depths.",
     note: "When I'm in the pit it feels like this — no strength, darkest depths. It helps to know someone put it into words.",
   },
