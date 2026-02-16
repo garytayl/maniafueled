@@ -24,7 +24,7 @@ export function PinScreen({ onUnlocked }: PinScreenProps) {
       return
     }
     setError(null)
-    if (isSettingUp) {
+    if (isSettingUp || !isSetup) {
       await setPin(pin)
       onUnlocked()
     } else {
@@ -32,17 +32,23 @@ export function PinScreen({ onUnlocked }: PinScreenProps) {
       if (ok) onUnlocked()
       else setError("Wrong PIN")
     }
-  }, [pin, isSettingUp, onUnlocked])
+  }, [pin, isSettingUp, isSetup, onUnlocked])
 
   const handleChange = useCallback((value: string) => {
     setPinValue(value)
     setError(null)
-    if (value.length === PIN_LENGTH && !isSettingUp) {
-      setTimeout(() => {
-        checkPin(value).then((ok) => (ok ? onUnlocked() : setError("Wrong PIN")))
-      }, 100)
+    if (value.length === PIN_LENGTH) {
+      if (isSettingUp || !isSetup) {
+        setTimeout(() => {
+          setPin(value).then(() => onUnlocked())
+        }, 100)
+      } else {
+        setTimeout(() => {
+          checkPin(value).then((ok) => (ok ? onUnlocked() : setError("Wrong PIN")))
+        }, 100)
+      }
     }
-  }, [isSettingUp, onUnlocked])
+  }, [isSettingUp, isSetup, onUnlocked])
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#050505] px-4">
