@@ -1,10 +1,17 @@
 "use client"
 
-import { useEffect, type ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react"
 import { useDevotions } from "./devotions-context"
 import { lock } from "@/lib/devotions-auth"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 const slideVariants = {
   enter: (direction: number) => {
@@ -46,6 +53,7 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
     canGoNext,
     canGoPrev,
   } = useDevotions()
+  const [psalmsMenuOpen, setPsalmsMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -75,18 +83,63 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
         />
       </div>
 
-      {/* Lock / Psalm label — top right */}
+      {/* Lock / Psalms menu / Psalm label — top */}
       <div className="absolute top-4 right-4 left-4 z-30 flex items-center justify-between">
-        <button
-          type="button"
-          onClick={() => {
-            lock()
-            window.location.reload()
-          }}
-          className="font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
-        >
-          Lock
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => {
+              lock()
+              window.location.reload()
+            }}
+            className="font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
+          >
+            Lock
+          </button>
+          <Sheet open={psalmsMenuOpen} onOpenChange={setPsalmsMenuOpen}>
+            <SheetTrigger asChild>
+              <button
+                type="button"
+                className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
+                aria-label="Open Psalms list"
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                Psalms
+              </button>
+            </SheetTrigger>
+            <SheetContent
+              side="left"
+              className="w-[85vw] max-w-sm border-white/10 bg-[#0a0a0a] p-0 [&>button]:text-white/50 [&>button]:hover:text-white"
+            >
+              <SheetHeader className="border-b border-white/10 px-4 py-3">
+                <SheetTitle className="font-sans text-lg font-light text-white">
+                  Jump to Psalm
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex-1 overflow-y-auto p-3">
+                <div className="grid grid-cols-5 sm:grid-cols-6 gap-1">
+                  {Array.from({ length: totalSteps }, (_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => {
+                        goToStep(i)
+                        setPsalmsMenuOpen(false)
+                      }}
+                      className={`min-h-[44px] rounded-md font-mono text-sm transition-colors ${
+                        i === step
+                          ? "bg-white/20 text-white"
+                          : "text-white/60 hover:bg-white/10 hover:text-white"
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
         <span className="font-mono text-[10px] tracking-[0.2em] text-white/40">
           Psalm {step + 1} / {totalSteps}
         </span>
