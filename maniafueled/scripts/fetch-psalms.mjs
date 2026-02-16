@@ -32,7 +32,7 @@ async function main() {
     process.stdout.write(`Fetching Psalm ${n}...\r`)
     const psalm = await fetchPsalm(n)
     psalms.push(psalm)
-    await new Promise((r) => setTimeout(r, 800))
+    await new Promise((r) => setTimeout(r, 1500))
   }
   mkdirSync(dirname(OUT_PATH), { recursive: true })
   writeFileSync(OUT_PATH, JSON.stringify(psalms, null, 0))

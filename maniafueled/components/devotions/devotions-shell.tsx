@@ -64,9 +64,9 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
   }, [canGoNext, canGoPrev, next, prev])
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-[#050505] overflow-hidden">
+    <div className="fixed inset-0 flex flex-col bg-[#050505] overflow-hidden min-h-0">
       {/* Progress bar — top */}
-      <div className="absolute top-0 left-0 right-0 z-50 h-0.5 bg-white/10">
+      <div className="absolute top-0 left-0 right-0 z-50 h-0.5 bg-white/10 shrink-0">
         <motion.div
           className="h-full bg-white/60"
           initial={false}
@@ -92,44 +92,46 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
         </span>
       </div>
 
-      {/* Step panels — one visible at a time */}
-      <div className="flex-1 relative overflow-hidden pt-10">
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            key={step}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 35 },
-              opacity: { duration: 0.25 },
-            }}
-            className="absolute inset-0 overflow-y-auto overflow-x-hidden"
-          >
-            {children[step]}
-          </motion.div>
-        </AnimatePresence>
+      {/* Step panels — one visible at a time; bottom padding so content doesn't sit under nav */}
+      <div className="flex-1 min-h-0 relative flex flex-col pt-10">
+        <div className="flex-1 min-h-0 relative overflow-hidden">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={step}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 35 },
+                opacity: { duration: 0.25 },
+              }}
+              className="absolute inset-0 z-0 overflow-y-auto overflow-x-hidden"
+            >
+              {children[step]}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
 
-      {/* Bottom nav: back / dots / next */}
+      {/* Bottom nav: back / dots / next — separate flex row so it never overlaps content */}
       <div
-        className="absolute bottom-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-12 sm:px-6 md:px-12 md:py-5 bg-gradient-to-t from-[#050505] via-[#050505]/95 to-transparent"
+        className="shrink-0 relative z-50 flex items-center justify-between px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-6 sm:px-6 md:px-12 md:py-5 bg-[#050505] border-t border-white/5"
         aria-label="Devotions navigation"
       >
         <button
           type="button"
-          onClick={prev}
+          onClick={() => canGoPrev && prev()}
           disabled={!canGoPrev}
-          className="flex items-center gap-2 min-h-[44px] min-w-[72px] justify-start font-mono text-xs tracking-widest text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
-          aria-label="Previous day"
+          className="flex items-center gap-2 min-h-[44px] min-w-[72px] justify-start font-mono text-xs tracking-widest text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+          aria-label="Previous Psalm"
         >
           <ChevronLeft className="w-5 h-5 shrink-0" />
           Back
         </button>
 
-        <div className="flex items-center gap-1.5 sm:gap-2 justify-center">
+        <div className="flex items-center gap-1.5 sm:gap-2 justify-center flex-wrap">
           {Array.from({ length: 15 }).map((_, i) => {
             const idx = Math.round((i / 14) * (totalSteps - 1))
             return (
@@ -137,8 +139,8 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
                 key={idx}
                 type="button"
                 onClick={() => goToStep(idx)}
-                aria-label={`Psalm ${idx + 1}`}
-                className="group p-2.5 sm:p-1.5 rounded-full transition-colors min-w-[28px] min-h-[44px] flex items-center justify-center"
+                aria-label={`Go to Psalm ${idx + 1}`}
+                className="group p-2.5 sm:p-1.5 rounded-full transition-colors min-w-[28px] min-h-[44px] flex items-center justify-center cursor-pointer"
               >
                 <span
                   className={`block rounded-full transition-all duration-300 ${
@@ -154,10 +156,10 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
 
         <button
           type="button"
-          onClick={next}
+          onClick={() => canGoNext && next()}
           disabled={!canGoNext}
-          className="flex items-center gap-2 min-h-[44px] min-w-[72px] justify-end font-mono text-xs tracking-widest text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
-          aria-label="Next day"
+          className="flex items-center gap-2 min-h-[44px] min-w-[72px] justify-end font-mono text-xs tracking-widest text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+          aria-label="Next Psalm"
         >
           Next
           <ChevronRight className="w-5 h-5 shrink-0" />
