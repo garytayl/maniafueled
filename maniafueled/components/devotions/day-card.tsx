@@ -56,6 +56,28 @@ function saveEntry(
 
 const easeSmooth = [0.25, 0.46, 0.45, 0.94] as const
 
+const REFLECTION_PROMPTS = [
+  "What line or phrase is staying with you?",
+  "Where did you see yourself in this Psalm?",
+  "One thing you want to carry from this into your day.",
+  "What is this Psalm saying back to you?",
+  "What do you want to remember from this?",
+  "A word or image that fits how this lands.",
+  "What are you sitting with after reading?",
+]
+
+function getReflectionPrompt(psalmIndex: number): string {
+  const day =
+    typeof window !== "undefined"
+      ? Math.floor(
+          (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) /
+            864e5
+        )
+      : 0
+  const i = (psalmIndex + day) % REFLECTION_PROMPTS.length
+  return REFLECTION_PROMPTS[i] ?? REFLECTION_PROMPTS[0]
+}
+
 const fadeUp = {
   hidden: { opacity: 0, y: 14 },
   visible: (reduced: boolean) => ({
@@ -346,7 +368,7 @@ export function DayCard({ psalmIndex }: DayCardProps) {
           </motion.div>
         )}
 
-        {/* Prayer & Reflection — hidden in reading mode */}
+        {/* Response — prayer + prompted reflection; hidden in reading mode */}
         {!readingMode && (
           <motion.div
             className="space-y-6"
@@ -354,40 +376,47 @@ export function DayCard({ psalmIndex }: DayCardProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: reduced ? 0 : 0.5 }}
           >
-            <div>
-              <label
-                htmlFor={`prayer-${psalmIndex}`}
-                className="block font-mono text-[10px] tracking-wider text-white/50 mb-2"
-              >
-                Prayer
-              </label>
-              <textarea
-                id={`prayer-${psalmIndex}`}
-                value={prayer}
-                onChange={handlePrayerChange}
-                onBlur={scheduleSave}
-                placeholder="Optional"
-                rows={3}
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-4 font-sans text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 resize-y transition-colors"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor={`reflection-${psalmIndex}`}
-                className="block font-mono text-[10px] tracking-wider text-white/50 mb-2"
-              >
-                Reflection
-              </label>
-              <textarea
-                id={`reflection-${psalmIndex}`}
-                value={reflection}
-                onChange={handleReflectionChange}
-                onBlur={scheduleSave}
-                placeholder="Optional"
-                rows={4}
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-4 font-sans text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 resize-y transition-colors"
-              />
-            </div>
+            <section className="rounded-xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+              <p className="font-mono text-[10px] tracking-wider text-white/45 mb-3">
+                After reading
+              </p>
+              <div className="space-y-5">
+                <div>
+                  <label
+                    htmlFor={`prayer-${psalmIndex}`}
+                    className="block font-sans text-sm font-light text-white/80 mb-1.5"
+                  >
+                    A prayer in your own words
+                  </label>
+                  <textarea
+                    id={`prayer-${psalmIndex}`}
+                    value={prayer}
+                    onChange={handlePrayerChange}
+                    onBlur={scheduleSave}
+                    placeholder="Whatever you want to say—or leave blank"
+                    rows={3}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl p-4 font-sans text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 resize-y transition-colors"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor={`reflection-${psalmIndex}`}
+                    className="block font-sans text-sm font-light text-white/80 mb-1.5"
+                  >
+                    {getReflectionPrompt(psalmIndex)}
+                  </label>
+                  <textarea
+                    id={`reflection-${psalmIndex}`}
+                    value={reflection}
+                    onChange={handleReflectionChange}
+                    onBlur={scheduleSave}
+                    placeholder="Just a line or two—or nothing"
+                    rows={3}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl p-4 font-sans text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 resize-y transition-colors"
+                  />
+                </div>
+              </div>
+            </section>
           </motion.div>
         )}
       </div>
