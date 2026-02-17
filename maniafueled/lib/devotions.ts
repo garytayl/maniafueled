@@ -111,6 +111,24 @@ export function parseDateKey(key: string): Date {
   return new Date(y, (m ?? 1) - 1, d ?? 1)
 }
 
+/**
+ * Consecutive days with at least one devotion entry (mood or vent), counting from today backward.
+ * Client-only. Returns 0 if today has no entry, or the number of consecutive days including today.
+ */
+export function getStreak(): number {
+  if (typeof window === "undefined") return 0
+  const datesSet = new Set(getAllDevotionDates())
+  let streak = 0
+  const today = new Date()
+  for (let i = 0; i < JOURNAL_DAYS_BACK; i++) {
+    const d = new Date(today)
+    d.setDate(d.getDate() - i)
+    if (datesSet.has(toDateKey(d))) streak++
+    else break
+  }
+  return streak
+}
+
 /** Day of year 1–366. */
 function getDayOfYear(date: Date): number {
   const start = new Date(date.getFullYear(), 0, 0)

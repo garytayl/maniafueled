@@ -17,7 +17,7 @@ const MOOD_OPTIONS: { value: MoodOption; label: string; className: string }[] = 
 ]
 
 export function MoodStep() {
-  const { next } = useDevotions()
+  const { next, goToTodaysPsalm } = useDevotions()
   const [selected, setSelected] = useState<MoodOption | null>(null)
   const [mounted, setMounted] = useState(false)
 
@@ -66,6 +66,14 @@ export function MoodStep() {
           aria-label="Continue"
         >
           Continue
+        </button>
+        <button
+          type="button"
+          onClick={goToTodaysPsalm}
+          className="mt-4 font-mono text-[10px] tracking-wider text-white/45 hover:text-white/70 transition-colors underline underline-offset-2 mx-auto block"
+          aria-label="Skip to today’s Psalm"
+        >
+          Skip to Psalm
         </button>
       </div>
     </div>
