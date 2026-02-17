@@ -2,10 +2,11 @@
 
 import { useEffect, useState, type ReactNode } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react"
+import { ChevronLeft, ChevronRight, BookOpen, CalendarDays } from "lucide-react"
 import { useDevotions } from "./devotions-context"
 import { lock } from "@/lib/devotions-auth"
 import { REFUGE_STEPS, PSALMS_COUNT } from "@/lib/devotions"
+import { JournalView } from "./journal-view"
 import {
   Sheet,
   SheetContent,
@@ -56,6 +57,7 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
     isRefugeStep,
   } = useDevotions()
   const [psalmsMenuOpen, setPsalmsMenuOpen] = useState(false)
+  const [journalOpen, setJournalOpen] = useState(false)
   const showPsalmNav = !isRefugeStep
 
   useEffect(() => {
@@ -103,6 +105,31 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
           >
             Lock
           </button>
+          <Sheet open={journalOpen} onOpenChange={setJournalOpen}>
+            <SheetTrigger asChild>
+              <button
+                type="button"
+                className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
+                aria-label="View journal over time"
+              >
+                <CalendarDays className="w-3.5 h-3.5" />
+                Journal
+              </button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-[85vw] max-w-md border-white/10 bg-[#0a0a0a] flex flex-col [&>button]:text-white/50 [&>button]:hover:text-white"
+            >
+              <SheetHeader className="border-b border-white/10 px-4 py-3 shrink-0">
+                <SheetTitle className="font-sans text-lg font-light text-white">
+                  Over time
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex-1 min-h-0 pt-4 px-4 pb-6">
+                <JournalView />
+              </div>
+            </SheetContent>
+          </Sheet>
           {showPsalmNav && (
             <Sheet open={psalmsMenuOpen} onOpenChange={setPsalmsMenuOpen}>
               <SheetTrigger asChild>

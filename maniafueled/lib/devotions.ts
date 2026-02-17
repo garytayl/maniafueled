@@ -83,6 +83,34 @@ export function setVentForDate(date: Date, text: string): void {
   }
 }
 
+/** How far back to look for devotion dates (days). */
+const JOURNAL_DAYS_BACK = 730
+
+/**
+ * All dates that have at least one devotion entry (mood or vent), newest first.
+ * Client-only; scans last JOURNAL_DAYS_BACK days.
+ */
+export function getAllDevotionDates(): string[] {
+  if (typeof window === "undefined") return []
+  const seen = new Set<string>()
+  const today = new Date()
+  for (let i = 0; i < JOURNAL_DAYS_BACK; i++) {
+    const d = new Date(today)
+    d.setDate(d.getDate() - i)
+    const key = toDateKey(d)
+    const hasMood = getMoodForDate(d) !== null
+    const hasVent = getVentForDate(d).trim() !== ""
+    if (hasMood || hasVent) seen.add(key)
+  }
+  return [...seen].sort((a, b) => b.localeCompare(a))
+}
+
+/** Parse YYYY-MM-DD to a Date at local midnight. */
+export function parseDateKey(key: string): Date {
+  const [y, m, d] = key.split("-").map(Number)
+  return new Date(y, (m ?? 1) - 1, d ?? 1)
+}
+
 /** Day of year 1–366. */
 function getDayOfYear(date: Date): number {
   const start = new Date(date.getFullYear(), 0, 0)
