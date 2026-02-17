@@ -6,12 +6,17 @@ import {
   useCallback,
   useState,
   useRef,
-  useEffect,
   type ReactNode,
 } from "react"
-import { getStepIndexForDate, PSALMS_COUNT } from "@/lib/devotions"
+import {
+  PSALMS_COUNT,
+  REFUGE_STEPS,
+  getStepIndexForTodaysPsalm,
+} from "@/lib/devotions"
 
 export type Direction = 1 | -1
+
+const TOTAL_STEPS = REFUGE_STEPS + PSALMS_COUNT
 
 type DevotionsContextValue = {
   step: number
@@ -20,10 +25,12 @@ type DevotionsContextValue = {
   next: () => void
   prev: () => void
   goToStep: (index: number) => void
+  goToTodaysPsalm: () => void
   canGoNext: boolean
   canGoPrev: boolean
   isFirst: boolean
   isLast: boolean
+  isRefugeStep: boolean
 }
 
 const DevotionsContext = createContext<DevotionsContextValue | null>(null)
@@ -32,20 +39,12 @@ export function DevotionsProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState(0)
   const [direction, setDirection] = useState<Direction>(1)
   const isTransitioning = useRef(false)
-  const initialized = useRef(false)
-
-  useEffect(() => {
-    if (initialized.current) return
-    initialized.current = true
-    const todayStep = getStepIndexForDate(new Date())
-    setStep(Math.min(Math.max(0, todayStep), PSALMS_COUNT - 1))
-  }, [])
 
   const next = useCallback(() => {
     if (isTransitioning.current) return
     setDirection(1)
     setStep((s) => {
-      if (s >= PSALMS_COUNT - 1) return s
+      if (s >= TOTAL_STEPS - 1) return s
       isTransitioning.current = true
       return s + 1
     })
@@ -68,22 +67,29 @@ export function DevotionsProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const goToStep = useCallback((index: number) => {
-    if (index < 0 || index >= PSALMS_COUNT) return
+    if (index < 0 || index >= TOTAL_STEPS) return
     setDirection(index > step ? 1 : -1)
     setStep(index)
   }, [step])
 
+  const goToTodaysPsalm = useCallback(() => {
+    const idx = getStepIndexForTodaysPsalm(new Date())
+    goToStep(idx)
+  }, [goToStep])
+
   const value: DevotionsContextValue = {
     step,
-    totalSteps: PSALMS_COUNT,
+    totalSteps: TOTAL_STEPS,
     direction,
     next,
     prev,
     goToStep,
-    canGoNext: step < PSALMS_COUNT - 1,
+    goToTodaysPsalm,
+    canGoNext: step < TOTAL_STEPS - 1,
     canGoPrev: step > 0,
     isFirst: step === 0,
-    isLast: step === PSALMS_COUNT - 1,
+    isLast: step === TOTAL_STEPS - 1,
+    isRefugeStep: step < REFUGE_STEPS,
   }
 
   return (

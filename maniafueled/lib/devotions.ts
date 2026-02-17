@@ -1,9 +1,87 @@
 /**
  * Devotions calendar logic: map date ↔ Psalm index (1–150).
  * Uses day-of-year so each calendar day has one Psalm; cycles through 1–150.
+ * Also mood/vent storage keys and helpers (client-only, localStorage).
  */
 
 const PSALMS_COUNT = 150
+
+/** Refuge flow: mood choice for "How are you feeling?" */
+export type MoodOption =
+  | "mania"
+  | "mixed"
+  | "depressive"
+  | "baseline"
+  | "not_sure"
+
+/** YYYY-MM-DD for a date (local time). */
+function toDateKey(date: Date): string {
+  const y = date.getFullYear()
+  const m = String(date.getMonth() + 1).padStart(2, "0")
+  const d = String(date.getDate()).padStart(2, "0")
+  return `${y}-${m}-${d}`
+}
+
+/** localStorage key for mood on a given day. */
+export function getMoodStorageKey(date: Date): string {
+  return `devotions-mood-${toDateKey(date)}`
+}
+
+/** localStorage key for vent text on a given day. */
+export function getVentStorageKey(date: Date): string {
+  return `devotions-vent-${toDateKey(date)}`
+}
+
+/** Read mood for date (client-only). Returns null if none or not in browser. */
+export function getMoodForDate(date: Date): MoodOption | null {
+  if (typeof window === "undefined") return null
+  try {
+    const raw = localStorage.getItem(getMoodStorageKey(date))
+    if (!raw) return null
+    const v = raw as MoodOption
+    if (
+      v === "mania" ||
+      v === "mixed" ||
+      v === "depressive" ||
+      v === "baseline" ||
+      v === "not_sure"
+    )
+      return v
+    return null
+  } catch {
+    return null
+  }
+}
+
+/** Save mood for date (client-only). */
+export function setMoodForDate(date: Date, mood: MoodOption): void {
+  if (typeof window === "undefined") return
+  try {
+    localStorage.setItem(getMoodStorageKey(date), mood)
+  } catch {
+    // ignore
+  }
+}
+
+/** Read vent text for date (client-only). */
+export function getVentForDate(date: Date): string {
+  if (typeof window === "undefined") return ""
+  try {
+    return localStorage.getItem(getVentStorageKey(date)) ?? ""
+  } catch {
+    return ""
+  }
+}
+
+/** Save vent text for date (client-only). */
+export function setVentForDate(date: Date, text: string): void {
+  if (typeof window === "undefined") return
+  try {
+    localStorage.setItem(getVentStorageKey(date), text)
+  } catch {
+    // ignore
+  }
+}
 
 /** Day of year 1–366. */
 function getDayOfYear(date: Date): number {
@@ -37,6 +115,14 @@ export function getDateForStep(stepIndex: number): Date {
   const date = new Date(startOfYear)
   date.setDate(date.getDate() + dayOfYear - 1)
   return date
+}
+
+/** Number of refuge steps before Psalms (Entry, Mood, Vent). */
+export const REFUGE_STEPS = 3
+
+/** Shell step index (0–152) for today's Psalm. Steps 0–2 are refuge; 3–152 are Psalm 1–150. */
+export function getStepIndexForTodaysPsalm(date: Date): number {
+  return REFUGE_STEPS + getStepIndexForDate(date)
 }
 
 export { PSALMS_COUNT }
