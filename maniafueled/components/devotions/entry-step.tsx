@@ -20,7 +20,7 @@ export function EntryStep() {
   }, [])
 
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#050505] px-4">
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#050505] px-4 pt-16 sm:pt-20">
       <motion.div
         className="flex flex-col items-center justify-center text-center max-w-md"
         initial={{

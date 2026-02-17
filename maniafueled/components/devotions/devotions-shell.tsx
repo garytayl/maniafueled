@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useState, type ReactNode } from "react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, BookOpen, CalendarDays } from "lucide-react"
+import { ChevronLeft, ChevronRight, BookOpen, CalendarDays, LogOut } from "lucide-react"
 import { useDevotions } from "./devotions-context"
 import { lock } from "@/lib/devotions-auth"
 import { REFUGE_STEPS, PSALMS_COUNT } from "@/lib/devotions"
@@ -92,16 +93,16 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
         </div>
       )}
 
-      {/* Lock / Psalms menu / Psalm label — top; simplified on refuge steps */}
-      <div className="absolute top-4 right-4 left-4 z-30 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      {/* Top bar: Lock, Journal, (Psalms on Psalm steps), Leave always visible */}
+      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 py-3 min-h-[52px] sm:py-4 sm:px-6 md:px-12">
+        <div className="flex items-center gap-3 sm:gap-4">
           <button
             type="button"
             onClick={() => {
               lock()
               window.location.reload()
             }}
-            className="font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
+            className="min-h-[44px] min-w-[44px] flex items-center font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
           >
             Lock
           </button>
@@ -109,16 +110,16 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
+                className="flex items-center gap-1.5 min-h-[44px] font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
                 aria-label="View journal over time"
               >
-                <CalendarDays className="w-3.5 h-3.5" />
-                Journal
+                <CalendarDays className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Journal</span>
               </button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[85vw] max-w-md border-white/10 bg-[#0a0a0a] flex flex-col [&>button]:text-white/50 [&>button]:hover:text-white"
+              className="w-full max-w-[100vw] sm:w-[85vw] sm:max-w-md border-white/10 bg-[#0a0a0a] flex flex-col pb-[env(safe-area-inset-bottom)] [&>button]:text-white/50 [&>button]:hover:text-white"
             >
               <SheetHeader className="border-b border-white/10 px-4 py-3 shrink-0">
                 <SheetTitle className="font-sans text-lg font-light text-white">
@@ -144,15 +145,15 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className="w-[85vw] max-w-sm border-white/10 bg-[#0a0a0a] p-0 [&>button]:text-white/50 [&>button]:hover:text-white"
+                className="w-full max-w-[100vw] sm:w-[85vw] sm:max-w-sm border-white/10 bg-[#0a0a0a] p-0 pb-[env(safe-area-inset-bottom)] [&>button]:text-white/50 [&>button]:hover:text-white"
               >
-                <SheetHeader className="border-b border-white/10 px-4 py-3">
+                <SheetHeader className="border-b border-white/10 px-4 py-3 shrink-0">
                   <SheetTitle className="font-sans text-lg font-light text-white">
                     Jump to Psalm
                   </SheetTitle>
                 </SheetHeader>
-                <div className="flex-1 overflow-y-auto p-3">
-                  <div className="grid grid-cols-5 sm:grid-cols-6 gap-1">
+                <div className="flex-1 overflow-y-auto p-3 sm:p-4">
+                  <div className="grid grid-cols-5 sm:grid-cols-6 gap-2 sm:gap-1.5">
                     {Array.from({ length: PSALMS_COUNT }, (_, i) => {
                       const stepIndex = REFUGE_STEPS + i
                       return (
@@ -163,10 +164,10 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
                             goToStep(stepIndex)
                             setPsalmsMenuOpen(false)
                           }}
-                          className={`min-h-[44px] rounded-md font-mono text-sm transition-colors ${
+                          className={`min-h-[48px] sm:min-h-[44px] rounded-lg sm:rounded-md font-mono text-sm transition-colors touch-manipulation ${
                             stepIndex === step
                               ? "bg-white/20 text-white"
-                              : "text-white/60 hover:bg-white/10 hover:text-white"
+                              : "text-white/60 hover:bg-white/10 hover:text-white active:bg-white/15"
                           }`}
                         >
                           {i + 1}
@@ -179,17 +180,25 @@ export function DevotionsShell({ children }: DevotionsShellProps) {
             </Sheet>
           )}
         </div>
-        {showPsalmNav && (
-          <span className="font-mono text-[10px] tracking-[0.2em] text-white/40">
-            Psalm {step - REFUGE_STEPS + 1} / {PSALMS_COUNT}
-          </span>
-        )}
+        <div className="flex items-center gap-3 sm:gap-4">
+          {showPsalmNav && (
+            <span className="font-mono text-[10px] tracking-[0.2em] text-white/40">
+              Psalm {step - REFUGE_STEPS + 1} / {PSALMS_COUNT}
+            </span>
+          )}
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 min-h-[44px] min-w-[44px] font-mono text-[10px] tracking-wider text-white/40 hover:text-white/70"
+            aria-label="Leave devotions"
+          >
+            <LogOut className="w-3.5 h-3.5 shrink-0" />
+            <span className="hidden sm:inline">Leave</span>
+          </Link>
+        </div>
       </div>
 
-      {/* Step panels — one visible at a time; bottom padding so content doesn't sit under nav */}
-      <div
-        className={`flex-1 min-h-0 relative flex flex-col ${showPsalmNav ? "pt-10" : ""}`}
-      >
+      {/* Step panels — below top bar; extra pt when Psalm nav so label doesn't overlap */}
+      <div className="flex-1 min-h-0 relative flex flex-col pt-14 sm:pt-16">
         <div className="flex-1 min-h-0 relative overflow-hidden">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div

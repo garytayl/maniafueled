@@ -172,3 +172,58 @@ export function getStepIndexForTodaysPsalm(date: Date): number {
 }
 
 export { PSALMS_COUNT }
+
+/** Prefixes we export/import (excludes session/unlocked). */
+const EXPORT_PREFIXES = ["devotions-mood-", "devotions-vent-", "devotions-psalm-"]
+
+export type ExportedDevotions = {
+  version: 1
+  exportedAt: string
+  data: Record<string, string>
+}
+
+/** Build export object from current localStorage. Client-only. */
+export function exportDevotionsData(): ExportedDevotions | null {
+  if (typeof window === "undefined") return null
+  const data: Record<string, string> = {}
+  try {
+    for (let i = 0; i < window.localStorage.length; i++) {
+      const key = window.localStorage.key(i)
+      if (!key) continue
+      const allowed = EXPORT_PREFIXES.some((p) => key.startsWith(p))
+      if (allowed) {
+        const value = window.localStorage.getItem(key)
+        if (value != null) data[key] = value
+      }
+    }
+    return {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      data,
+    }
+  } catch {
+    return null
+  }
+}
+
+/** Merge imported data into localStorage. Only allows devotion keys. Returns number of keys written. */
+export function importDevotionsData(payload: unknown): number {
+  if (typeof window === "undefined") return 0
+  const obj = payload as ExportedDevotions | null
+  if (!obj || obj.version !== 1 || !obj.data || typeof obj.data !== "object")
+    return 0
+  let count = 0
+  try {
+    for (const [key, value] of Object.entries(obj.data)) {
+      if (typeof key !== "string" || typeof value !== "string") continue
+      const allowed = EXPORT_PREFIXES.some((p) => key.startsWith(p))
+      if (allowed) {
+        window.localStorage.setItem(key, value)
+        count++
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return count
+}

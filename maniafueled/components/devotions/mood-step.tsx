@@ -37,7 +37,7 @@ export function MoodStep() {
   }
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-[#050505] overflow-y-auto px-4 pt-12 pb-24">
+    <div className="fixed inset-0 flex flex-col bg-[#050505] overflow-y-auto px-4 pt-20 sm:pt-24 pb-24">
       <div className="max-w-md mx-auto w-full">
         <h2 className="font-sans text-xl sm:text-2xl font-light text-white mb-8 text-center">
           How are you feeling?

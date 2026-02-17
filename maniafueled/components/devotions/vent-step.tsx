@@ -61,7 +61,7 @@ export function VentStep() {
   }, [goToPsalm])
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-[#050505] overflow-hidden px-4 pt-12 pb-24">
+    <div className="fixed inset-0 flex flex-col bg-[#050505] overflow-hidden px-4 pt-20 sm:pt-24 pb-24">
       {/* Breathe transition overlay */}
       {showBreathe && (
         <motion.div
