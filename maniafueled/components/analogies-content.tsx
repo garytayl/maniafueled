@@ -3,17 +3,43 @@
 import Link from "next/link"
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight, HandHelping, Lightbulb, Package } from "lucide-react"
+import { ArrowRight, HandHelping, Lightbulb, Package, RotateCcw } from "lucide-react"
 import { analogies, type AnalogyEntry, type HelpContrast, type OutsideInsidePair } from "@/lib/content"
 import { CrossLinks } from "@/components/cross-links"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-function compareLoadMessage(score: number): string {
-  if (score <= 3) return "This is a lighter-load day. Still effort, but more room to breathe."
-  if (score <= 6) return "This is a medium-load day. Movement is possible, but it costs concentration."
-  if (score <= 8) return "This is a heavy-load day. Every small task can feel like a major lift."
-  return "This is overload. Even basic actions can feel like carrying furniture uphill."
+type LoadFactor = {
+  id: string
+  label: string
+  delta: number
+  kind: "pressure" | "support"
+  note: string
+}
+
+const LOAD_FACTORS: LoadFactor[] = [
+  { id: "sleep-loss", label: "Sleep loss", delta: 2, kind: "pressure", note: "Less sleep increases load quickly." },
+  { id: "money-stress", label: "Money stress", delta: 1.5, kind: "pressure", note: "Scarcity pressure adds constant strain." },
+  { id: "social-misread", label: "Social misread", delta: 1.2, kind: "pressure", note: "Being misunderstood adds emotional weight." },
+  { id: "shame-spiral", label: "Shame spiral", delta: 1.8, kind: "pressure", note: "Shame amplifies effort cost." },
+  { id: "someone-stays", label: "Someone stays", delta: -1.6, kind: "support", note: "Presence helps carry part of the load." },
+  { id: "concrete-help", label: "Concrete help", delta: -1.8, kind: "support", note: "Specific action lowers immediate pressure." },
+  { id: "nonjudgment", label: "No moralizing", delta: -1.2, kind: "support", note: "Reduced shame restores breathing room." },
+  { id: "follow-up", label: "Follow-up check-in", delta: -1, kind: "support", note: "Consistent support prevents collapse." },
+]
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
+
+function describeLoadState(couchLoad: number, lampLoad: number, supportCount: number): string {
+  const gap = couchLoad - lampLoad
+
+  if (couchLoad >= 9) return "Overload: this is the couch-on-stairs feeling where even basic tasks can buckle."
+  if (supportCount >= 2 && gap <= 3) return "Shared-carry zone: support is actually reducing the load in real time."
+  if (gap >= 5) return "Big load gap: this is where 'just push through' usually lands as invalidating."
+  if (couchLoad <= 4) return "Stabilizing: still carrying weight, but with more margin and control."
+  return "Heavy but movable: effort is high, and support quality makes the difference."
 }
 
 function BulletDeck({
@@ -73,7 +99,7 @@ function HelpLayerDeck({ items }: { items: HelpContrast[] }) {
             onClick={() => setActiveIndex(idx)}
             className={`rounded-md border px-3 py-1.5 text-left text-xs transition-colors ${
               idx === activeIndex
-                ? "border-white/40 bg-white/12 text-white"
+                ? "border-white/40 bg-white/[0.12] text-white"
                 : "border-white/15 bg-white/[0.03] text-white/70 hover:bg-white/[0.07]"
             }`}
           >
@@ -116,7 +142,7 @@ function OutsideInsideDeck({ pairs }: { pairs: OutsideInsidePair[] }) {
               onClick={() => setActiveIndex(idx)}
               className={`w-full rounded-md border px-3 py-2 text-left text-sm font-light transition-colors ${
                 idx === activeIndex
-                  ? "border-white/35 bg-white/12 text-white"
+                  ? "border-white/35 bg-white/[0.12] text-white"
                   : "border-white/10 bg-white/[0.02] text-white/75 hover:bg-white/[0.07]"
               }`}
             >
@@ -145,9 +171,29 @@ function OutsideInsideDeck({ pairs }: { pairs: OutsideInsidePair[] }) {
 }
 
 function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number }) {
-  const [loadScore, setLoadScore] = useState(8)
-  const lampScore = 2
-  const message = useMemo(() => compareLoadMessage(loadScore), [loadScore])
+  const [activeLoadFactors, setActiveLoadFactors] = useState<string[]>([])
+  const lampLoad = 2
+  const couchBaseLoad = 6
+  const activeFactors = useMemo(
+    () => LOAD_FACTORS.filter((factor) => activeLoadFactors.includes(factor.id)),
+    [activeLoadFactors],
+  )
+  const couchLoad = useMemo(() => {
+    const delta = activeFactors.reduce((sum, factor) => sum + factor.delta, 0)
+    return clamp(Number((couchBaseLoad + delta).toFixed(1)), 1, 10)
+  }, [activeFactors])
+  const supportCount = useMemo(
+    () => activeFactors.filter((factor) => factor.kind === "support").length,
+    [activeFactors],
+  )
+  const pressureCount = useMemo(
+    () => activeFactors.filter((factor) => factor.kind === "pressure").length,
+    [activeFactors],
+  )
+  const loadMessage = useMemo(
+    () => describeLoadState(couchLoad, lampLoad, supportCount),
+    [couchLoad, lampLoad, supportCount],
+  )
   const outsideInsidePairs = useMemo(() => {
     if (analogy.outsideInsidePairs && analogy.outsideInsidePairs.length > 0) return analogy.outsideInsidePairs
     if (!analogy.peopleMightSay || !analogy.howItFeels) return []
@@ -159,6 +205,11 @@ function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number 
       }))
       .filter((pair): pair is OutsideInsidePair => pair.inside.length > 0)
   }, [analogy])
+  const toggleLoadFactor = (factorId: string) => {
+    setActiveLoadFactors((current) =>
+      current.includes(factorId) ? current.filter((id) => id !== factorId) : [...current, factorId],
+    )
+  }
 
   return (
     <motion.section
@@ -181,34 +232,87 @@ function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number 
       </p>
 
       <div className="relative mt-7 rounded-xl border border-white/10 bg-black/30 p-4 sm:p-5">
-        <p className="font-mono text-xs tracking-[0.2em] text-white/55">INTERACTIVE LOAD CHECK</p>
+        <p className="font-mono text-xs tracking-[0.2em] text-white/55">INTERACTIVE LOAD LAB</p>
         <p className="mt-2 text-sm font-light text-white/70 sm:text-base">
-          Drag this to reflect how heavy the couch feels today.
+          Toggle pressures and supports below to simulate how the same day can get heavier or lighter.
         </p>
-        <div className="mt-4 space-y-3">
-          <label htmlFor={`load-score-${index}`} className="font-mono text-xs tracking-[0.16em] text-white/60">
-            COUCH WEIGHT: {loadScore}/10
-          </label>
-          <input
-            id={`load-score-${index}`}
-            type="range"
-            min={1}
-            max={10}
-            value={loadScore}
-            onChange={(e) => setLoadScore(Number(e.target.value))}
-            className="w-full accent-amber-300"
-          />
-          <div className="space-y-2">
+        <div className="mt-4 grid gap-4 lg:grid-cols-[1.2fr_1fr]">
+          <div className="space-y-3">
+            <div>
+              <p className="mb-2 font-mono text-[11px] tracking-[0.16em] text-white/55">PRESSURE FACTORS</p>
+              <div className="flex flex-wrap gap-2">
+                {LOAD_FACTORS.filter((factor) => factor.kind === "pressure").map((factor) => {
+                  const isActive = activeLoadFactors.includes(factor.id)
+                  return (
+                    <button
+                      key={factor.id}
+                      type="button"
+                      onClick={() => toggleLoadFactor(factor.id)}
+                      className={`rounded-md border px-3 py-1.5 text-xs transition-colors ${
+                        isActive
+                          ? "border-red-400/40 bg-red-500/20 text-red-100"
+                          : "border-white/15 bg-white/[0.03] text-white/70 hover:bg-white/[0.08]"
+                      }`}
+                      title={factor.note}
+                    >
+                      + {factor.label}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+            <div>
+              <p className="mb-2 font-mono text-[11px] tracking-[0.16em] text-white/55">SUPPORT FACTORS</p>
+              <div className="flex flex-wrap gap-2">
+                {LOAD_FACTORS.filter((factor) => factor.kind === "support").map((factor) => {
+                  const isActive = activeLoadFactors.includes(factor.id)
+                  return (
+                    <button
+                      key={factor.id}
+                      type="button"
+                      onClick={() => toggleLoadFactor(factor.id)}
+                      className={`rounded-md border px-3 py-1.5 text-xs transition-colors ${
+                        isActive
+                          ? "border-emerald-400/40 bg-emerald-500/20 text-emerald-100"
+                          : "border-white/15 bg-white/[0.03] text-white/70 hover:bg-white/[0.08]"
+                      }`}
+                      title={factor.note}
+                    >
+                      - {factor.label}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <button
+                type="button"
+                onClick={() => setActiveLoadFactors([])}
+                className="inline-flex items-center gap-1 rounded-md border border-white/15 px-3 py-1.5 text-xs text-white/70 transition-colors hover:bg-white/[0.08] hover:text-white"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+                Reset simulation
+              </button>
+              <span className="text-xs text-white/50">
+                Active: {pressureCount} pressure · {supportCount} support
+              </span>
+            </div>
+          </div>
+          <div className="space-y-3 rounded-lg border border-white/10 bg-white/[0.02] p-3">
             <div>
               <div className="mb-1 flex items-center justify-between text-xs text-white/55">
                 <span className="inline-flex items-center gap-2">
                   <Lightbulb className="h-3.5 w-3.5" />
                   Lamp load
                 </span>
-                <span>{lampScore}/10</span>
+                <span>{lampLoad}/10</span>
               </div>
               <div className="h-2 rounded-full bg-white/10">
-                <div className="h-full rounded-full bg-sky-300/80" style={{ width: `${lampScore * 10}%` }} />
+                <motion.div
+                  className="h-full rounded-full bg-sky-300/80"
+                  animate={{ width: `${lampLoad * 10}%` }}
+                  transition={{ duration: 0.3 }}
+                />
               </div>
             </div>
             <div>
@@ -217,17 +321,22 @@ function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number 
                   <Package className="h-3.5 w-3.5" />
                   Couch load
                 </span>
-                <span>{loadScore}/10</span>
+                <span>{couchLoad}/10</span>
               </div>
               <div className="h-2 rounded-full bg-white/10">
-                <div className="h-full rounded-full bg-amber-300/90" style={{ width: `${loadScore * 10}%` }} />
+                <motion.div
+                  className="h-full rounded-full bg-amber-300/90"
+                  animate={{ width: `${couchLoad * 10}%` }}
+                  transition={{ duration: 0.3 }}
+                />
               </div>
             </div>
+            <p className="text-xs text-white/55">Load gap: {(couchLoad - lampLoad).toFixed(1)} points</p>
           </div>
-          <p className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-light text-white/75">
-            {message}
-          </p>
         </div>
+        <p className="mt-3 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-light text-white/75">
+          {loadMessage}
+        </p>
       </div>
 
       <Tabs defaultValue="paired" className="relative mt-8">
