@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { analogies } from "@/lib/content"
 
@@ -42,6 +43,21 @@ export function Analogies() {
           </motion.article>
         ))}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="mt-8"
+      >
+        <Link
+          href="/analogies"
+          className="inline-flex min-h-[44px] items-center rounded-md border border-white/20 px-4 py-2 font-mono text-xs uppercase tracking-[0.22em] text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          Open dedicated analogies page
+        </Link>
+      </motion.div>
     </section>
   )
 }

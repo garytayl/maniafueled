@@ -10,6 +10,7 @@ const routeLinks = [
   { label: "Home", href: "/" },
   { label: "Devotions", href: "/devotions" },
   { label: "From the inside", href: "/from-the-inside" },
+  { label: "Analogies", href: "/analogies" },
   { label: "Story", href: "/story" },
   { label: "Baseline", href: "/baseline" },
   { label: "Resonate", href: "/resonate" },
