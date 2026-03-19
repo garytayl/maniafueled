@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X } from "lucide-react"
 
 const routeLinks = [
   { label: "Home", href: "/" },
@@ -19,6 +20,47 @@ const routeLinks = [
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
+
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    if (!isMenuOpen) return
+
+    const body = document.body
+    const html = document.documentElement
+    const scrollY = window.scrollY
+    const previousBody = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflowY: body.style.overflowY,
+    }
+    const previousHtmlOverflow = html.style.overflow
+
+    // iOS-friendly scroll lock: freeze page in place while menu is open.
+    body.style.position = "fixed"
+    body.style.top = `-${scrollY}px`
+    body.style.left = "0"
+    body.style.right = "0"
+    body.style.width = "100%"
+    body.style.overflowY = "scroll"
+    html.style.overflow = "hidden"
+
+    return () => {
+      body.style.position = previousBody.position
+      body.style.top = previousBody.top
+      body.style.left = previousBody.left
+      body.style.right = previousBody.right
+      body.style.width = previousBody.width
+      body.style.overflowY = previousBody.overflowY
+      html.style.overflow = previousHtmlOverflow
+      window.scrollTo(0, scrollY)
+    }
+  }, [isMenuOpen])
 
   return (
     <>
@@ -60,21 +102,34 @@ export function Navbar() {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden relative min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-1.5 -mr-2"
-            aria-label="Toggle menu"
+            className="md:hidden relative -mr-2 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-foreground/90 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-controls="mobile-nav-menu"
+            aria-expanded={isMenuOpen}
           >
-            <motion.span
-              animate={isMenuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
-              className="w-6 h-px bg-foreground origin-center"
-            />
-            <motion.span
-              animate={isMenuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-              className="w-6 h-px bg-foreground"
-            />
-            <motion.span
-              animate={isMenuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
-              className="w-6 h-px bg-foreground origin-center"
-            />
+            <AnimatePresence mode="wait" initial={false}>
+              {isMenuOpen ? (
+                <motion.span
+                  key="close-icon"
+                  initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  <X className="h-5 w-5" />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="menu-icon"
+                  initial={{ opacity: 0, rotate: 45, scale: 0.8 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: -45, scale: 0.8 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  <Menu className="h-5 w-5" />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
         </nav>
       </motion.header>
@@ -88,37 +143,46 @@ export function Navbar() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-background/95 backdrop-blur-lg md:hidden"
           >
-            <nav className="flex flex-col items-center justify-center h-full gap-8">
-              {routeLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`block py-3 px-4 text-3xl sm:text-4xl font-sans tracking-tight min-h-[48px] flex items-center justify-center ${pathname === link.href ? "text-foreground" : "text-muted-foreground"}`}
+            <div
+              id="mobile-nav-menu"
+              className="h-full overflow-y-auto overscroll-contain pt-[calc(var(--navbar-offset)+1rem)] pb-[max(1.25rem,env(safe-area-inset-bottom))]"
+            >
+              <nav className="mx-auto flex w-full max-w-lg flex-col gap-2 px-6">
+                {routeLinks.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ delay: index * 0.06 }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`block min-h-[56px] rounded-lg px-4 py-3 text-left text-3xl font-sans tracking-tight transition-colors sm:text-4xl ${
+                        pathname === link.href
+                          ? "bg-white/5 text-foreground"
+                          : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.35 }}
+                  className="mt-6 flex items-center gap-3 px-4 pb-2"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+                  </span>
+                  <span className="font-mono text-xs tracking-wider text-muted-foreground">A PERSONAL STORY</span>
                 </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="flex items-center gap-3 mt-8"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-                </span>
-                <span className="font-mono text-xs tracking-wider text-muted-foreground">A PERSONAL STORY</span>
-              </motion.div>
-            </nav>
+              </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
