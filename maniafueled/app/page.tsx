@@ -3,6 +3,7 @@ import { PathChoice } from "@/components/path-choice"
 import { Baseline } from "@/components/baseline"
 import { WaveSection } from "@/components/wave-section"
 import { Experiences } from "@/components/experiences"
+import { Analogies } from "@/components/analogies"
 import { TechMarquee } from "@/components/tech-marquee"
 import { Strengths } from "@/components/strengths"
 import { Footer } from "@/components/footer"
@@ -20,6 +21,7 @@ export default function Home() {
         <Baseline />
         <WaveSection />
         <Experiences />
+        <Analogies />
         <TechMarquee />
         <Strengths />
         <Footer />

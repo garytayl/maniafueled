@@ -438,6 +438,22 @@ export const depressionSymptomExplanations = [
   },
 ]
 
+export type AnalogyEntry = {
+  title: string
+  summary: string
+  description: string
+}
+
+export const analogies: AnalogyEntry[] = [
+  {
+    title: "Couch vs lamp",
+    summary:
+      "It can feel like everyone else is carrying a lamp through life while I'm carrying a couch.",
+    description:
+      "A lot of people move through the day with weight, stress, and responsibilities, but it's manageable. For me, bipolar and related mental health struggles can make ordinary things feel dramatically heavier. The same hill everyone is walking up can feel like climbing while carrying a couch on my back. It's not laziness or lack of effort. It's a different load.",
+  },
+]
+
 export const strengths = [
   "Strong self-reflection",
   "Ability to notice patterns over time",
