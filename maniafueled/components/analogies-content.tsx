@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, HandHelping, Lightbulb, Package } from "lucide-react"
-import { analogies, type AnalogyEntry, type HelpContrast } from "@/lib/content"
+import { analogies, type AnalogyEntry, type HelpContrast, type OutsideInsidePair } from "@/lib/content"
 import { CrossLinks } from "@/components/cross-links"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -98,10 +98,67 @@ function HelpLayerDeck({ items }: { items: HelpContrast[] }) {
   )
 }
 
+function OutsideInsideDeck({ pairs }: { pairs: OutsideInsidePair[] }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  if (pairs.length === 0) return null
+  const active = pairs[Math.min(activeIndex, pairs.length - 1)]
+
+  return (
+    <div className="space-y-4">
+      <p className="font-mono text-xs tracking-[0.2em] text-white/55">OUTSIDE WORDS ↔ INSIDE FEELING</p>
+      <div className="grid gap-3 lg:grid-cols-[1.1fr_1fr]">
+        <div className="space-y-2 rounded-xl border border-white/10 bg-black/25 p-3">
+          {pairs.map((pair, idx) => (
+            <button
+              key={`${pair.outside}-${idx}`}
+              type="button"
+              onClick={() => setActiveIndex(idx)}
+              className={`w-full rounded-md border px-3 py-2 text-left text-sm font-light transition-colors ${
+                idx === activeIndex
+                  ? "border-white/35 bg-white/12 text-white"
+                  : "border-white/10 bg-white/[0.02] text-white/75 hover:bg-white/[0.07]"
+              }`}
+            >
+              <span className="font-mono text-[11px] tracking-[0.16em] text-white/55">OUTSIDE:</span>
+              <p className="mt-1">{pair.outside}</p>
+            </button>
+          ))}
+        </div>
+        <motion.div
+          key={`${activeIndex}-${active.inside}`}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="rounded-xl border border-amber-400/20 bg-amber-500/[0.06] p-4"
+        >
+          <p className="font-mono text-[11px] tracking-[0.16em] text-amber-100/80">INSIDE FEELING</p>
+          <p className="mt-2 text-sm font-light leading-relaxed text-amber-100/90 sm:text-base">{active.inside}</p>
+          <p className="mt-4 inline-flex items-center gap-2 text-xs text-amber-100/70">
+            <ArrowRight className="h-3.5 w-3.5" />
+            This maps one outside line to one inside impact.
+          </p>
+        </motion.div>
+      </div>
+    </div>
+  )
+}
+
 function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number }) {
   const [loadScore, setLoadScore] = useState(8)
   const lampScore = 2
   const message = useMemo(() => compareLoadMessage(loadScore), [loadScore])
+  const outsideInsidePairs = useMemo(() => {
+    if (analogy.outsideInsidePairs && analogy.outsideInsidePairs.length > 0) return analogy.outsideInsidePairs
+    if (!analogy.peopleMightSay || !analogy.howItFeels) return []
+
+    return analogy.peopleMightSay
+      .map((outside, idx) => ({
+        outside,
+        inside: analogy.howItFeels?.[idx] ?? "",
+      }))
+      .filter((pair): pair is OutsideInsidePair => pair.inside.length > 0)
+  }, [analogy])
 
   return (
     <motion.section
@@ -173,13 +230,10 @@ function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number 
         </div>
       </div>
 
-      <Tabs defaultValue="outside" className="relative mt-8">
-        <TabsList className="grid h-auto w-full grid-cols-2 gap-1 rounded-xl border border-white/10 bg-white/[0.04] p-1 sm:grid-cols-5">
-          <TabsTrigger value="outside" className="font-mono text-[11px] tracking-wider data-[state=active]:bg-white/10">
-            Outside words
-          </TabsTrigger>
-          <TabsTrigger value="inside" className="font-mono text-[11px] tracking-wider data-[state=active]:bg-white/10">
-            Inside feel
+      <Tabs defaultValue="paired" className="relative mt-8">
+        <TabsList className="grid h-auto w-full grid-cols-2 gap-1 rounded-xl border border-white/10 bg-white/[0.04] p-1 sm:grid-cols-4">
+          <TabsTrigger value="paired" className="font-mono text-[11px] tracking-wider data-[state=active]:bg-white/10">
+            Outside + inside
           </TabsTrigger>
           <TabsTrigger value="deeper" className="font-mono text-[11px] tracking-wider data-[state=active]:bg-white/10">
             Dig deeper
@@ -192,12 +246,8 @@ function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number 
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="outside" className="mt-5">
-          <BulletDeck title="WHAT PEOPLE MIGHT SAY" items={analogy.peopleMightSay ?? []} />
-        </TabsContent>
-
-        <TabsContent value="inside" className="mt-5">
-          <BulletDeck title="HOW IT FEELS IN THIS ANALOGY" items={analogy.howItFeels ?? []} tone="inside" />
+        <TabsContent value="paired" className="mt-5">
+          <OutsideInsideDeck pairs={outsideInsidePairs} />
         </TabsContent>
 
         <TabsContent value="deeper" className="mt-5">

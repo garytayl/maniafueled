@@ -444,9 +444,15 @@ export type AnalogyEntry = {
   description: string
   peopleMightSay?: string[]
   howItFeels?: string[]
+  outsideInsidePairs?: OutsideInsidePair[]
   analogyExpansions?: { title: string; description: string }[]
   whatActuallyHelps?: string[]
   helpContrasts?: HelpContrast[]
+}
+
+export type OutsideInsidePair = {
+  outside: string
+  inside: string
 }
 
 export type HelpContrast = {
@@ -469,6 +475,28 @@ export const analogies: AnalogyEntry[] = [
       "Just take it one step at a time.",
       "You just need to push through it.",
       "Why did you not ask for help sooner?",
+    ],
+    outsideInsidePairs: [
+      {
+        outside: "Let me know if I can help.",
+        inside: "It lands like an exit line when it is said while walking away before I can even answer.",
+      },
+      {
+        outside: "Everyone is carrying something.",
+        inside: "It makes me feel compared to lamp-load pace while I am trying to move a couch-load day.",
+      },
+      {
+        outside: "Just take it one step at a time.",
+        inside: "It can feel like the weight is being minimized when each step already feels like dragging furniture.",
+      },
+      {
+        outside: "You just need to push through it.",
+        inside: "It feels like my effort is invisible, even though I am already pushing at capacity.",
+      },
+      {
+        outside: "Why did you not ask for help sooner?",
+        inside: "It feels like blame after silence, instead of support in the moment I was visibly straining.",
+      },
     ],
     howItFeels: [
       "It feels like someone sees I am carrying a couch, turns away with their lamp, and keeps walking without saying a word.",
