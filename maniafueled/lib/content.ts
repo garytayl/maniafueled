@@ -445,6 +445,7 @@ export type AnalogyEntry = {
   peopleMightSay?: string[]
   howItFeels?: string[]
   analogyExpansions?: { title: string; description: string }[]
+  whatActuallyHelps?: string[]
 }
 
 export const analogies: AnalogyEntry[] = [
@@ -495,6 +496,13 @@ export const analogies: AnalogyEntry[] = [
         description:
           "Real support in this analogy is simple: stop, acknowledge the weight, and grab one side of the couch. Practical help beats motivational lines. Presence plus shared load changes everything.",
       },
+    ],
+    whatActuallyHelps: [
+      "Do not only say, 'Let me know if I can help.' Offer one concrete action right now.",
+      "Name what you see: 'I can tell this is heavy. You should not carry this alone.'",
+      "Grab an edge of the couch with me: stay present while I start the next step.",
+      "Check back in later instead of disappearing after one text.",
+      "Measure my effort by my load, not by someone else's pace.",
     ],
   },
 ]
