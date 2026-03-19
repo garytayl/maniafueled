@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, HandHelping, Lightbulb, Package } from "lucide-react"
-import { analogies, type AnalogyEntry } from "@/lib/content"
+import { analogies, type AnalogyEntry, type HelpContrast } from "@/lib/content"
 import { CrossLinks } from "@/components/cross-links"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -51,6 +51,49 @@ function BulletDeck({
           </motion.li>
         ))}
       </ul>
+    </div>
+  )
+}
+
+function HelpLayerDeck({ items }: { items: HelpContrast[] }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  if (items.length === 0) return null
+
+  const active = items[Math.min(activeIndex, items.length - 1)]
+
+  return (
+    <div className="space-y-4">
+      <p className="font-mono text-xs tracking-[0.2em] text-white/55">PERFORMATIVE VS ACTUAL HELP</p>
+      <div className="flex flex-wrap gap-2">
+        {items.map((item, idx) => (
+          <button
+            key={item.prompt}
+            type="button"
+            onClick={() => setActiveIndex(idx)}
+            className={`rounded-md border px-3 py-1.5 text-left text-xs transition-colors ${
+              idx === activeIndex
+                ? "border-white/40 bg-white/12 text-white"
+                : "border-white/15 bg-white/[0.03] text-white/70 hover:bg-white/[0.07]"
+            }`}
+          >
+            {item.prompt}
+          </button>
+        ))}
+      </div>
+      <div className="grid gap-3 md:grid-cols-2">
+        <div className="rounded-xl border border-red-400/20 bg-red-500/[0.07] p-4">
+          <p className="font-mono text-[11px] tracking-[0.18em] text-red-100/80">PERFORMATIVE</p>
+          <p className="mt-2 text-sm font-light leading-relaxed text-red-100/90 sm:text-base">{active.performative}</p>
+        </div>
+        <div className="rounded-xl border border-emerald-400/20 bg-emerald-500/[0.07] p-4">
+          <p className="font-mono text-[11px] tracking-[0.18em] text-emerald-100/80">ACTUAL HELP</p>
+          <p className="mt-2 text-sm font-light leading-relaxed text-emerald-100/90 sm:text-base">{active.actual}</p>
+        </div>
+      </div>
+      <p className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-light text-white/75">
+        <span className="font-mono text-[11px] tracking-[0.16em] text-white/60">IMPACT:</span> {active.impact}
+      </p>
     </div>
   )
 }
@@ -131,7 +174,7 @@ function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number 
       </div>
 
       <Tabs defaultValue="outside" className="relative mt-8">
-        <TabsList className="grid h-auto w-full grid-cols-2 gap-1 rounded-xl border border-white/10 bg-white/[0.04] p-1 sm:grid-cols-4">
+        <TabsList className="grid h-auto w-full grid-cols-2 gap-1 rounded-xl border border-white/10 bg-white/[0.04] p-1 sm:grid-cols-5">
           <TabsTrigger value="outside" className="font-mono text-[11px] tracking-wider data-[state=active]:bg-white/10">
             Outside words
           </TabsTrigger>
@@ -143,6 +186,9 @@ function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number 
           </TabsTrigger>
           <TabsTrigger value="help" className="font-mono text-[11px] tracking-wider data-[state=active]:bg-white/10">
             What helps
+          </TabsTrigger>
+          <TabsTrigger value="layer" className="font-mono text-[11px] tracking-wider data-[state=active]:bg-white/10">
+            Help layer
           </TabsTrigger>
         </TabsList>
 
@@ -176,6 +222,10 @@ function AnalogyCard({ analogy, index }: { analogy: AnalogyEntry; index: number 
 
         <TabsContent value="help" className="mt-5">
           <BulletDeck title="WHAT ACTUALLY HELPS" items={analogy.whatActuallyHelps ?? []} tone="help" />
+        </TabsContent>
+
+        <TabsContent value="layer" className="mt-5">
+          <HelpLayerDeck items={analogy.helpContrasts ?? []} />
         </TabsContent>
       </Tabs>
     </motion.section>

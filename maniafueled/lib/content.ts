@@ -446,6 +446,14 @@ export type AnalogyEntry = {
   howItFeels?: string[]
   analogyExpansions?: { title: string; description: string }[]
   whatActuallyHelps?: string[]
+  helpContrasts?: HelpContrast[]
+}
+
+export type HelpContrast = {
+  prompt: string
+  performative: string
+  actual: string
+  impact: string
 }
 
 export const analogies: AnalogyEntry[] = [
@@ -503,6 +511,38 @@ export const analogies: AnalogyEntry[] = [
       "Grab an edge of the couch with me: stay present while I start the next step.",
       "Check back in later instead of disappearing after one text.",
       "Measure my effort by my load, not by someone else's pace.",
+    ],
+    helpContrasts: [
+      {
+        prompt: "They see you straining with the couch",
+        performative: "They look, nod, and keep walking.",
+        actual: "They stop, make eye contact, and ask, 'Do you want me to grab this side right now?'",
+        impact: "One response increases isolation. The other reduces load immediately.",
+      },
+      {
+        prompt: "They say, 'Let me know if I can help'",
+        performative: "The sentence becomes an exit line while they keep moving.",
+        actual: "They stay and offer one concrete option: 'I can sit with you for 15 minutes or handle this call for you.'",
+        impact: "Vague offers create pressure. Specific offers create relief.",
+      },
+      {
+        prompt: "They compare your pace to others",
+        performative: "They imply you should move like people carrying lamps.",
+        actual: "They adjust expectations to the load: 'You are carrying more. Slow is still progress.'",
+        impact: "Comparison adds shame. Calibration adds dignity.",
+      },
+      {
+        prompt: "After they disappear, they ask why you did not ask",
+        performative: "Responsibility gets shifted back onto the person already overloaded.",
+        actual: "They own initiative: 'I should have stepped in. Next time I will not wait for a perfect ask.'",
+        impact: "Deflection deepens distrust. Accountability rebuilds safety.",
+      },
+      {
+        prompt: "You are quiet because you are exhausted",
+        performative: "They interpret silence as attitude or distance.",
+        actual: "They interpret silence as load and check in gently without pressure.",
+        impact: "Misreading creates disconnection. Accurate reading creates connection.",
+      },
     ],
   },
 ]
