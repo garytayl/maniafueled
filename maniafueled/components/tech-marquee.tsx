@@ -51,7 +51,7 @@ export function TechMarquee() {
         className="px-4 sm:px-8 md:px-12 mb-10 sm:mb-16"
       >
         <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">
-          05 — TRIGGERS & EARLY WARNING SIGNS
+          04 — TRIGGERS & EARLY WARNING SIGNS
         </p>
       </motion.div>
 

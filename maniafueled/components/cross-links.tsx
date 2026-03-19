@@ -6,7 +6,6 @@ export type CrossLinkItem = { label: string; href: string }
 
 const DEFAULT_LINKS: CrossLinkItem[] = [
   { label: "From the inside", href: "/from-the-inside" },
-  { label: "Analogies", href: "/analogies" },
   { label: "My journey", href: "/story" },
   { label: "Resonate", href: "/resonate" },
   { label: "Choose a state", href: "/#state-choice" },
@@ -52,7 +51,6 @@ export const pathPageLinks: CrossLinkItem[] = [
   { label: "Depressive", href: "/depressive" },
   { label: "Baseline", href: "/baseline" },
   { label: "From the inside", href: "/from-the-inside" },
-  { label: "Analogies", href: "/analogies" },
   { label: "My journey", href: "/story" },
   { label: "Resonate", href: "/resonate" },
   { label: "Resources", href: "/resources" },

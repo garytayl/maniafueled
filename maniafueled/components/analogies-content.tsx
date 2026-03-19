@@ -38,6 +38,30 @@ export function AnalogiesContent() {
               <p className="mt-5 font-sans text-base font-light leading-relaxed text-white/75 sm:text-lg">
                 {analogy.description}
               </p>
+              {analogy.peopleMightSay && analogy.peopleMightSay.length > 0 ? (
+                <div className="mt-7">
+                  <h3 className="font-mono text-xs tracking-[0.2em] text-white/55">WHAT PEOPLE MIGHT SAY</h3>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-white/75">
+                    {analogy.peopleMightSay.map((line) => (
+                      <li key={line} className="font-sans text-sm font-light leading-relaxed sm:text-base">
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              {analogy.howItFeels && analogy.howItFeels.length > 0 ? (
+                <div className="mt-7">
+                  <h3 className="font-mono text-xs tracking-[0.2em] text-white/55">HOW IT FEELS IN THIS ANALOGY</h3>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-white/80">
+                    {analogy.howItFeels.map((line) => (
+                      <li key={line} className="font-sans text-sm font-light leading-relaxed sm:text-base">
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
             </motion.section>
           ))}
         </div>

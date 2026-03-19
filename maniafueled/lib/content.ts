@@ -442,15 +442,31 @@ export type AnalogyEntry = {
   title: string
   summary: string
   description: string
+  peopleMightSay?: string[]
+  howItFeels?: string[]
 }
 
 export const analogies: AnalogyEntry[] = [
   {
     title: "Couch vs lamp",
     summary:
-      "It can feel like everyone else is carrying a lamp through life while I'm carrying a couch.",
+      "It can feel like everyone else is carrying a lamp through life while I am carrying a couch.",
     description:
-      "A lot of people move through the day with weight, stress, and responsibilities, but it's manageable. For me, bipolar and related mental health struggles can make ordinary things feel dramatically heavier. The same hill everyone is walking up can feel like climbing while carrying a couch on my back. It's not laziness or lack of effort. It's a different load.",
+      "Most people are still carrying something real: stress, responsibilities, pain, fear. In this analogy, that load is a lamp. It has weight, but one person can carry it and keep moving. My load can feel like a couch. The same day, the same hill, the same task can demand a completely different level of energy, regulation, and endurance. From the outside it may look like I should be moving at the same speed as everyone else, but inside it feels like I am hauling furniture while trying not to collapse. It is not laziness or a character flaw. It is a different load.",
+    peopleMightSay: [
+      "Let me know if there is anything I can do.",
+      "Everyone is carrying something.",
+      "Just take it one step at a time.",
+      "You just need to push through it.",
+      "Why did you not ask for help sooner?",
+    ],
+    howItFeels: [
+      "It feels like someone watches me struggle with a couch, says, 'Let me know if you need help,' then keeps walking.",
+      "It feels like my effort is being measured against people carrying lamps, so my slower pace gets read as not trying.",
+      "It feels lonely because I am visibly straining, but the weight still gets treated like it should be easy to manage.",
+      "It feels exhausting to explain over and over that I am not refusing to move, I am trying to move a heavier thing.",
+      "It feels invalidating when support sounds polite but never turns into someone actually grabbing one end of the couch with me.",
+    ],
   },
 ]
 
