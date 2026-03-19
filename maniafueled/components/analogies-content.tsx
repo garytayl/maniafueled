@@ -62,6 +62,21 @@ export function AnalogiesContent() {
                   </ul>
                 </div>
               ) : null}
+              {analogy.analogyExpansions && analogy.analogyExpansions.length > 0 ? (
+                <div className="mt-8">
+                  <h3 className="font-mono text-xs tracking-[0.2em] text-white/55">WAYS THIS ANALOGY SHOWS UP</h3>
+                  <div className="mt-4 space-y-4">
+                    {analogy.analogyExpansions.map((item) => (
+                      <div key={item.title} className="rounded-xl border border-white/10 bg-black/20 p-4 sm:p-5">
+                        <p className="font-mono text-xs tracking-[0.18em] text-white/70">{item.title.toUpperCase()}</p>
+                        <p className="mt-2 font-sans text-sm font-light leading-relaxed text-white/78 sm:text-base">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
             </motion.section>
           ))}
         </div>

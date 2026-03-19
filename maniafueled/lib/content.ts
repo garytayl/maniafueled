@@ -444,6 +444,7 @@ export type AnalogyEntry = {
   description: string
   peopleMightSay?: string[]
   howItFeels?: string[]
+  analogyExpansions?: { title: string; description: string }[]
 }
 
 export const analogies: AnalogyEntry[] = [
@@ -454,18 +455,46 @@ export const analogies: AnalogyEntry[] = [
     description:
       "Most people are still carrying something real: stress, responsibilities, pain, fear. In this analogy, that load is a lamp. It has weight, but one person can carry it and keep moving. My load can feel like a couch. The same day, the same hill, the same task can demand a completely different level of energy, regulation, and endurance. From the outside it may look like I should be moving at the same speed as everyone else, but inside it feels like I am hauling furniture while trying not to collapse. It is not laziness or a character flaw. It is a different load.",
     peopleMightSay: [
-      "Let me know if there is anything I can do.",
+      "Let me know if I can help.",
       "Everyone is carrying something.",
       "Just take it one step at a time.",
       "You just need to push through it.",
       "Why did you not ask for help sooner?",
     ],
     howItFeels: [
-      "It feels like someone watches me struggle with a couch, says, 'Let me know if you need help,' then keeps walking.",
+      "It feels like someone sees I am carrying a couch, turns away with their lamp, and keeps walking without saying a word.",
+      "It feels like someone says, 'Let me know if I can help,' while already walking off before I can answer.",
       "It feels like my effort is being measured against people carrying lamps, so my slower pace gets read as not trying.",
       "It feels lonely because I am visibly straining, but the weight still gets treated like it should be easy to manage.",
       "It feels exhausting to explain over and over that I am not refusing to move, I am trying to move a heavier thing.",
       "It feels invalidating when support sounds polite but never turns into someone actually grabbing one end of the couch with me.",
+    ],
+    analogyExpansions: [
+      {
+        title: "The silent turn-away",
+        description:
+          "The hardest version is not even criticism; it is silence. Someone sees the couch, sees me struggling, then turns forward and keeps going. No words. No check-in. Just distance. That silence can feel louder than any insult.",
+      },
+      {
+        title: "The polite exit",
+        description:
+          "Sometimes help is offered in words but removed in action: 'Let me know if I can help.' In the analogy, it is like saying that while backing away and leaving me with all the weight. It sounds caring, but it lands like abandonment.",
+      },
+      {
+        title: "The pace comparison",
+        description:
+          "When people carrying lamps move faster, it can look like they are disciplined and I am failing. But the loads are not equal. The comparison itself is unfair because we are not carrying the same thing.",
+      },
+      {
+        title: "The delayed blame",
+        description:
+          "After walking away, people may ask why I did not ask for help. In the analogy, that is watching someone carry a couch alone, leaving, then later blaming them for not shouting loud enough.",
+      },
+      {
+        title: "What real help looks like",
+        description:
+          "Real support in this analogy is simple: stop, acknowledge the weight, and grab one side of the couch. Practical help beats motivational lines. Presence plus shared load changes everything.",
+      },
     ],
   },
 ]
